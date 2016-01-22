@@ -15,6 +15,7 @@ class Application {
     const int SCREEN_HEIGHT = 480;
     SDL_Window* gWindow = NULL;
     DrawSystem* drawsys;
+    SDL_Event event;
     Game* game;
 
     bool init(int, char**);

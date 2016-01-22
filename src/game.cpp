@@ -11,5 +11,5 @@ Game::~Game(){
 
 bool Game::run(){
   drawsys->draw(hello);
-  return false;
+  return true;
 }

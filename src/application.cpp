@@ -21,10 +21,11 @@ bool Application::init(int argc, char* argv[]){
 }
 
 bool Application::run(){
-  bool should_quit = !game->run();
+  SDL_PollEvent(&event);
+  bool run_again = game->run() and event.type != SDL_QUIT;
   SDL_UpdateWindowSurface( gWindow );
-  SDL_Delay( 2000 );
-  return should_quit;
+  SDL_Delay( 1 );
+  return run_again;
 }
 
 void Application::quit(){
