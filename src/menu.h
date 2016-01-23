@@ -7,10 +7,21 @@
 #include "ltimer.h"
 using namespace std;
 
+enum MenuState {
+  msNULL,
+  msSTARTED,
+  msOPTIONS,
+  msVS
+};
+
 class Menu : public Scene {
   private:
     LTimer timer;
     bool initialized = false;
+    MenuState state = msNULL;
+    //start button
+    //options button
+    //vs button
 
   public:
     Menu();

@@ -22,6 +22,13 @@ bool Menu::first(){
 }
 
 bool Menu::run(){
+  switch(state){
+    case msNULL:
+    case msSTARTED:
+    case msOPTIONS:
+    case msVS:
+      break;
+  };
   drawsys->draw(background);
   return true;
 }
