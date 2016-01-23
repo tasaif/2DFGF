@@ -2,7 +2,6 @@
 #define GAME_H
 #include "drawsystem.h"
 #include "sprite.h"
-#include "scene.h"
 #include "billboard.h"
 
 class Application;
