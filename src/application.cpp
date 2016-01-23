@@ -45,7 +45,7 @@ void Application::frameLimiter(){
   }
   ++countedFrames;
   int frameTicks = capTimer.getTicks();
-  if( frameTicks < SCREEN_TICKS_PER_FRAME ){
+  if(frameTicks < SCREEN_TICKS_PER_FRAME){
     SDL_Delay( SCREEN_TICKS_PER_FRAME - frameTicks );
   }
 }

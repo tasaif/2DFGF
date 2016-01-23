@@ -1,4 +1,5 @@
 #include "sprite.h"
+#include "application.h"
 
 extern path base_path;
 extern Application* app;
@@ -24,7 +25,7 @@ void Sprite::load(string fname){
     return;
   }
 
-  optimized = SDL_ConvertSurface(surface, app->drawsys->format(), NULL);
+  optimized = SDL_ConvertSurface(surface, app->drawsys->format(), 0);
   if (optimized == NULL){
     cout << "Failed to optimize: " << fname << endl;
   } else {
@@ -38,4 +39,9 @@ void Sprite::unload(){
     SDL_FreeSurface(surface);
     surface = NULL;
   }
+}
+
+bool Sprite::valid(){
+  if (surface != NULL) return true;
+  return false;
 }

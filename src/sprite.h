@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include "boost/filesystem.hpp"
-#include "application.h"
 using namespace boost::filesystem;
 using namespace std;
 
@@ -19,6 +18,7 @@ class Sprite {
     int y = 0;
     void load(string);
     void unload();
+    bool valid();
 };
 
 #endif

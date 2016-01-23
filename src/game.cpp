@@ -1,15 +1,32 @@
 #include "game.h"
 
 Game::Game(){
-  drawsys = app->drawsys;
-  hello = new Sprite("hello_world.bmp");
+  logo = new Billboard();
+  logo->init("hello_world.bmp");
 }
 
 Game::~Game(){
-  delete hello;
+  delete logo;
 }
 
 bool Game::run(){
-  drawsys->draw(hello);
+  switch(gamestate){
+    case gsNULL:
+      gamestate = gsLOGO;
+      logo->first();
+      break;
+    case gsLOGO:
+      if (!logo->run()){
+        gamestate = gsQUIT;
+      }
+      break;
+    case gsINTRO:
+    case gsTITLE:
+    case gsOPTIONS:
+    case gsCHARACTERS:
+    case gsVS:
+    case gsQUIT:
+      return false;
+  };
   return true;
 }

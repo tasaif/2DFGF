@@ -2,16 +2,28 @@
 #define GAME_H
 #include "drawsystem.h"
 #include "sprite.h"
+#include "scene.h"
+#include "billboard.h"
 
 class Application;
 class DrawSystem;
 
 extern Application* app;
+enum GameState {
+  gsNULL,
+  gsLOGO,
+  gsINTRO,
+  gsTITLE,
+  gsOPTIONS,
+  gsCHARACTERS,
+  gsVS,
+  gsQUIT
+};
 
 class Game {
   private:
-    DrawSystem* drawsys;
-    Sprite* hello;
+    Billboard* logo;
+    GameState gamestate = gsNULL;
 
   public:
     Game();
