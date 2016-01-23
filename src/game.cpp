@@ -1,22 +1,32 @@
 #include "game.h"
 
 Game::Game(){
-  logo = new Billboard();
-  logo->init("hello_world.bmp");
+  logo1 = new Billboard();
+  logo2 = new Billboard();
+
+  logo1->init("billboard1.bmp");
+  logo2->init("billboard2.bmp");
 }
 
 Game::~Game(){
-  delete logo;
+  delete logo1;
+  delete logo2;
 }
 
 bool Game::run(){
   switch(gamestate){
     case gsNULL:
-      gamestate = gsLOGO;
-      logo->first();
+      gamestate = gsLOGO1;
+      logo1->first();
       break;
-    case gsLOGO:
-      if (!logo->run()){
+    case gsLOGO1:
+      if (!logo1->run()){
+        gamestate = gsLOGO2;
+        logo2->first();
+      }
+      break;
+    case gsLOGO2:
+      if (!logo2->run()){
         gamestate = gsQUIT;
       }
       break;

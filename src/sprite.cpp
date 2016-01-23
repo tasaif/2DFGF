@@ -19,7 +19,7 @@ void Sprite::load(string fname){
   SDL_Surface* optimized = NULL;
   fname = (base_path / fname).string();
   unload();
-  surface = SDL_LoadBMP(fname.c_str());
+  surface = IMG_Load(fname.c_str());
   if (surface == NULL){
     cout << "Failed to load: " << fname << endl;
     return;

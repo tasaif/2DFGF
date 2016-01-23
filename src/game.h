@@ -11,7 +11,8 @@ class DrawSystem;
 extern Application* app;
 enum GameState {
   gsNULL,
-  gsLOGO,
+  gsLOGO1,
+  gsLOGO2,
   gsINTRO,
   gsTITLE,
   gsOPTIONS,
@@ -22,7 +23,8 @@ enum GameState {
 
 class Game {
   private:
-    Billboard* logo;
+    Billboard* logo1;
+    Billboard* logo2;
     GameState gamestate = gsNULL;
 
   public:
