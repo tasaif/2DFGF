@@ -17,14 +17,16 @@ bool Application::init(int argc, char* argv[]){
   }
   drawsys = new DrawSystem();
   game = new Game();
+  fpsTimer.start();
   return true;
 }
 
 bool Application::run(){
+  capTimer.start();
   SDL_PollEvent(&event);
   bool run_again = game->run() and event.type != SDL_QUIT;
   SDL_UpdateWindowSurface( gWindow );
-  SDL_Delay( 1 );
+  frameLimiter();
   return run_again;
 }
 
@@ -34,4 +36,16 @@ void Application::quit(){
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
 	SDL_Quit();
+}
+
+void Application::frameLimiter(){
+  avgFPS = countedFrames / ( fpsTimer.getTicks() / 1000.f );
+  if( avgFPS > 2000000 ){
+    avgFPS = 0;
+  }
+  ++countedFrames;
+  int frameTicks = capTimer.getTicks();
+  if( frameTicks < SCREEN_TICKS_PER_FRAME ){
+    SDL_Delay( SCREEN_TICKS_PER_FRAME - frameTicks );
+  }
 }
