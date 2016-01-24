@@ -6,7 +6,7 @@ using namespace std;
 using namespace boost::filesystem;
 
 bool Application::init(int argc, char* argv[]){
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
+	if (SDL_Init(SDL_INIT_EVERYTHING | SDL_INIT_JOYSTICK) < 0){
 		cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
     return false;
   }
@@ -33,9 +33,17 @@ bool Application::init(int argc, char* argv[]){
 }
 
 bool Application::run(){
+  bool quit = false;
   capTimer.start();
-  SDL_PollEvent(event);
-  bool run_again = game->run() and event->type != SDL_QUIT;
+  while (SDL_PollEvent(event)){
+    switch(event->type){
+      case SDL_QUIT:
+        quit = true;
+        break;
+    };
+  }
+  inputsys->update();
+  bool run_again = game->run() and !quit;
   SDL_UpdateWindowSurface( gWindow );
   frameLimiter();
   return run_again;

@@ -31,6 +31,9 @@ class Joystick {
     SDL_Joystick* device;
     const unsigned buffer_size = 20;
     Button* buffer = NULL;
+    int raw_buffer_length = 0;
+    Uint8* current_buffer = NULL;
+    Uint8* previous_buffer = NULL;
 
   public:
     Joystick(unsigned);

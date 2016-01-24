@@ -7,9 +7,16 @@ Menu::Menu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
   background = new Sprite();
+
   start_option = new Option();
   start_option->init("Press Start", 24, 0, 300);
   start_option->align(
+    Sprite::HCENTER
+  );
+
+  vs_option = new Option();
+  vs_option->init("2P Versus", 24, 0, 300);
+  vs_option->align(
     Sprite::HCENTER
   );
 }
@@ -35,14 +42,16 @@ bool Menu::run(){
       drawsys->draw(start_option);
       if (inputsys->pressed(bSTART)){
         //play sound
-        state = msSTARTED;
+        state = msVS;
       }
       break;
-    case msSTARTED:
-      return false;
-    case msOPTIONS:
     case msVS:
+      drawsys->draw(vs_option);
       break;
+    case msOPTIONS:
+      break;
+    case msQUIT:
+      return false;
   };
   return true;
 }

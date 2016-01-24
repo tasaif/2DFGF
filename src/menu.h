@@ -10,9 +10,9 @@ using namespace std;
 
 enum MenuState {
   msNULL,
-  msSTARTED,
+  msVS,
   msOPTIONS,
-  msVS
+  msQUIT
 };
 
 class Menu : public Scene {
@@ -21,6 +21,7 @@ class Menu : public Scene {
     bool initialized = false;
     MenuState state = msNULL;
     Option* start_option = NULL;
+    Option* vs_option = NULL;
     //sound option_changed;
     //sound option_selected;
     //start button
