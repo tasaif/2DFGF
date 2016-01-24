@@ -6,7 +6,7 @@ using namespace std;
 using namespace boost::filesystem;
 
 bool Application::init(int argc, char* argv[]){
-	if (SDL_Init(SDL_INIT_EVERYTHING | SDL_INIT_JOYSTICK) < 0){
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
 		cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
     return false;
   }

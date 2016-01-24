@@ -14,6 +14,7 @@ InputSystem::InputSystem(){
       joysticks.push_back(new_joystick);
     }
   }
+  //This will grab the inputs regardless if the window has focus
   //SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
 }
 
@@ -25,7 +26,6 @@ InputSystem::~InputSystem(){
 }
 
 void InputSystem::update(){
-  SDL_JoystickUpdate();
   for (unsigned i=0; i<joysticks.size(); i++){
     joysticks[i]->update();
   }
