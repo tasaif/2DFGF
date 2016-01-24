@@ -4,6 +4,7 @@
 extern Application* app;
 
 Menu::Menu(){
+  inputsys = app->inputsys;
   drawsys = app->drawsys;
   background = new Sprite();
 }
@@ -24,6 +25,11 @@ bool Menu::first(){
 bool Menu::run(){
   switch(state){
     case msNULL:
+      if (inputsys->pressed(bSTART)){
+        //play sound
+        state = msSTARTED;
+      }
+      break;
     case msSTARTED:
     case msOPTIONS:
     case msVS:

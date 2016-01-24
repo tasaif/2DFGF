@@ -5,6 +5,7 @@
 #include "sprite.h"
 using namespace std;
 
+class InputSystem;
 class DrawSystem;
 
 enum SceneExitCode {
@@ -19,6 +20,7 @@ enum SceneExitCode {
 class Scene {
   protected:
     Sprite* background = NULL;
+    InputSystem* inputsys = NULL;
     DrawSystem* drawsys = NULL;
     SceneExitCode exit_code = NULL_EXIT_CODE;
     //Sound bgm;

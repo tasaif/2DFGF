@@ -2,6 +2,7 @@
 #define APPLICATION_H
 #include <SDL2/SDL.h>
 #include "drawsystem.h"
+#include "inputsystem.h"
 #include "game.h"
 #include "ltimer.h"
 using namespace std;
@@ -18,7 +19,8 @@ class Application {
     const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
     SDL_Window* gWindow = NULL;
     DrawSystem* drawsys;
-    SDL_Event event;
+    InputSystem* inputsys;
+    SDL_Event* event;
     Game* game;
 
     LTimer fpsTimer;

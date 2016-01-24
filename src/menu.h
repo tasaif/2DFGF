@@ -19,6 +19,8 @@ class Menu : public Scene {
     LTimer timer;
     bool initialized = false;
     MenuState state = msNULL;
+    //sound option_changed;
+    //sound option_selected;
     //start button
     //options button
     //vs button

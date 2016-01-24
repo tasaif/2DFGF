@@ -15,7 +15,9 @@ bool Application::init(int argc, char* argv[]){
     cout << "Window could not be created! SDL_Error: " << SDL_GetError() << endl;
     return false;
   }
+  event = new SDL_Event();
   drawsys = new DrawSystem();
+  inputsys = new InputSystem();
   game = new Game();
   fpsTimer.start();
   return true;
@@ -23,15 +25,17 @@ bool Application::init(int argc, char* argv[]){
 
 bool Application::run(){
   capTimer.start();
-  SDL_PollEvent(&event);
-  bool run_again = game->run() and event.type != SDL_QUIT;
+  SDL_PollEvent(event);
+  bool run_again = game->run() and event->type != SDL_QUIT;
   SDL_UpdateWindowSurface( gWindow );
   frameLimiter();
   return run_again;
 }
 
 void Application::quit(){
+  delete event;
   delete game;
+  delete inputsys;
   delete drawsys;
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
