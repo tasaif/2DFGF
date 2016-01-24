@@ -15,11 +15,11 @@ class Sprite {
     ~Sprite();
 
     SDL_Surface* surface = NULL;
-    int x = 0;
-    int y = 0;
+    SDL_Rect offset;
     void load(string);
     void unload();
     bool valid();
+    void setPos(int, int);
 };
 
 #endif

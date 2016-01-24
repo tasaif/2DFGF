@@ -3,6 +3,7 @@
 #include "drawsystem.h"
 #include "sprite.h"
 #include "billboard.h"
+#include "menu.h"
 
 class Application;
 class DrawSystem;
@@ -24,6 +25,7 @@ class Game {
   private:
     Billboard* logo1;
     Billboard* logo2;
+    Menu* title_menu;
     GameState gamestate = gsNULL;
 
   public:

@@ -5,6 +5,7 @@
 #include <string>
 #include "scene.h"
 #include "ltimer.h"
+#include "option.h"
 using namespace std;
 
 enum MenuState {
@@ -19,6 +20,7 @@ class Menu : public Scene {
     LTimer timer;
     bool initialized = false;
     MenuState state = msNULL;
+    Option* start_option = NULL;
     //sound option_changed;
     //sound option_selected;
     //start button

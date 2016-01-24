@@ -5,9 +5,13 @@ extern path base_path;
 extern Application* app;
 
 Sprite::Sprite(){
+  offset.x = 0;
+  offset.y = 0;
 }
 
 Sprite::Sprite(string fname){
+  offset.x = 0;
+  offset.y = 0;
   load(fname);
 }
 
@@ -44,4 +48,9 @@ void Sprite::unload(){
 bool Sprite::valid(){
   if (surface != NULL) return true;
   return false;
+}
+
+void Sprite::setPos(int x, int y){
+  offset.x = x;
+  offset.y = y;
 }

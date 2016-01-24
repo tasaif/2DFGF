@@ -3,14 +3,17 @@
 Game::Game(){
   logo1 = new Billboard();
   logo2 = new Billboard();
+  title_menu = new Menu();
 
   logo1->init("billboard1.bmp");
   logo2->init("billboard2.bmp");
+  title_menu->init("mainmenu.png");
 }
 
 Game::~Game(){
   delete logo1;
   delete logo2;
+  delete title_menu;
 }
 
 bool Game::run(){
@@ -27,11 +30,18 @@ bool Game::run(){
       break;
     case gsLOGO2:
       if (!logo2->run()){
-        gamestate = gsQUIT;
+        gamestate = gsINTRO;
       }
       break;
     case gsINTRO:
+      gamestate = gsTITLE;
+      title_menu->first();
+      break;
     case gsTITLE:
+      if (!title_menu->run()){
+        gamestate = gsQUIT;
+      }
+      break;
     case gsOPTIONS:
     case gsCHARACTERS:
     case gsVS:
