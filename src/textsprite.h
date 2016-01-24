@@ -1,6 +1,6 @@
 #ifndef TEXTSPRITE_H
 #define TEXTSPRITE_H
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 #include "sprite.h"
 #include "fontsystem.h"
 

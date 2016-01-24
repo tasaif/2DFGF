@@ -1,7 +1,7 @@
 #ifndef LTIMER_H
 #define LTIMER_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 //The application time based timer
 class LTimer

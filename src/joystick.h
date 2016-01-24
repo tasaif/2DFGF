@@ -1,6 +1,6 @@
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 enum Button {
   bNULL,

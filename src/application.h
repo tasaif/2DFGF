@@ -1,6 +1,6 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "drawsystem.h"
 #include "inputsystem.h"
 #include "fontsystem.h"
