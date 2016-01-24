@@ -20,6 +20,10 @@ class Sprite {
     void unload();
     bool valid();
     void setPos(int, int);
+    void align(unsigned);
+
+    static const int HCENTER = 1;
+    static const int VBOTTOM = 2;
 };
 
 #endif

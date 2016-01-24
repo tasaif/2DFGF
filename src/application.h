@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include "drawsystem.h"
 #include "inputsystem.h"
+#include "fontsystem.h"
 #include "game.h"
 #include "ltimer.h"
 using namespace std;
@@ -20,6 +21,7 @@ class Application {
     SDL_Window* gWindow = NULL;
     DrawSystem* drawsys;
     InputSystem* inputsys;
+    FontSystem* fontsys;
     SDL_Event* event;
     Game* game;
 

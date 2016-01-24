@@ -6,8 +6,16 @@ using namespace std;
 using namespace boost::filesystem;
 
 bool Application::init(int argc, char* argv[]){
-	if(SDL_Init(SDL_INIT_EVERYTHING) < 0){
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
 		cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
+    return false;
+  }
+  if (!(IMG_Init(IMG_INIT_PNG))){
+    cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
+    return false;
+  }
+  if (TTF_Init() == -1){
+    cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
     return false;
   }
   gWindow = SDL_CreateWindow( TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
@@ -18,6 +26,7 @@ bool Application::init(int argc, char* argv[]){
   event = new SDL_Event();
   drawsys = new DrawSystem();
   inputsys = new InputSystem();
+  fontsys = new FontSystem();
   game = new Game();
   fpsTimer.start();
   return true;
@@ -39,6 +48,8 @@ void Application::quit(){
   delete drawsys;
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
+  IMG_Quit();
+  TTF_Quit();
 	SDL_Quit();
 }
 

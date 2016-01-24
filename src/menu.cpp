@@ -7,7 +7,11 @@ Menu::Menu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
   background = new Sprite();
-  start_option = new Option("Press Start");
+  start_option = new Option();
+  start_option->init("Press Start", 24, 0, 300);
+  start_option->align(
+    Sprite::HCENTER
+  );
 }
 
 Menu::~Menu(){
@@ -27,8 +31,8 @@ bool Menu::first(){
 bool Menu::run(){
   drawsys->draw(background);
   switch(state){
-    drawsys->draw(start_option);
     case msNULL:
+      drawsys->draw(start_option);
       if (inputsys->pressed(bSTART)){
         //play sound
         state = msSTARTED;

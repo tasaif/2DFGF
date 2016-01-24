@@ -26,7 +26,7 @@ class Game {
     Billboard* logo1;
     Billboard* logo2;
     Menu* title_menu;
-    GameState gamestate = gsNULL;
+    GameState gamestate = gsINTRO;
 
   public:
     Game();

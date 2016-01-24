@@ -54,3 +54,12 @@ void Sprite::setPos(int x, int y){
   offset.x = x;
   offset.y = y;
 }
+
+void Sprite::align(unsigned bitmask){
+  if (bitmask & HCENTER){
+    offset.x = app->SCREEN_WIDTH / 2 - surface->w/2;
+  }
+  if (bitmask & VBOTTOM){
+    offset.y = app->SCREEN_HEIGHT - surface->h;
+  }
+}
