@@ -54,14 +54,24 @@ Button Joystick::sdlDirToButtonDir(Uint8 dir){
 
 void Joystick::update(){
   bool change = false;
+  Button button;
 
   // Handle directional buttons
   previous_hat = current_hat;
   current_hat = SDL_JoystickGetHat(device, 0);
-  if (current_hat != SDL_HAT_CENTERED && previous_hat != current_hat){
-    buffer.erase(buffer.begin());
-    buffer.push_back(sdlDirToButtonDir(current_hat));
+  button = sdlDirToButtonDir(current_hat);
+
+  if (previous_hat != current_hat){
+    if (current_hat != SDL_HAT_CENTERED){
+      pressed_buffer[button] = 1;
+      buffer.erase(buffer.begin());
+      buffer.push_back(button);
+    }
     change = true;
+  } else {
+    if (previous_hat != SDL_HAT_CENTERED){
+      pressed_buffer[sdlDirToButtonDir(previous_hat)] = 0;
+    }
   }
 
   // Handle nondirectional buttons
@@ -73,18 +83,25 @@ void Joystick::update(){
       buffer.erase(buffer.begin());
       buffer.push_back(mapping[i]);
       change = true;
+    } else {
+      pressed_buffer[mapping[i]] = 0;
+    }
+
+    if (previous_buffer[i] & !current_buffer[i]) {
+      change = true;
     }
   }
   /*
    * Check for combinations here and mark them manually
    */
   if (change){
-    dumpBuffer();
+    //dumpBuffer();
+    dumpPressedBuffer();
   }
 }
 
-Button Joystick::lastPressed(){
-  return buffer[buffer_size-1];
+Uint8 Joystick::Pressed(Button button){
+  return pressed_buffer[button];
 }
 
 void Joystick::setDefaultButtonMappings(){
@@ -105,7 +122,19 @@ void Joystick::dumpBuffer(){
   for(unsigned i=0; i<buffer.size(); i++){
     cout << legible_buttons[buffer[i]];
     if (i != buffer.size()-1){
-      cout << ", ";
+      cout << ' ';
+    }
+  }
+  cout << "]" << endl;
+}
+
+void Joystick::dumpPressedBuffer(){
+  cout << "[";
+  for(unsigned i=0; i<bEND; i++){
+    if (pressed_buffer[i]){
+      cout << legible_buttons[i];
+    } else {
+      cout << "  ";
     }
   }
   cout << "]" << endl;

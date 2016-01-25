@@ -17,7 +17,7 @@ class InputSystem {
     Joystick* p1 = NULL;
     Joystick* p2 = NULL;
 
-    bool pressed(Button);
+    bool Pressed(Button);
 };
 
 #endif

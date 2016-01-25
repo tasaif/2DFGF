@@ -4,33 +4,8 @@
 #include <string>
 #include <vector>
 #include <SDL.h>
+#include "button.h"
 using namespace std;
-
-enum Button {
-  bNULL,
-  bUP,
-  bDOWN,
-  bLEFT,
-  bRIGHT,
-  bUPLEFT,
-  bUPRIGHT,
-  bDOWNLEFT,
-  bDOWNRIGHT,
-  bSTART,
-  bSELECT,
-  bLP,
-  bMP,
-  bHP,
-  bTP,
-  bLK,
-  bMK,
-  bHK,
-  bTK,
-  bOVERHEAD,
-  bTAUNT,
-  bHARDRESET,
-  bEND
-};
 
 const string legible_buttons[] = {
   "  ",
@@ -76,9 +51,10 @@ class Joystick {
     Joystick(unsigned);
     ~Joystick();
     void update();
-    Button lastPressed();
+    Uint8 Pressed(Button);
     void setDefaultButtonMappings();
     void dumpBuffer();
+    void dumpPressedBuffer();
 };
 
 #endif

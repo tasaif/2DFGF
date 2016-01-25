@@ -3,17 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "scene.h"
 #include "ltimer.h"
 #include "option.h"
+#include "menustate.h"
+#include "button.h"
 using namespace std;
-
-enum MenuState {
-  msNULL,
-  msVS,
-  msOPTIONS,
-  msQUIT
-};
 
 class Menu : public Scene {
   private:
@@ -22,11 +18,13 @@ class Menu : public Scene {
     MenuState state = msNULL;
     Option* start_option = NULL;
     Option* vs_option = NULL;
+    Option* options_option = NULL;
+    Option* quit_option = NULL;
+    vector<Option*> options;
     //sound option_changed;
     //sound option_selected;
-    //start button
-    //options button
-    //vs button
+    void setup_options();
+    Option* createOption(MenuState);
 
   public:
     Menu();
