@@ -9,12 +9,12 @@ class Menu;
 
 class Option : public TextSprite {
   private:
-    MenuState applicable_state = msNULL;
+    unsigned applicable_state = msNULL;
 
   public:
-    Option(MenuState);
+    Option(unsigned);
     ~Option();
-    MenuState getApplicableState();
+    unsigned getApplicableState();
 
     std::function<void()>* press_func = NULL;
 };

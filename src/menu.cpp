@@ -26,7 +26,7 @@ void Menu::setup_options(){
   );
   options_option->press_func[bDOWN] = [&](){state = msQUIT;};
   options_option->press_func[bUP] = [&](){state = msVS;};
-  options_option->press_func[bLK] = [&](){exit_code = gsLOGO1;};
+  options_option->press_func[bLK] = [&](){exit_code = gsOPTIONS;};
 
   quit_option = createOption(msQUIT);
   quit_option->init("Quit", 25, 0, 350);
@@ -65,7 +65,7 @@ bool Menu::first(){
   }
   timer.start();
   exit_code = gsNULL;
-  state = msNULL;
+  state = skip_start ? msVS : msNULL;
   return true;
 }
 

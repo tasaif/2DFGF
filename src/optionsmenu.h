@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef OPTIONSMENU_H
+#define OPTIONSMENU_H
 
 #include <iostream>
 #include <string>
@@ -7,36 +7,36 @@
 #include "scene.h"
 #include "ltimer.h"
 #include "option.h"
-#include "menustate.h"
+#include "optionsmenustate.h"
 #include "button.h"
 #include "gamestate.h"
 using namespace std;
 
-class Menu : public Scene {
+class OptionsMenu : public Scene {
   private:
     LTimer timer;
     bool initialized = false;
-    MenuState state = msNULL;
-    Option* start_option = NULL;
-    Option* vs_option = NULL;
-    Option* options_option = NULL;
+    OptionsMenuState state = omsNULL;
+    Option* bgm_option = NULL;
+    Option* sfx_option = NULL;
+    Option* duration_option = NULL;
     Option* quit_option = NULL;
+    TextSprite* indicator = NULL;
     vector<Option*> options;
     //sound option_changed;
     //sound option_selected;
     void setup_options();
-    Option* createOption(MenuState);
+    Option* createOption(unsigned);
 
   public:
-    Menu();
-    ~Menu();
+    OptionsMenu();
+    ~OptionsMenu();
 
     bool first();
     bool run();
     GameState end();
 
     bool init(string);
-    bool skip_start = false;
 };
 
 #endif
