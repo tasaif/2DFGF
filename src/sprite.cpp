@@ -62,4 +62,19 @@ void Sprite::align(unsigned bitmask){
   if (bitmask & VBOTTOM){
     offset.y = app->SCREEN_HEIGHT - surface->h;
   }
+  if (bitmask & VCENTER){
+    offset.y = app->SCREEN_HEIGHT/2 - surface->h/2;
+  }
+}
+
+void Sprite::alignTo(Sprite* sprite, unsigned bitmask){
+  if (bitmask & HCENTER){
+    offset.x = app->SCREEN_WIDTH / 2 - surface->w/2;
+  }
+  if (bitmask & VBOTTOM){
+    offset.y = app->SCREEN_HEIGHT - surface->h;
+  }
+  if (bitmask & VCENTER){
+    offset.y = sprite->offset.y + sprite->surface->h/2 - surface->h/2;
+  }
 }

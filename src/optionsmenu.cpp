@@ -24,6 +24,14 @@ void OptionsMenu::setup_options(){
   quit_option->press_func[bUP] = [&](){state = omsDURATION;};
   quit_option->press_func[bDOWN] = [&](){state = omsBGMVOLUME;};
   quit_option->press_func[bLK] = [&](){exit_code = gsTITLE;};
+
+  bgm_level->init(to_string(app->optionsys->bgmvolume), 20, 400, 0);
+  sfx_level->init(to_string(app->optionsys->sfxvolume), 20, 400, 0);
+  duration_level->init(to_string(app->optionsys->match_duration), 20, 400, 0);
+
+  bgm_level->alignTo(bgm_option, Sprite::VCENTER);
+  sfx_level->alignTo(sfx_option, Sprite::VCENTER);
+  duration_level->alignTo(duration_option, Sprite::VCENTER);
 }
 
 Option* OptionsMenu::createOption(unsigned _state){
@@ -36,6 +44,9 @@ OptionsMenu::OptionsMenu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
   background = new Sprite();
+  bgm_level = new TextSprite();
+  sfx_level = new TextSprite();
+  duration_level = new TextSprite();
   indicator->init(">", 20, 100, 150);
   setup_options();
 }
@@ -44,6 +55,9 @@ OptionsMenu::~OptionsMenu(){
   for(unsigned i=0; i<options.size(); i++){
     delete options[i];
   }
+  delete bgm_level;
+  delete sfx_level;
+  delete duration_level;
   delete background;
 }
 
@@ -63,6 +77,9 @@ bool OptionsMenu::run(){
   Option* curop;
   drawsys->draw(background);
   drawsys->draw(indicator);
+  drawsys->draw(bgm_level);
+  drawsys->draw(sfx_level);
+  drawsys->draw(duration_level);
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     drawsys->draw(curop);

@@ -21,9 +21,11 @@ class Sprite {
     bool valid();
     void setPos(int, int);
     void align(unsigned);
+    void alignTo(Sprite*, unsigned);
 
-    static const int HCENTER = 1;
-    static const int VBOTTOM = 2;
+    static const unsigned HCENTER = 1;
+    static const unsigned VBOTTOM = 2;
+    static const unsigned VCENTER = 4;
 };
 
 #endif
