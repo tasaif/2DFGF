@@ -32,13 +32,11 @@ OptionsMenu::OptionsMenu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
   background = new Sprite();
-  indicator = new TextSprite();
   indicator->init(">", 20, 100, 150);
   setup_options();
 }
 
 OptionsMenu::~OptionsMenu(){
-  delete indicator;
   for(unsigned i=0; i<options.size(); i++){
     delete options[i];
   }
@@ -58,16 +56,17 @@ bool OptionsMenu::first(){
 
 bool OptionsMenu::run(){
   bool option_interacted = false;
+  Option* curop;
   drawsys->draw(background);
+  drawsys->draw(indicator);
   for(unsigned i=0; i<options.size(); i++){
-    Option* curop = options[i];
+    curop = options[i];
     drawsys->draw(curop);
-    drawsys->draw(indicator);
   }
   for(unsigned i=0; i<options.size(); i++){
-    Option* curop = options[i];
+    curop = options[i];
     if (state == curop->getApplicableState()){
-      indicator->offset.y = curop->offset.y;
+      setIndicatorPos(curop);
       for (unsigned button = bNULL; button < bEND; button++){
         if (curop->press_func[button] != NULL && inputsys->Pressed((Button)button)){
           curop->press_func[button]();

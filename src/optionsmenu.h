@@ -21,7 +21,6 @@ class OptionsMenu : public Scene {
     Option* sfx_option = NULL;
     Option* duration_option = NULL;
     Option* quit_option = NULL;
-    TextSprite* indicator = NULL;
     vector<Option*> options;
     //sound option_changed;
     //sound option_selected;
