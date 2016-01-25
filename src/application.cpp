@@ -27,6 +27,7 @@ bool Application::init(int argc, char* argv[]){
   drawsys = new DrawSystem();
   inputsys = new InputSystem();
   fontsys = new FontSystem();
+  optionsys = new OptionSystem();
   game = new Game();
   fpsTimer.start();
   return true;

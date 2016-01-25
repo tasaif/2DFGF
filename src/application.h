@@ -1,9 +1,11 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include "drawsystem.h"
 #include "inputsystem.h"
 #include "fontsystem.h"
+#include "optionsystem.h"
 #include "game.h"
 #include "ltimer.h"
 using namespace std;
@@ -22,6 +24,7 @@ class Application {
     DrawSystem* drawsys;
     InputSystem* inputsys;
     FontSystem* fontsys;
+    OptionSystem* optionsys;
     SDL_Event* event;
     Game* game;
 
