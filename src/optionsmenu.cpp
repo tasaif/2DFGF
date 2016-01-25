@@ -6,18 +6,22 @@ extern Application* app;
 void OptionsMenu::setup_options(){
   bgm_option = createOption(omsBGMVOLUME);
   bgm_option->init("BGM Volume", 20, 125, 150);
+  bgm_option->press_func[bUP] = [&](){state = omsQUIT;};
   bgm_option->press_func[bDOWN] = [&](){state = omsSFXVOLUME;};
 
   sfx_option = createOption(omsSFXVOLUME);
   sfx_option->init("SFX Volume", 20, 125, 175);
+  sfx_option->press_func[bUP] = [&](){state = omsBGMVOLUME;};
   sfx_option->press_func[bDOWN] = [&](){state = omsDURATION;};
 
   duration_option = createOption(omsDURATION);
   duration_option->init("Match Timer", 20, 125, 200);
+  duration_option->press_func[bUP] = [&](){state = omsSFXVOLUME;};
   duration_option->press_func[bDOWN] = [&](){state = omsQUIT;};
 
   quit_option = createOption(omsQUIT);
   quit_option->init("Quit", 20, 125, 225);
+  quit_option->press_func[bUP] = [&](){state = omsDURATION;};
   quit_option->press_func[bDOWN] = [&](){state = omsBGMVOLUME;};
   quit_option->press_func[bLK] = [&](){exit_code = gsTITLE;};
 }
@@ -50,7 +54,7 @@ bool OptionsMenu::first(){
   }
   timer.start();
   exit_code = gsNULL;
-  state = omsQUIT;
+  state = omsBGMVOLUME;
   return true;
 }
 

@@ -104,6 +104,7 @@ bool Menu::run(){
 }
 
 GameState Menu::end(){
+  skip_start = true;
   return exit_code;
 }
 
