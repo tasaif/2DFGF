@@ -14,6 +14,8 @@ class TextSprite : public Sprite {
     TextSprite();
     ~TextSprite();
     void setFont(string, unsigned);
+    void init(string);
+    void init(string, unsigned);
     void init(string, unsigned, int, int);
 };
 

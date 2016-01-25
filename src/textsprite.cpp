@@ -10,6 +10,18 @@ TextSprite::TextSprite(){
 TextSprite::~TextSprite(){
 }
 
+void TextSprite::init(string _text){
+  if (font == NULL){
+    font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
+  } else {
+    init(_text, font->getFontSize());
+  }
+}
+
+void TextSprite::init(string _text, unsigned _font_size){
+  init(_text, _font_size, offset.x, offset.y);
+}
+
 void TextSprite::init(string _text, unsigned _font_size, int x, int y){
   if (font == NULL){
     font = app->fontsys->getFont("opensans.ttf", _font_size);

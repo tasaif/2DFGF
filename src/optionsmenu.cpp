@@ -8,6 +8,14 @@ void OptionsMenu::setup_options(){
   bgm_option->init("BGM Volume", 20, 125, 150);
   bgm_option->press_func[bUP] = [&](){state = omsQUIT;};
   bgm_option->press_func[bDOWN] = [&](){state = omsSFXVOLUME;};
+  bgm_option->press_func[bLEFT] = [&](){
+    optionsys->incBGMVolume(-10);
+    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
+  };
+  bgm_option->press_func[bRIGHT] = [&](){
+    optionsys->incBGMVolume(10);
+    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
+  };
 
   sfx_option = createOption(omsSFXVOLUME);
   sfx_option->init("SFX Volume", 20, 125, 175);
@@ -25,9 +33,9 @@ void OptionsMenu::setup_options(){
   quit_option->press_func[bDOWN] = [&](){state = omsBGMVOLUME;};
   quit_option->press_func[bLK] = [&](){exit_code = gsTITLE;};
 
-  bgm_level->init(to_string(app->optionsys->bgmvolume), 20, 400, 0);
-  sfx_level->init(to_string(app->optionsys->sfxvolume), 20, 400, 0);
-  duration_level->init(to_string(app->optionsys->match_duration), 20, 400, 0);
+  bgm_level->init(to_string(app->optionsys->getBGMVolume()), 20, 400, 0);
+  sfx_level->init(to_string(app->optionsys->getSFXVolume()), 20, 400, 0);
+  duration_level->init(to_string(optionsys->getMatchDuration()), 20, 400, 0);
 
   bgm_level->alignTo(bgm_option, Sprite::VCENTER);
   sfx_level->alignTo(sfx_option, Sprite::VCENTER);
@@ -43,6 +51,7 @@ Option* OptionsMenu::createOption(unsigned _state){
 OptionsMenu::OptionsMenu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
+  optionsys = app->optionsys;
   background = new Sprite();
   bgm_level = new TextSprite();
   sfx_level = new TextSprite();

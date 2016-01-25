@@ -16,6 +16,7 @@ class OptionsMenu : public Scene {
   private:
     LTimer timer;
     bool initialized = false;
+    OptionSystem* optionsys;
     OptionsMenuState state = omsNULL;
     Option* bgm_option = NULL;
     Option* sfx_option = NULL;
