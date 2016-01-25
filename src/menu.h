@@ -9,6 +9,7 @@
 #include "option.h"
 #include "menustate.h"
 #include "button.h"
+#include "gamestate.h"
 using namespace std;
 
 class Menu : public Scene {
@@ -32,7 +33,7 @@ class Menu : public Scene {
 
     bool first();
     bool run();
-    SceneExitCode end();
+    GameState end();
 
     bool init(string);
 };

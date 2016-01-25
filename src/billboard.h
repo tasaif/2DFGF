@@ -5,6 +5,7 @@
 #include <string>
 #include "scene.h"
 #include "ltimer.h"
+#include "gamestate.h"
 using namespace std;
 
 class Billboard : public Scene {
@@ -14,12 +15,12 @@ class Billboard : public Scene {
     unsigned duration = 2000;
 
   public:
-    Billboard();
+    Billboard(GameState);
     ~Billboard();
 
     bool first();
     bool run();
-    SceneExitCode end();
+    GameState end();
 
     bool init(string);
     bool init(string, unsigned);

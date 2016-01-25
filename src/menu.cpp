@@ -26,6 +26,7 @@ void Menu::setup_options(){
   );
   options_option->press_func[bDOWN] = [&](){state = msQUIT;};
   options_option->press_func[bUP] = [&](){state = msVS;};
+  options_option->press_func[bLK] = [&](){exit_code = gsLOGO1;};
 
   quit_option = createOption(msQUIT);
   quit_option->init("Quit", 25, 0, 350);
@@ -34,6 +35,7 @@ void Menu::setup_options(){
   );
   quit_option->press_func[bDOWN] = [&](){state = msVS;};
   quit_option->press_func[bUP] = [&](){state = msOPTIONS;};
+  quit_option->press_func[bLK] = [&](){exit_code = gsQUIT;};
 }
 
 Option* Menu::createOption(MenuState _state){
@@ -62,6 +64,8 @@ bool Menu::first(){
     return false;
   }
   timer.start();
+  exit_code = gsNULL;
+  state = msNULL;
   return true;
 }
 
@@ -82,10 +86,11 @@ bool Menu::run(){
     }
     if (option_interacted) break;
   }
+  if (exit_code) return false;
   return true;
 }
 
-SceneExitCode Menu::end(){
+GameState Menu::end(){
   return exit_code;
 }
 

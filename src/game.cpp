@@ -1,8 +1,8 @@
 #include "game.h"
 
 Game::Game(){
-  logo1 = new Billboard();
-  logo2 = new Billboard();
+  logo1 = new Billboard(gsLOGO2);
+  logo2 = new Billboard(gsINTRO);
   title_menu = new Menu();
 
   logo1->init("billboard1.bmp");
@@ -24,13 +24,13 @@ bool Game::run(){
       break;
     case gsLOGO1:
       if (!logo1->run()){
-        gamestate = gsLOGO2;
+        gamestate = logo1->end();
         logo2->first();
       }
       break;
     case gsLOGO2:
       if (!logo2->run()){
-        gamestate = gsINTRO;
+        gamestate = logo2->end();
       }
       break;
     case gsINTRO:
@@ -38,8 +38,16 @@ bool Game::run(){
       title_menu->first();
       break;
     case gsTITLE:
-      if (!title_menu->run()){
-        gamestate = gsQUIT;
+      if(!title_menu->run()){
+        gamestate = title_menu->end();
+        switch(gamestate){
+          case gsLOGO1:
+            logo1->first();
+            break;
+          case gsLOGO2:
+            logo2->first();
+            break;
+        };
       }
       break;
     case gsOPTIONS:

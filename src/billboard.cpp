@@ -3,9 +3,10 @@
 
 extern Application* app;
 
-Billboard::Billboard(){
+Billboard::Billboard(GameState next_state){
   drawsys = app->drawsys;
   background = new Sprite();
+  exit_code = next_state;
 }
 
 Billboard::~Billboard(){
@@ -27,7 +28,8 @@ bool Billboard::run(){
   return true;
 }
 
-SceneExitCode Billboard::end(){
+GameState Billboard::end(){
+  timer.stop();
   return exit_code;
 }
 
