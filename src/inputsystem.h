@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "joystick.h"
+#include "keyboardjoystick.h"
 using namespace std;
 
 class InputSystem {

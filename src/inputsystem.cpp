@@ -14,6 +14,8 @@ InputSystem::InputSystem(){
       joysticks.push_back(new_joystick);
     }
   }
+  new_joystick = new KeyboardJoystick();
+  joysticks.push_back(new_joystick);
   //This will grab the inputs regardless if the window has focus
   //SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
 }

@@ -47,6 +47,8 @@ bool Game::run(){
           case gsLOGO2:
             logo2->first();
             break;
+          default:
+            break;
         };
       }
       break;

@@ -34,7 +34,8 @@ const string legible_buttons[] = {
 };
 
 class Joystick {
-  private:
+  protected:
+    Joystick();
     SDL_Joystick* device;
     const unsigned buffer_size = 20;
     vector<Button> buffer;
@@ -49,10 +50,10 @@ class Joystick {
 
   public:
     Joystick(unsigned);
-    ~Joystick();
-    void update();
-    Uint8 Pressed(Button);
-    void setDefaultButtonMappings();
+    virtual ~Joystick();
+    virtual void update();
+    virtual void setDefaultButtonMappings();
+    virtual Uint8 Pressed(Button);
     void dumpBuffer();
     void dumpPressedBuffer();
 };

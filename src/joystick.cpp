@@ -2,6 +2,10 @@
 #include "joystick.h"
 using namespace std;
 
+Joystick::Joystick(){
+  device = NULL;
+}
+
 Joystick::Joystick(unsigned sdl_joy_number){
   device = SDL_JoystickOpen(sdl_joy_number);
   raw_buffer_length = SDL_JoystickNumButtons(device);
@@ -27,7 +31,9 @@ Joystick::~Joystick(){
   delete pressed_buffer;
   delete previous_buffer;
   delete current_buffer;
-  SDL_JoystickClose(device);
+  if (device != NULL){
+    SDL_JoystickClose(device);
+  }
 }
 
 Button Joystick::sdlDirToButtonDir(Uint8 dir){
