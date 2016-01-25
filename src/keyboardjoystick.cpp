@@ -22,12 +22,51 @@ KeyboardJoystick::KeyboardJoystick(){
 KeyboardJoystick::~KeyboardJoystick(){
 }
 
+void KeyboardJoystick::handle_directions(){
+  for(unsigned i=bUP; i<=bDOWNRIGHT; i++){
+    previous_buffer[i] = current_buffer[i];
+    if (i <= bRIGHT){
+      current_buffer[i] = keystate[mapping[i]];
+    }
+  }
+  current_buffer[bUPLEFT] = 0;
+  current_buffer[bUPRIGHT] = 0;
+  current_buffer[bDOWNLEFT] = 0;
+  current_buffer[bDOWNRIGHT] = 0;
+  if (current_buffer[bUP]){
+    if (current_buffer[bLEFT]){
+      current_buffer[bUP] = 0;
+      current_buffer[bLEFT] = 0;
+      current_buffer[bUPLEFT] = 1;
+    } else if (current_buffer[bRIGHT]){
+      current_buffer[bUP] = 0;
+      current_buffer[bRIGHT] = 0;
+      current_buffer[bUPRIGHT] = 1;
+    }
+  } else if (current_buffer[bDOWN]){
+    if (current_buffer[bLEFT]){
+      current_buffer[bDOWN] = 0;
+      current_buffer[bLEFT] = 0;
+      current_buffer[bDOWNLEFT] = 1;
+    } else if (current_buffer[bRIGHT]){
+      current_buffer[bDOWN] = 0;
+      current_buffer[bRIGHT] = 0;
+      current_buffer[bDOWNRIGHT] = 1;
+    }
+  }
+}
+
 void KeyboardJoystick::update(){
   keystate = SDL_GetKeyboardState(NULL);
   bool change = false;
+
+  handle_directions();
   for(unsigned i=0; i<bEND; i++){
-    previous_buffer[i] = current_buffer[i];
-    current_buffer[i] = keystate[mapping[i]];
+    // directions were handled already by handle_directions()
+    if (!((i <= bDOWNRIGHT) & (i >= bUP))){
+      previous_buffer[i] = current_buffer[i];
+      current_buffer[i] = keystate[mapping[i]];
+    }
     if (!previous_buffer[i] & current_buffer[i]){
       pressed_buffer[i] = 1;
       buffer.erase(buffer.begin());

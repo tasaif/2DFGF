@@ -10,6 +10,7 @@ class KeyboardJoystick : public Joystick {
   private:
     SDL_Scancode* mapping = NULL;
     const Uint8* keystate = NULL;
+    void handle_directions();
 
   public:
     KeyboardJoystick();

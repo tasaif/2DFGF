@@ -22,7 +22,11 @@ Joystick::Joystick(unsigned sdl_joy_number){
   for(unsigned i=0; i<bEND; i++){
     pressed_buffer[i] = bNULL;
   }
-  mapping = new Button[100]; //Supports a gamepad with up to 100 buttons
+  mapping = new Button[100]; /*
+                                Supports a gamepad with up to 100 buttons
+                                Change this to an unordered_map or something
+                                because this is gross
+                              */
   setDefaultButtonMappings();
 }
 
