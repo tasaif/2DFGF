@@ -20,7 +20,7 @@ class Game {
     Menu* title_menu;
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
-    GameState gamestate = gsNULL;
+    GameState gamestate = gsTITLE;
 
   public:
     Game();

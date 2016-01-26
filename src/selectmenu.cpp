@@ -44,33 +44,28 @@ bool SelectMenu::first(){
 }
 
 bool SelectMenu::run(){
-  bool option_interacted = false;
   Joystick* curjoy;
   joysticks = inputsys->getJoysticks();
-  Option* curop;
   drawsys->draw(background);
-  //drawsys->draw(bgm_level);
   for(unsigned i=0; i<joysticks.size(); i++){
     curjoy = joysticks[i];
     drawsys->draw(curjoy->getIcon());
   }
-  for(unsigned i=0; i<options.size(); i++){
-    curop = options[i];
-    drawsys->draw(curop);
+  if (inputsys->Pressed(bMK)){
+    exit_code = gsTITLE;
   }
-  for(unsigned i=0; i<options.size(); i++){
-    curop = options[i];
-    if (state == curop->getApplicableState()){
-      setIndicatorPos(curop);
-      for (unsigned button = bNULL; button < bEND; button++){
-        if (curop->press_func[button] != NULL && inputsys->Pressed((Button)button)){
-          curop->press_func[button]();
-          option_interacted = true;
-          break;
-        }
-      }
+  if (inputsys->Pressed(bLEFT, curjoy)){
+    if (curjoy == inputsys->p2){
+      inputsys->clearP(curjoy);
+    } else {
+      inputsys->setP1(curjoy);
     }
-    if (option_interacted) break;
+  } else if (inputsys->Pressed(bRIGHT, curjoy)){
+    if (curjoy == inputsys->p1){
+      inputsys->clearP(curjoy);
+    } else {
+      inputsys->setP2(curjoy);
+    }
   }
   if (exit_code) return false;
   return true;

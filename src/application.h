@@ -16,10 +16,10 @@ class Game;
 class Application {
   public:
     const char* TITLE = "2D Fighter";
-    const int SCREEN_WIDTH = 640;
-    const int SCREEN_HEIGHT = 480;
-    const int SCREEN_FPS = 60;
-    const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
+    static const int SCREEN_WIDTH = 640;
+    static const int SCREEN_HEIGHT = 480;
+    static const int SCREEN_FPS = 60;
+    static const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
     SDL_Window* gWindow = NULL;
     DrawSystem* drawsys;
     InputSystem* inputsys;

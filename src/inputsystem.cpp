@@ -1,5 +1,6 @@
 #include <iostream>
 #include "inputsystem.h"
+#include "application.h"
 using namespace std;
 
 InputSystem::InputSystem(){
@@ -42,6 +43,40 @@ bool InputSystem::Pressed(Button button){
   return false;
 }
 
+bool InputSystem::Pressed(Button button, Joystick* &joystick){
+  for (unsigned i=0; i<joysticks.size(); i++){
+    if (joysticks[i]->Pressed(button)){
+      joystick = joysticks[i];
+      return true;
+    }
+  }
+  return false;
+}
+
 vector<Joystick*> InputSystem::getJoysticks(){
   return joysticks;
+}
+
+void InputSystem::clearP(Joystick* joystick){
+  if (joystick == NULL){
+    return;
+  }
+  if (p1 == joystick){
+    p1 = NULL;
+  } else if (p2 == joystick){
+    p2 = NULL;
+  }
+  joystick->getIcon()->align(Sprite::HCENTER);
+}
+
+void InputSystem::setP1(Joystick* joystick){
+  clearP(p1);
+  p1 = joystick;
+  joystick->getIcon()->offset.x = Application::SCREEN_WIDTH / 4 - joystick->getIcon()->surface->w/2;
+}
+
+void InputSystem::setP2(Joystick* joystick){
+  clearP(p2);
+  p2 = joystick;
+  joystick->getIcon()->offset.x = (Application::SCREEN_WIDTH / 4) * 3 - joystick->getIcon()->surface->w/2;
 }

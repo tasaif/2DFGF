@@ -74,6 +74,9 @@ bool Game::run(){
       if(!select_menu->run()){
         gamestate = select_menu->end();
         switch(gamestate){
+          case gsTITLE:
+            title_menu->first();
+            break;
           default:
             break;
         };

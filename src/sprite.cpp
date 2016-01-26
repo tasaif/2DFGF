@@ -2,7 +2,6 @@
 #include "application.h"
 
 extern path base_path;
-extern Application* app;
 
 Sprite::Sprite(){
   offset.x = 0;
@@ -48,22 +47,22 @@ void Sprite::setPos(int x, int y){
 
 void Sprite::align(unsigned bitmask){
   if (bitmask & HCENTER){
-    offset.x = app->SCREEN_WIDTH / 2 - surface->w/2;
+    offset.x = Application::SCREEN_WIDTH / 2 - surface->w/2;
   }
   if (bitmask & VBOTTOM){
-    offset.y = app->SCREEN_HEIGHT - surface->h;
+    offset.y = Application::SCREEN_HEIGHT - surface->h;
   }
   if (bitmask & VCENTER){
-    offset.y = app->SCREEN_HEIGHT/2 - surface->h/2;
+    offset.y = Application::SCREEN_HEIGHT/2 - surface->h/2;
   }
 }
 
 void Sprite::alignTo(Sprite* sprite, unsigned bitmask){
   if (bitmask & HCENTER){
-    offset.x = app->SCREEN_WIDTH / 2 - surface->w/2;
+    offset.x = Application::SCREEN_WIDTH / 2 - surface->w/2;
   }
   if (bitmask & VBOTTOM){
-    offset.y = app->SCREEN_HEIGHT - surface->h;
+    offset.y = Application::SCREEN_HEIGHT - surface->h;
   }
   if (bitmask & VCENTER){
     offset.y = sprite->offset.y + sprite->surface->h/2 - surface->h/2;
