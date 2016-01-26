@@ -20,18 +20,9 @@ void SelectMenu::setup_options(){
   };*/
 }
 
-Option* SelectMenu::createOption(unsigned _state){
-  Option* retval = new Option(_state);
-  options.push_back(retval);
-  return retval;
-}
-
 SelectMenu::SelectMenu(){
-  inputsys = app->inputsys;
-  drawsys = app->drawsys;
-  optionsys = app->optionsys;
-  background = new Sprite();
   //bgm_level = new TextSprite();
+  inputsys = app->inputsys;
   setup_options();
 }
 
@@ -40,7 +31,6 @@ SelectMenu::~SelectMenu(){
     delete options[i];
   }
   //delete bgm_level;
-  delete background;
 }
 
 bool SelectMenu::first(){
@@ -89,10 +79,4 @@ bool SelectMenu::run(){
 
 GameState SelectMenu::end(){
   return exit_code;
-}
-
-bool SelectMenu::init(string fname){
-  if(!setBackground(fname)) return false;
-  initialized = true;
-  return true;
 }

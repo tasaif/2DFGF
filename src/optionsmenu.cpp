@@ -1,8 +1,6 @@
 #include "menu.h"
 #include "application.h"
 
-extern Application* app;
-
 void OptionsMenu::setup_options(){
   bgm_option = createOption(omsBGMVOLUME);
   bgm_option->init("BGM Volume", 20, 125, 150);
@@ -10,11 +8,11 @@ void OptionsMenu::setup_options(){
   bgm_option->press_func[bDOWN] = [&](){state = omsSFXVOLUME;};
   bgm_option->press_func[bLEFT] = [&](){
     optionsys->incBGMVolume(-10);
-    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
+    bgm_level->init(to_string(optionsys->getBGMVolume()));
   };
   bgm_option->press_func[bRIGHT] = [&](){
     optionsys->incBGMVolume(10);
-    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
+    bgm_level->init(to_string(optionsys->getBGMVolume()));
   };
 
   sfx_option = createOption(omsSFXVOLUME);
@@ -23,11 +21,11 @@ void OptionsMenu::setup_options(){
   sfx_option->press_func[bDOWN] = [&](){state = omsDURATION;};
   sfx_option->press_func[bLEFT] = [&](){
     optionsys->incSFXVolume(-10);
-    sfx_level->init(to_string(app->optionsys->getSFXVolume()));
+    sfx_level->init(to_string(optionsys->getSFXVolume()));
   };
   sfx_option->press_func[bRIGHT] = [&](){
     optionsys->incSFXVolume(10);
-    sfx_level->init(to_string(app->optionsys->getSFXVolume()));
+    sfx_level->init(to_string(optionsys->getSFXVolume()));
   };
 
   duration_option = createOption(omsDURATION);
@@ -39,12 +37,12 @@ void OptionsMenu::setup_options(){
     if (optionsys->getMatchDuration() == 0){
       duration_level->init("∞");
     } else {
-      duration_level->init(to_string(app->optionsys->getMatchDuration()));
+      duration_level->init(to_string(optionsys->getMatchDuration()));
     }
   };
   duration_option->press_func[bRIGHT] = [&](){
     optionsys->incMatchDuration(10);
-    duration_level->init(to_string(app->optionsys->getMatchDuration()));
+    duration_level->init(to_string(optionsys->getMatchDuration()));
   };
 
   quit_option = createOption(omsQUIT);
@@ -53,8 +51,8 @@ void OptionsMenu::setup_options(){
   quit_option->press_func[bDOWN] = [&](){state = omsBGMVOLUME;};
   quit_option->press_func[bLK] = [&](){exit_code = gsTITLE;};
 
-  bgm_level->init(to_string(app->optionsys->getBGMVolume()), 20, 400, 0);
-  sfx_level->init(to_string(app->optionsys->getSFXVolume()), 20, 400, 0);
+  bgm_level->init(to_string(optionsys->getBGMVolume()), 20, 400, 0);
+  sfx_level->init(to_string(optionsys->getSFXVolume()), 20, 400, 0);
   duration_level->init(to_string(optionsys->getMatchDuration()), 20, 400, 0);
 
   bgm_level->alignTo(bgm_option, Sprite::VCENTER);
@@ -62,17 +60,8 @@ void OptionsMenu::setup_options(){
   duration_level->alignTo(duration_option, Sprite::VCENTER);
 }
 
-Option* OptionsMenu::createOption(unsigned _state){
-  Option* retval = new Option(_state);
-  options.push_back(retval);
-  return retval;
-}
-
 OptionsMenu::OptionsMenu(){
-  inputsys = app->inputsys;
-  drawsys = app->drawsys;
   optionsys = app->optionsys;
-  background = new Sprite();
   bgm_level = new TextSprite();
   sfx_level = new TextSprite();
   duration_level = new TextSprite();
@@ -87,7 +76,6 @@ OptionsMenu::~OptionsMenu(){
   delete bgm_level;
   delete sfx_level;
   delete duration_level;
-  delete background;
 }
 
 bool OptionsMenu::first(){
@@ -133,10 +121,4 @@ bool OptionsMenu::run(){
 
 GameState OptionsMenu::end(){
   return exit_code;
-}
-
-bool OptionsMenu::init(string fname){
-  if(!setBackground(fname)) return false;
-  initialized = true;
-  return true;
 }

@@ -11,7 +11,6 @@ using namespace std;
 class Billboard : public Scene {
   private:
     LTimer timer;
-    bool initialized = false;
     unsigned duration = 2000;
 
   public:
@@ -21,9 +20,6 @@ class Billboard : public Scene {
     bool first();
     bool run();
     GameState end();
-
-    bool init(string);
-    bool init(string, unsigned);
 };
 
 #endif

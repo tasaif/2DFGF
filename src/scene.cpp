@@ -1,4 +1,7 @@
+#include "application.h"
 #include "scene.h"
+
+extern Application* app;
 
 Scene::Scene(){
   indicator = new TextSprite();
@@ -6,6 +9,7 @@ Scene::Scene(){
 
 Scene::~Scene(){
   delete indicator;
+  delete background;
 }
 
 bool Scene::setBackground(string fname){
@@ -16,4 +20,20 @@ bool Scene::setBackground(string fname){
 void Scene::setIndicatorPos(Option* option){
   indicator->offset.x = option->offset.x - indicator->surface->w - 2;
   indicator->offset.y = option->offset.y + option->surface->h/2 - indicator->surface->h/2;
+}
+
+bool Scene::init(string fname){
+  inputsys = app->inputsys;
+  drawsys = app->drawsys;
+  optionsys = app->optionsys;
+  background = new Sprite();
+  if(!setBackground(fname)) return false;
+  initialized = true;
+  return true;
+}
+
+Option* Scene::createOption(unsigned _state){
+  Option* retval = new Option(_state);
+  options.push_back(retval);
+  return retval;
 }

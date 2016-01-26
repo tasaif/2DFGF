@@ -10,7 +10,7 @@ void Menu::setup_options(){
     Sprite::HCENTER
   );
   setIndicatorPos(start_option);
-  start_option->press_func[bSTART] = [&](){state = msVS;};
+  start_option->press_func[bSTART] = [&](){cout<<"foo"<<endl;state = msVS;};
 
   vs_option = createOption(msVS);
   vs_option->init("2P Versus", 20, 0, 300);
@@ -40,16 +40,9 @@ void Menu::setup_options(){
   quit_option->press_func[bLK] = [&](){exit_code = gsQUIT;};
 }
 
-Option* Menu::createOption(MenuState _state){
-  Option* retval = new Option(_state);
-  options.push_back(retval);
-  return retval;
-}
-
 Menu::Menu(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
-  background = new Sprite();
   indicator->init(">", 20, 0, 0);
   setup_options();
 }
@@ -58,7 +51,6 @@ Menu::~Menu(){
   for(unsigned i=0; i<options.size(); i++){
     delete options[i];
   }
-  delete background;
 }
 
 bool Menu::first(){
@@ -109,8 +101,3 @@ GameState Menu::end(){
   return exit_code;
 }
 
-bool Menu::init(string fname){
-  if(!setBackground(fname)) return false;
-  initialized = true;
-  return true;
-}

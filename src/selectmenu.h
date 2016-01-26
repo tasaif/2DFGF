@@ -18,15 +18,11 @@ class SelectMenu : public Scene {
   private:
     vector<Joystick*> joysticks;
     LTimer timer;
-    bool initialized = false;
-    OptionSystem* optionsys;
     SelectMenuState state = smsNULL;
     //Option* bgm_option = NULL;
     //TextSprite* bgm_level = NULL;
-    vector<Option*> options;
     //sound controller moved
     void setup_options();
-    Option* createOption(unsigned);
 
   public:
     SelectMenu();
@@ -35,8 +31,6 @@ class SelectMenu : public Scene {
     bool first();
     bool run();
     GameState end();
-
-    bool init(string);
 };
 
 #endif
