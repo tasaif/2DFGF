@@ -13,7 +13,10 @@ class TextSprite : public Sprite {
   public:
     TextSprite();
     ~TextSprite();
+    void setDefaultFont();
+    void setFont(string);
     void setFont(string, unsigned);
+    void init();
     void init(string);
     void init(string, unsigned);
     void init(string, unsigned, int, int);

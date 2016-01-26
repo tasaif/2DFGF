@@ -10,9 +10,13 @@ TextSprite::TextSprite(){
 TextSprite::~TextSprite(){
 }
 
+void TextSprite::init(){
+  init(text);
+}
+
 void TextSprite::init(string _text){
   if (font == NULL){
-    font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
+    setDefaultFont();
   } else {
     init(_text, font->getFontSize());
   }
@@ -31,9 +35,21 @@ void TextSprite::init(string _text, unsigned _font_size, int x, int y){
   text = _text;
   setPos(x, y);
   unload();
-  surface = TTF_RenderText_Solid(font->getSDLFont(), text.c_str(), color);
+  surface = TTF_RenderUTF8_Blended(font->getSDLFont(), text.c_str(), color);
   if (surface == NULL){
     cout << "Failed to create ttf surface" << endl;
+  }
+}
+
+void TextSprite::setDefaultFont(){
+  font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
+}
+
+void TextSprite::setFont(string font_name){
+  if (font == NULL){
+    setDefaultFont();
+  } else {
+    font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
   }
 }
 

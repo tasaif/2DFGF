@@ -21,11 +21,31 @@ void OptionsMenu::setup_options(){
   sfx_option->init("SFX Volume", 20, 125, 175);
   sfx_option->press_func[bUP] = [&](){state = omsBGMVOLUME;};
   sfx_option->press_func[bDOWN] = [&](){state = omsDURATION;};
+  sfx_option->press_func[bLEFT] = [&](){
+    optionsys->incSFXVolume(-10);
+    sfx_level->init(to_string(app->optionsys->getSFXVolume()));
+  };
+  sfx_option->press_func[bRIGHT] = [&](){
+    optionsys->incSFXVolume(10);
+    sfx_level->init(to_string(app->optionsys->getSFXVolume()));
+  };
 
   duration_option = createOption(omsDURATION);
   duration_option->init("Match Timer", 20, 125, 200);
   duration_option->press_func[bUP] = [&](){state = omsSFXVOLUME;};
   duration_option->press_func[bDOWN] = [&](){state = omsQUIT;};
+  duration_option->press_func[bLEFT] = [&](){
+    optionsys->incMatchDuration(-10);
+    if (optionsys->getMatchDuration() == 0){
+      duration_level->init("∞");
+    } else {
+      duration_level->init(to_string(app->optionsys->getMatchDuration()));
+    }
+  };
+  duration_option->press_func[bRIGHT] = [&](){
+    optionsys->incMatchDuration(10);
+    duration_level->init(to_string(app->optionsys->getMatchDuration()));
+  };
 
   quit_option = createOption(omsQUIT);
   quit_option->init("Quit", 20, 125, 225);
