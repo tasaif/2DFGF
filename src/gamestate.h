@@ -8,6 +8,7 @@ enum GameState {
   gsINTRO,
   gsTITLE,
   gsOPTIONS,
+  gsSELECT,
   gsCHARACTERS,
   gsVS,
   gsQUIT

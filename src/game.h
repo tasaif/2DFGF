@@ -5,6 +5,7 @@
 #include "billboard.h"
 #include "menu.h"
 #include "optionsmenu.h"
+#include "selectmenu.h"
 #include "gamestate.h"
 
 class Application;
@@ -18,6 +19,7 @@ class Game {
     Billboard* logo2;
     Menu* title_menu;
     OptionsMenu* options_menu;
+    SelectMenu* select_menu;
     GameState gamestate = gsINTRO;
 
   public:

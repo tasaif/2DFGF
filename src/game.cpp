@@ -5,11 +5,13 @@ Game::Game(){
   logo2 = new Billboard(gsINTRO);
   title_menu = new Menu();
   options_menu = new OptionsMenu();
+  select_menu = new SelectMenu();
 
   logo1->init("billboard1.bmp");
   logo2->init("billboard2.bmp");
   title_menu->init("mainmenu.png");
   options_menu->init("optionsmenu.png");
+  select_menu->init("selectmenu.png");
 }
 
 Game::~Game(){
@@ -17,6 +19,7 @@ Game::~Game(){
   delete logo2;
   delete title_menu;
   delete options_menu;
+  delete select_menu;
 }
 
 bool Game::run(){
@@ -47,6 +50,9 @@ bool Game::run(){
           case gsOPTIONS:
             options_menu->first();
             break;
+          case gsSELECT:
+            select_menu->first();
+            break;
           default:
             break;
         };
@@ -59,6 +65,15 @@ bool Game::run(){
           case gsTITLE:
             title_menu->first();
             break;
+          default:
+            break;
+        };
+      }
+      break;
+    case gsSELECT:
+      if(!select_menu->run()){
+        gamestate = select_menu->end();
+        switch(gamestate){
           default:
             break;
         };

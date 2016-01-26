@@ -41,3 +41,7 @@ bool InputSystem::Pressed(Button button){
   }
   return false;
 }
+
+vector<Joystick*> InputSystem::getJoysticks(){
+  return joysticks;
+}

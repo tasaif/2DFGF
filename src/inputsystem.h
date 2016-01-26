@@ -19,6 +19,7 @@ class InputSystem {
     Joystick* p2 = NULL;
 
     bool Pressed(Button);
+    vector<Joystick*> getJoysticks();
 };
 
 #endif

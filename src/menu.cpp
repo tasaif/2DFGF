@@ -19,6 +19,7 @@ void Menu::setup_options(){
   );
   vs_option->press_func[bDOWN] = [&](){state = msOPTIONS;};
   vs_option->press_func[bUP] = [&](){state = msQUIT;};
+  vs_option->press_func[bLK] = [&](){exit_code = gsSELECT;};
 
   options_option = createOption(msOPTIONS);
   options_option->init("Options", 20, 0, 325);
