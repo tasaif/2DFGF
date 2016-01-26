@@ -5,6 +5,7 @@
 #include <vector>
 #include <SDL.h>
 #include "button.h"
+#include "sprite.h"
 using namespace std;
 
 const string legible_buttons[] = {
@@ -36,7 +37,7 @@ const string legible_buttons[] = {
 class Joystick {
   protected:
     Joystick();
-    SDL_Joystick* device;
+    SDL_Joystick* device = NULL;
     const unsigned buffer_size = 20;
     vector<Button> buffer;
     int raw_buffer_length = 0;
@@ -47,6 +48,7 @@ class Joystick {
     Uint8* pressed_buffer = NULL;
     Button* mapping = NULL;
     Button sdlDirToButtonDir(Uint8);
+    Sprite* icon = NULL;
 
   public:
     Joystick(unsigned);
@@ -56,6 +58,7 @@ class Joystick {
     virtual Uint8 Pressed(Button);
     void dumpBuffer();
     void dumpPressedBuffer();
+    Sprite* getIcon();
 };
 
 #endif

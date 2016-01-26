@@ -56,9 +56,15 @@ bool SelectMenu::first(){
 
 bool SelectMenu::run(){
   bool option_interacted = false;
+  Joystick* curjoy;
+  joysticks = inputsys->getJoysticks();
   Option* curop;
   drawsys->draw(background);
   //drawsys->draw(bgm_level);
+  for(unsigned i=0; i<joysticks.size(); i++){
+    curjoy = joysticks[i];
+    drawsys->draw(curjoy->getIcon());
+  }
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     drawsys->draw(curop);

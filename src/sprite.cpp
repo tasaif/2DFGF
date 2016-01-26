@@ -20,21 +20,12 @@ Sprite::~Sprite(){
 }
 
 void Sprite::load(string fname){
-  SDL_Surface* optimized = NULL;
   fname = (base_path / fname).string();
   unload();
   surface = IMG_Load(fname.c_str());
   if (surface == NULL){
     cout << "Failed to load: " << fname << endl;
     return;
-  }
-
-  optimized = SDL_ConvertSurface(surface, app->drawsys->format(), 0);
-  if (optimized == NULL){
-    cout << "Failed to optimize: " << fname << endl;
-  } else {
-    SDL_FreeSurface(surface);
-    surface = optimized;
   }
 }
 

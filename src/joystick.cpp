@@ -12,7 +12,7 @@ Joystick::Joystick(unsigned sdl_joy_number){
   current_buffer = new Uint8[raw_buffer_length];
   previous_buffer = new Uint8[raw_buffer_length];
   pressed_buffer = new Uint8[bEND];
-  for(unsigned i=0; i<buffer_size; i++){
+  for(int i=0; i<buffer_size; i++){
     buffer.push_back(bNULL);
   }
   for(int i=0; i<raw_buffer_length; i++){
@@ -22,15 +22,18 @@ Joystick::Joystick(unsigned sdl_joy_number){
   for(unsigned i=0; i<bEND; i++){
     pressed_buffer[i] = bNULL;
   }
-  mapping = new Button[100]; /*
-                                Supports a gamepad with up to 100 buttons
-                                Change this to an unordered_map or something
-                                because this is gross
-                              */
+  mapping = new Button[raw_buffer_length];
+  for(unsigned i=0; i<raw_buffer_length; i++){
+    mapping[i] = bNULL;
+  }
   setDefaultButtonMappings();
+  icon = new Sprite("controller.png");
+  icon->align(Sprite::HCENTER);
+  icon->offset.y = 105+75*sdl_joy_number;
 }
 
 Joystick::~Joystick(){
+  delete icon;
   delete mapping;
   delete pressed_buffer;
   delete previous_buffer;
@@ -148,4 +151,8 @@ void Joystick::dumpPressedBuffer(){
     }
   }
   cout << "]" << endl;
+}
+
+Sprite* Joystick::getIcon(){
+  return icon;
 }

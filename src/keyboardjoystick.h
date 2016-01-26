@@ -13,7 +13,7 @@ class KeyboardJoystick : public Joystick {
     void handle_directions();
 
   public:
-    KeyboardJoystick();
+    KeyboardJoystick(int);
     ~KeyboardJoystick();
     void update();
     void setDefaultButtonMappings();

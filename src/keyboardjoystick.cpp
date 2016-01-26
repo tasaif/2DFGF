@@ -2,7 +2,7 @@
 #include "keyboardjoystick.h"
 using namespace std;
 
-KeyboardJoystick::KeyboardJoystick(){
+KeyboardJoystick::KeyboardJoystick(int number_of_joysticks){
   mapping = new SDL_Scancode[bEND];
   current_buffer = new Uint8[bEND];
   previous_buffer = new Uint8[bEND];
@@ -17,6 +17,9 @@ KeyboardJoystick::KeyboardJoystick(){
     buffer.push_back(bNULL);
   }
   setDefaultButtonMappings();
+  icon = new Sprite("keyboard.png");
+  icon->align(Sprite::HCENTER);
+  icon->offset.y = 105 + 75 * number_of_joysticks;
 }
 
 KeyboardJoystick::~KeyboardJoystick(){

@@ -11,10 +11,12 @@
 #include "button.h"
 #include "gamestate.h"
 #include "optionsystem.h"
+#include "joystick.h"
 using namespace std;
 
 class SelectMenu : public Scene {
   private:
+    vector<Joystick*> joysticks;
     LTimer timer;
     bool initialized = false;
     OptionSystem* optionsys;
