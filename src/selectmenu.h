@@ -17,7 +17,6 @@ using namespace std;
 class SelectMenu : public Scene {
   private:
     vector<Joystick*> joysticks;
-    LTimer timer;
     SelectMenuState state = smsNULL;
     //Option* bgm_option = NULL;
     //TextSprite* bgm_level = NULL;

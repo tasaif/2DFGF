@@ -8,9 +8,9 @@ void printSDLVersion(){
   SDL_version linked;
   SDL_VERSION(&compiled);
   SDL_GetVersion(&linked);
-  printf("We compiled against SDL version %d.%d.%d ...\n",
+  printf("Compiled SDL version %d.%d.%d ...\n",
              compiled.major, compiled.minor, compiled.patch);
-  printf("But we are linking against SDL version %d.%d.%d.\n",
+  printf("Linked SDL version %d.%d.%d.\n",
              linked.major, linked.minor, linked.patch);
 }
 

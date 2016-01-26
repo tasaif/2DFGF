@@ -12,7 +12,7 @@ Joystick::Joystick(unsigned sdl_joy_number){
   current_buffer = new Uint8[raw_buffer_length];
   previous_buffer = new Uint8[raw_buffer_length];
   pressed_buffer = new Uint8[bEND];
-  for(int i=0; i<buffer_size; i++){
+  for(unsigned i=0; i<buffer_size; i++){
     buffer.push_back(bNULL);
   }
   for(int i=0; i<raw_buffer_length; i++){
@@ -23,7 +23,7 @@ Joystick::Joystick(unsigned sdl_joy_number){
     pressed_buffer[i] = bNULL;
   }
   mapping = new Button[raw_buffer_length];
-  for(unsigned i=0; i<raw_buffer_length; i++){
+  for(int i=0; i<raw_buffer_length; i++){
     mapping[i] = bNULL;
   }
   setDefaultButtonMappings();

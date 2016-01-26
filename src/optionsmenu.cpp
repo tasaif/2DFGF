@@ -83,7 +83,6 @@ bool OptionsMenu::first(){
     cout << "OptionsMenu was not initialized" << endl;
     return false;
   }
-  timer.start();
   exit_code = gsNULL;
   state = omsBGMVOLUME;
   return true;

@@ -14,7 +14,6 @@ using namespace std;
 
 class OptionsMenu : public Scene {
   private:
-    LTimer timer;
     OptionsMenuState state = omsNULL;
     Option* bgm_option = NULL;
     Option* sfx_option = NULL;

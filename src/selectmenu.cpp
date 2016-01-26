@@ -38,7 +38,6 @@ bool SelectMenu::first(){
     cout << "SelectMenu was not initialized" << endl;
     return false;
   }
-  timer.start();
   exit_code = gsNULL;
   state = smsNULL;
   return true;

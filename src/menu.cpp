@@ -10,7 +10,7 @@ void Menu::setup_options(){
     Sprite::HCENTER
   );
   setIndicatorPos(start_option);
-  start_option->press_func[bSTART] = [&](){cout<<"foo"<<endl;state = msVS;};
+  start_option->press_func[bSTART] = [&](){state = msVS;};
 
   vs_option = createOption(msVS);
   vs_option->init("2P Versus", 20, 0, 300);
@@ -58,7 +58,6 @@ bool Menu::first(){
     cout << "Menu was not initialized" << endl;
     return false;
   }
-  timer.start();
   exit_code = gsNULL;
   state = skip_start ? msVS : msNULL;
   return true;

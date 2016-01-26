@@ -14,7 +14,6 @@ using namespace std;
 
 class Menu : public Scene {
   private:
-    LTimer timer;
     MenuState state = msNULL;
     Option* start_option = NULL;
     Option* vs_option = NULL;
