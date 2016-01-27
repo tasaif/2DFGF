@@ -34,10 +34,10 @@ Joystick::Joystick(unsigned sdl_joy_number){
 
 Joystick::~Joystick(){
   delete icon;
-  delete mapping;
-  delete pressed_buffer;
-  delete previous_buffer;
-  delete current_buffer;
+  delete[] mapping;
+  delete[] pressed_buffer;
+  delete[] previous_buffer;
+  delete[] current_buffer;
   if (device != NULL){
     SDL_JoystickClose(device);
   }

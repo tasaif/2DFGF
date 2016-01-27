@@ -10,6 +10,9 @@ Scene::Scene(){
 Scene::~Scene(){
   delete indicator;
   delete background;
+  for(unsigned i=0; i<options.size(); i++){
+    delete options[i];
+  }
 }
 
 bool Scene::setBackground(string fname){

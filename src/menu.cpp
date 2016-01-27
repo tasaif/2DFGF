@@ -48,9 +48,6 @@ Menu::Menu(){
 }
 
 Menu::~Menu(){
-  for(unsigned i=0; i<options.size(); i++){
-    delete options[i];
-  }
 }
 
 bool Menu::first(){

@@ -70,9 +70,6 @@ OptionsMenu::OptionsMenu(){
 }
 
 OptionsMenu::~OptionsMenu(){
-  for(unsigned i=0; i<options.size(); i++){
-    delete options[i];
-  }
   delete bgm_level;
   delete sfx_level;
   delete duration_level;
