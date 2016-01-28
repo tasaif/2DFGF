@@ -29,10 +29,6 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   selection_box = new Sprite("selectionbox.png");
   selection_box->offset.y = 320;
   selection_box->align(Sprite::HCENTER);
-  p1_name_placard_offset.x = 0;
-  Sprite::align(charsys->getCharacter(defaultp1character)->getNamePlacard(0), p1_name_placard_offset, Sprite::VCENTER);
-  p2_name_placard_offset.x = app->SCREEN_WIDTH - 65;
-  Sprite::align(charsys->getCharacter(defaultp2character)->getNamePlacard(1), p2_name_placard_offset, Sprite::VCENTER);
   setup_options();
 }
 
@@ -61,8 +57,8 @@ bool CharacterMenu::run(){
   drawsys->draw(background);
   drawsys->draw(inputsys->p1->getPlacard(0));
   drawsys->draw(inputsys->p2->getPlacard(1));
-  drawsys->draw(inputsys->p1->getNamePlacard(0), &p1_name_placard_offset);
-  drawsys->draw(inputsys->p2->getNamePlacard(1), &p2_name_placard_offset);
+  drawsys->draw(inputsys->p1->getNamePlacard(0));
+  drawsys->draw(inputsys->p2->getNamePlacard(1));
   drawsys->draw(selection_backing);
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);

@@ -19,8 +19,6 @@ class CharacterMenu : public Scene {
     CharacterMenuState state = cmsNULL;
     Sprite* selection_box = NULL;
     Sprite* selection_backing = NULL;
-    SDL_Rect p1_name_placard_offset;
-    SDL_Rect p2_name_placard_offset;
     //Option* bgm_option = NULL;
     //TextSprite* duration_level = NULL;
     //sound option_changed;

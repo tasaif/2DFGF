@@ -38,12 +38,16 @@ bool Character::init(string _name, string _placard_font){
   placard[1] = placard[0]->duplicate();
   placard[1]->flipHorizontal();
   placard[1]->alignFromRight(25);
+
   placard_name[0] = new TextSprite();
   placard_name[0]->setFont(placard_font, placard_font_size);
   placard_name[0]->init(name);
   placard_name[0]->rotate(90);
   placard_name[1] = placard_name[0]->duplicate();
   placard_name[1]->rotate(270);
+  placard_name[0]->align(Sprite::VCENTER);
+  placard_name[1]->align(Sprite::VCENTER);
+  placard_name[1]->alignFromRight(25);
 }
 
 Sprite* Character::getPlacard(unsigned player){
