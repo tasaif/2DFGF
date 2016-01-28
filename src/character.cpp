@@ -11,11 +11,13 @@ Character::~Character(){
   delete placard_name;
 }
 
-bool Character::init(string _name, string _icon, string _placard, string _placard_font){
+bool Character::init(string _name, string _placard_font){
   name = _name;
   placard_font = _placard_font;
-  icon = new Sprite(_icon);
-  placard = new Sprite(_placard);
+  std::transform(_name.begin(), _name.end(), _name.begin(), ::tolower);
+  load_path = character_path / _name;
+  icon = new Sprite(load_path, "icon.png");
+  placard = new Sprite(load_path, "placard.png");
   placard_name = new TextSprite();
   placard_name->setFont(placard_font, placard_font_size);
   placard_name->init(name);

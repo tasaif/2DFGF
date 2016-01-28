@@ -14,6 +14,7 @@ class Character {
     Sprite* placard;
     TextSprite* placard_name;
     string placard_font;
+    path load_path;
     //sound bgm
     //stage stage
 
@@ -21,7 +22,7 @@ class Character {
     Character();
     virtual ~Character();
 
-    bool init(string, string, string, string);
+    bool init(string, string);
 };
 
 #endif

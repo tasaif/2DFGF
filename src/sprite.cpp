@@ -3,15 +3,25 @@
 
 extern path image_path;
 
-Sprite::Sprite(){
+void Sprite::init(path _custom_path, string fname){
   offset.x = 0;
   offset.y = 0;
+  custom_path = _custom_path;
+  if (fname != ""){
+    load(fname);
+  }
+}
+
+Sprite::Sprite(){
+  init(path(""), "");
 }
 
 Sprite::Sprite(string fname){
-  offset.x = 0;
-  offset.y = 0;
-  load(fname);
+  init(path(""), fname);
+}
+
+Sprite::Sprite(path _custom_path, string fname){
+  init(_custom_path, fname);
 }
 
 Sprite::~Sprite(){
@@ -19,7 +29,11 @@ Sprite::~Sprite(){
 }
 
 void Sprite::load(string fname){
-  fname = (image_path / fname).string();
+  if (custom_path.string() == ""){
+    fname = (image_path / fname).string();
+  } else {
+    fname = (custom_path / fname).string();
+  }
   unload();
   surface = IMG_Load(fname.c_str());
   if (surface == NULL){
