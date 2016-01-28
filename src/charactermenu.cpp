@@ -61,6 +61,9 @@ bool CharacterMenu::run(){
     }
     if (option_interacted) break;
   }
+  if (inputsys->Pressed(bMK)){
+    exit_code = gsSELECT;
+  }
   if (exit_code) return false;
   return true;
 }

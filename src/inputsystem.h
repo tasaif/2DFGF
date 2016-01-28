@@ -25,6 +25,7 @@ class InputSystem {
     void clearP(Joystick*);
     void setP1(Joystick*);
     void setP2(Joystick*);
+
 };
 
 #endif

@@ -6,12 +6,14 @@ Game::Game(){
   title_menu = new Menu();
   options_menu = new OptionsMenu();
   select_menu = new SelectMenu();
+  character_menu = new CharacterMenu();
 
   logo1->init("billboard1.bmp");
   logo2->init("billboard2.bmp");
   title_menu->init("mainmenu.png");
   options_menu->init("optionsmenu.png");
   select_menu->init("selectmenu.png");
+  character_menu->init("charactermenu.png");
 }
 
 Game::~Game(){
@@ -20,6 +22,7 @@ Game::~Game(){
   delete title_menu;
   delete options_menu;
   delete select_menu;
+  delete character_menu;
 }
 
 bool Game::run(){
@@ -77,12 +80,25 @@ bool Game::run(){
           case gsTITLE:
             title_menu->first();
             break;
+          case gsCHARACTERS:
+            character_menu->first();
           default:
             break;
         };
       }
       break;
     case gsCHARACTERS:
+      if (!character_menu->run()){
+        gamestate = character_menu->end();
+        switch(gamestate){
+          case gsSELECT:
+            select_menu->first();
+            break;
+          default:
+            break;
+        };
+      }
+      break;
     case gsVS:
     case gsQUIT:
       return false;

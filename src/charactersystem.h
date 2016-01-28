@@ -3,11 +3,14 @@
 
 #include <vector>
 #include "character.h"
-using namepspace std;
+#include "characterindex.h"
+#include "characters/null.h"
+using namespace std;
 
 class CharacterSystem {
   private:
-    vector<Character*> characters;
+    Character** characters = NULL;
+    Sprite* missing_character = NULL;
 
   public:
     CharacterSystem();

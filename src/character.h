@@ -18,11 +18,13 @@ class Character {
     //sound bgm
     //stage stage
 
+  protected:
+    bool init(string, string);
+
   public:
     Character();
     virtual ~Character();
 
-    bool init(string, string);
 };
 
 #endif

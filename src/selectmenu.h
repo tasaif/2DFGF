@@ -18,8 +18,6 @@ class SelectMenu : public Scene {
   private:
     vector<Joystick*> joysticks;
     SelectMenuState state = smsNULL;
-    //Option* bgm_option = NULL;
-    //TextSprite* bgm_level = NULL;
     //sound controller moved
     void setup_options();
 

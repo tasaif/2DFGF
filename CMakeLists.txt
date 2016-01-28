@@ -13,6 +13,7 @@ add_executable(fighter
   src/billboard.cpp
   src/character.cpp
   src/charactermenu.cpp
+  src/charactersystem.cpp
   src/drawsystem.cpp
   src/fontsystem.cpp
   src/game.cpp
@@ -29,6 +30,8 @@ add_executable(fighter
   src/selectmenu.cpp
   src/sprite.cpp
   src/textsprite.cpp
+
+  src/characters/null.cpp
 )
 target_link_libraries(fighter
   SDL2

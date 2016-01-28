@@ -80,3 +80,4 @@ void InputSystem::setP2(Joystick* joystick){
   p2 = joystick;
   joystick->getIcon()->offset.x = (Application::SCREEN_WIDTH / 4) * 3 - joystick->getIcon()->surface->w/2;
 }
+

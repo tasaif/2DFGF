@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "optionsmenu.h"
 #include "selectmenu.h"
+#include "charactermenu.h"
 #include "gamestate.h"
 
 class Application;
@@ -20,6 +21,7 @@ class Game {
     Menu* title_menu;
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
+    CharacterMenu* character_menu;
     GameState gamestate = gsTITLE;
 
   public:

@@ -1,17 +1,21 @@
 #include "charactersystem.h"
 
 CharacterSystem::CharacterSystem(){
-  Character* character;
-  for(unsigned i=0; i<8; i++){
-    character = new Character();
-    character->init("NULL", "mode7.ttf");
-    characters.push_back(character);
+  characters = new Character*[NUMBEROFCHARACTERS];
+  for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
+    characters[i] = NULL;
   }
+  characters[ciNULL] = new CharNull();
+  missing_character = new Sprite("missingcharacter.png");
 }
 
 CharacterSystem::~CharacterSystem(){
-  while (characters.size()){
-    delete characters[0];
-    characters.erase(characters.begin());
+  for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
+    if (characters[i] != NULL){
+      delete characters[i];
+      characters[i] = NULL;
+    }
   }
+  delete[] characters;
+  delete missing_character;
 }

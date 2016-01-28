@@ -6,22 +6,9 @@ extern Application* app;
 
 void SelectMenu::setup_options(){
   vector<Joystick*> sticks = inputsys->getJoysticks();
-  /*bgm_option = createOption(somsBGMVOLUME);
-  bgm_option->init("BGM Volume", 20, 125, 150);
-  bgm_option->press_func[bUP] = [&](){state = omsQUIT;};
-  bgm_option->press_func[bDOWN] = [&](){state = omsSFXVOLUME;};
-  bgm_option->press_func[bLEFT] = [&](){
-    optionsys->incBGMVolume(-10);
-    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
-  };
-  bgm_option->press_func[bRIGHT] = [&](){
-    optionsys->incBGMVolume(10);
-    bgm_level->init(to_string(app->optionsys->getBGMVolume()));
-  };*/
 }
 
 SelectMenu::SelectMenu(){
-  //bgm_level = new TextSprite();
   inputsys = app->inputsys;
   setup_options();
 }
@@ -30,7 +17,6 @@ SelectMenu::~SelectMenu(){
   for(unsigned i=0; i<options.size(); i++){
     delete options[i];
   }
-  //delete bgm_level;
 }
 
 bool SelectMenu::first(){
@@ -66,6 +52,9 @@ bool SelectMenu::run(){
     } else {
       inputsys->setP2(curjoy);
     }
+  }
+  if (inputsys->Pressed(bLK)){
+    exit_code = gsCHARACTERS;
   }
   if (exit_code) return false;
   return true;
