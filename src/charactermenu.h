@@ -15,6 +15,8 @@ using namespace std;
 class CharacterMenu : public Scene {
   private:
     CharacterMenuState state = cmsNULL;
+    Sprite* selection_box = NULL;
+    Sprite* selection_backing = NULL;
     //Option* bgm_option = NULL;
     //TextSprite* duration_level = NULL;
     //sound option_changed;

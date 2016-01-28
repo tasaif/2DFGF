@@ -20,6 +20,7 @@ class Sprite {
 
     SDL_Surface* surface = NULL;
     SDL_Rect offset;
+    void mkRect(unsigned, unsigned, Uint32);
     void load(string);
     void unload();
     bool valid();

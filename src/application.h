@@ -21,6 +21,10 @@ class Application {
     static const int SCREEN_HEIGHT = 480;
     static const int SCREEN_FPS = 60;
     static const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
+    Uint32 rmask;
+    Uint32 gmask;
+    Uint32 bmask;
+    Uint32 amask;
     SDL_Window* gWindow = NULL;
     DrawSystem* drawsys;
     InputSystem* inputsys;

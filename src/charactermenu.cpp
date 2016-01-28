@@ -22,11 +22,17 @@ void CharacterMenu::setup_options(){
 CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   charsys = _charsys;
   optionsys = app->optionsys;
-  //duration_level = new TextSprite();
+  selection_backing = new Sprite();
+  selection_backing->mkRect(332, 140, 0xff7f7f7f);
+  selection_box = new Sprite("selectionbox.png");
+  selection_box->offset.y = 320;
+  selection_box->align(Sprite::HCENTER);
   setup_options();
 }
 
 CharacterMenu::~CharacterMenu(){
+  delete selection_box;
+  delete selection_backing;
   //delete duration_level;
 }
 
@@ -44,6 +50,8 @@ bool CharacterMenu::run(){
   bool option_interacted = false;
   Option* curop;
   drawsys->draw(background);
+  drawsys->draw(selection_backing);
+  drawsys->draw(selection_box);
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     drawsys->draw(curop);

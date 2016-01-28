@@ -1,7 +1,9 @@
 #include "sprite.h"
 #include "application.h"
+#include <iomanip>
 
 extern path image_path;
+extern Application* app;
 
 void Sprite::init(path _custom_path, string fname){
   offset.x = 0;
@@ -26,6 +28,12 @@ Sprite::Sprite(path _custom_path, string fname){
 
 Sprite::~Sprite(){
   unload();
+}
+
+void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
+  unload();
+  surface = SDL_CreateRGBSurface(0, w, h, 32, app->rmask, app->gmask, app->bmask, app->amask);
+  SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff));
 }
 
 void Sprite::load(string fname){

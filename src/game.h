@@ -24,7 +24,7 @@ class Game {
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
     CharacterMenu* character_menu;
-    GameState gamestate = gsTITLE;
+    GameState gamestate = gsCHARACTERS;
 
   public:
     Game();
