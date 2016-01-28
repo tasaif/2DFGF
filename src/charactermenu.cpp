@@ -23,7 +23,9 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   charsys = _charsys;
   optionsys = app->optionsys;
   selection_backing = new Sprite();
-  selection_backing->mkRect(332, 140, 0xff7f7f7f);
+  selection_backing->mkRect(332, 140, 0xCC);
+  selection_backing->offset.y = 320;
+  selection_backing->align(Sprite::HCENTER);
   selection_box = new Sprite("selectionbox.png");
   selection_box->offset.y = 320;
   selection_box->align(Sprite::HCENTER);
