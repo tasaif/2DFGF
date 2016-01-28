@@ -11,6 +11,7 @@ include_directories(fighter
 add_executable(fighter
   src/application.cpp
   src/billboard.cpp
+  src/character.cpp
   src/charactermenu.cpp
   src/drawsystem.cpp
   src/fontsystem.cpp

@@ -3,6 +3,8 @@
 path base_path;
 path asset_path;
 path character_path;
+path image_path;
+path font_path;
 Application* app;
 
 void printSDLVersion(){
@@ -21,6 +23,8 @@ int main(int argc, char* argv[]){
   base_path = path{argv[0]}.parent_path();
   asset_path = base_path / "asset";
   character_path = asset_path / "character";
+  image_path = asset_path / "image";
+  font_path = asset_path / "font";
   app = new Application();
   if (app->init(argc, argv)){
     while(app->run());

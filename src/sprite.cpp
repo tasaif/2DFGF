@@ -1,7 +1,7 @@
 #include "sprite.h"
 #include "application.h"
 
-extern path asset_path;
+extern path image_path;
 
 Sprite::Sprite(){
   offset.x = 0;
@@ -19,7 +19,7 @@ Sprite::~Sprite(){
 }
 
 void Sprite::load(string fname){
-  fname = (asset_path / fname).string();
+  fname = (image_path / fname).string();
   unload();
   surface = IMG_Load(fname.c_str());
   if (surface == NULL){
