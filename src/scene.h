@@ -7,6 +7,7 @@
 #include "gamestate.h"
 #include "option.h"
 #include "optionsystem.h"
+#include "charactersystem.h"
 using namespace std;
 
 class InputSystem;
@@ -17,6 +18,7 @@ class Scene {
     InputSystem* inputsys = NULL;
     DrawSystem* drawsys = NULL;
     OptionSystem* optionsys = NULL;
+    CharacterSystem* charsys = NULL;
     GameState exit_code = gsNULL;
     Sprite* background = NULL;
     TextSprite* indicator = NULL;

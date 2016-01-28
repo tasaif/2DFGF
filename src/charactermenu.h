@@ -22,7 +22,7 @@ class CharacterMenu : public Scene {
     void setup_options();
 
   public:
-    CharacterMenu();
+    CharacterMenu(CharacterSystem*);
     ~CharacterMenu();
 
     bool first();

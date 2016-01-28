@@ -5,12 +5,14 @@ Game::Game(){
   p[0] = new Player();
   p[1] = new Player();
 
+  charsys = new CharacterSystem();
+
   logo1 = new Billboard(gsLOGO2);
   logo2 = new Billboard(gsINTRO);
   title_menu = new Menu();
   options_menu = new OptionsMenu();
   select_menu = new SelectMenu();
-  character_menu = new CharacterMenu();
+  character_menu = new CharacterMenu(charsys);
 
   logo1->init("billboard1.bmp");
   logo2->init("billboard2.bmp");
@@ -30,6 +32,7 @@ Game::~Game(){
   delete p[0];
   delete p[1];
   delete[] p;
+  delete charsys;
 }
 
 bool Game::run(){

@@ -19,7 +19,8 @@ void CharacterMenu::setup_options(){
   duration_level->alignTo(duration_option, Sprite::VCENTER);*/
 }
 
-CharacterMenu::CharacterMenu(){
+CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
+  charsys = _charsys;
   optionsys = app->optionsys;
   //duration_level = new TextSprite();
   setup_options();
