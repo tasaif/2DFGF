@@ -46,11 +46,7 @@ void TextSprite::setDefaultFont(){
 }
 
 void TextSprite::setFont(string font_name){
-  if (font == NULL){
-    setDefaultFont();
-  } else {
-    font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
-  }
+  font = app->fontsys->getFont(font_name, DEFAULTFONTSIZE);
 }
 
 void TextSprite::setFont(string font_name, unsigned font_size){

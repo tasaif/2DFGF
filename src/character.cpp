@@ -43,6 +43,7 @@ bool Character::init(string _name, string _placard_font){
   placard_name[0]->init(name);
   placard_name[0]->rotate(90);
   placard_name[1] = placard_name[0]->duplicate();
+  placard_name[1]->rotate(270);
 }
 
 Sprite* Character::getPlacard(unsigned player){

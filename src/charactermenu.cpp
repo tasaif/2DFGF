@@ -62,6 +62,7 @@ bool CharacterMenu::run(){
   drawsys->draw(inputsys->p1->getPlacard(0));
   drawsys->draw(inputsys->p2->getPlacard(1));
   drawsys->draw(inputsys->p1->getNamePlacard(0), &p1_name_placard_offset);
+  drawsys->draw(inputsys->p2->getNamePlacard(1), &p2_name_placard_offset);
   drawsys->draw(selection_backing);
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);
