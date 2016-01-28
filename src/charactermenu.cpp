@@ -29,6 +29,10 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   selection_box = new Sprite("selectionbox.png");
   selection_box->offset.y = 320;
   selection_box->align(Sprite::HCENTER);
+  p1_name_placard_offset.x = 0;
+  p1_name_placard_offset.y = 0;
+  p2_name_placard_offset.x = app->SCREEN_WIDTH - 65;
+  p2_name_placard_offset.y = 0;
   setup_options();
 }
 
@@ -51,8 +55,20 @@ bool CharacterMenu::first(){
 bool CharacterMenu::run(){
   bool option_interacted = false;
   Option* curop;
+  Character* curchar;
+  Sprite* icon;
+  SDL_Rect offset;
   drawsys->draw(background);
+  drawsys->draw(inputsys->p1->getNamePlacard(), &p1_name_placard_offset);
+  drawsys->draw(inputsys->p1->getPlacard());
   drawsys->draw(selection_backing);
+  for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
+    curchar = charsys->getCharacter((CharacterIndex)i);
+    icon = curchar != NULL ? curchar->getIcon() : charsys->getMissingCharacterIcon();
+    offset.x = 154 + 83 * (i % 4);
+    offset.y = (i < 4) ? 320 : 390;
+    drawsys->draw(icon, &offset);
+  }
   drawsys->draw(selection_box);
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];

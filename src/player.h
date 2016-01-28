@@ -7,12 +7,14 @@
 
 class Player {
   public:
-    Player();
-    ~Player();
-
     CharacterIndex charselect = ciNULL;
     Joystick* joystick = NULL;
     Character* character = NULL;
+
+    Player();
+    ~Player();
+    Sprite* getPlacard();
+    Sprite* getNamePlacard();
 };
 
 #endif

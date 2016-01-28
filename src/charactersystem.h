@@ -15,6 +15,8 @@ class CharacterSystem {
   public:
     CharacterSystem();
     ~CharacterSystem();
+    Character* getCharacter(CharacterIndex);
+    Sprite* getMissingCharacterIcon();
 };
 
 #endif

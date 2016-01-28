@@ -25,6 +25,9 @@ class Character {
     Character();
     virtual ~Character();
 
+    Sprite* getPlacard();
+    Sprite* getNamePlacard();
+    Sprite* getIcon();
 };
 
 #endif

@@ -19,3 +19,11 @@ CharacterSystem::~CharacterSystem(){
   delete[] characters;
   delete missing_character;
 }
+
+Character* CharacterSystem::getCharacter(CharacterIndex i){
+  return characters[i];
+}
+
+Sprite* CharacterSystem::getMissingCharacterIcon(){
+  return missing_character;
+}

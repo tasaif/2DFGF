@@ -22,3 +22,15 @@ bool Character::init(string _name, string _placard_font){
   placard_name->setFont(placard_font, placard_font_size);
   placard_name->init(name);
 }
+
+Sprite* Character::getPlacard(){
+  return placard;
+}
+
+Sprite* Character::getNamePlacard(){
+  return placard_name;
+}
+
+Sprite* Character::getIcon(){
+  return icon;
+}
