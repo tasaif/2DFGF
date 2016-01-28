@@ -1,10 +1,10 @@
 #include "application.h"
 #include "fontsystem.h"
 
-extern path base_path;
+extern path asset_path;
 
 Font::Font(string fname, unsigned _ptsize):ptsize(_ptsize){
-  sdl_font = TTF_OpenFont((base_path / "fonts" / fname).string().c_str(), ptsize);
+  sdl_font = TTF_OpenFont((asset_path / "fonts" / fname).string().c_str(), ptsize);
   font_name = fname;
   if(!sdl_font) {
     cout << "TTF_OpenFont: " << TTF_GetError() << endl;

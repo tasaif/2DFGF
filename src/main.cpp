@@ -1,6 +1,8 @@
 #include "application.h"
 
 path base_path;
+path asset_path;
+path character_path;
 Application* app;
 
 void printSDLVersion(){
@@ -17,6 +19,8 @@ void printSDLVersion(){
 int main(int argc, char* argv[]){
   printSDLVersion();
   base_path = path{argv[0]}.parent_path();
+  asset_path = base_path / "asset";
+  character_path = asset_path / "character";
   app = new Application();
   if (app->init(argc, argv)){
     while(app->run());
