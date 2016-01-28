@@ -38,6 +38,7 @@ target_link_libraries(fighter
   SDL2
   SDL2_image
   SDL2_ttf
+  SDL2_gfx
   boost_system
   boost_filesystem
 )

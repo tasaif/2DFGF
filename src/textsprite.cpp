@@ -56,3 +56,10 @@ void TextSprite::setFont(string font_name){
 void TextSprite::setFont(string font_name, unsigned font_size){
   font = app->fontsys->getFont(font_name, font_size);
 }
+
+TextSprite* TextSprite::duplicate(){
+  TextSprite* retval = new TextSprite();
+  retval->setFont(font->getFontName());
+  retval->init(text, font->getFontSize(), offset.x, offset.y);
+  return retval;
+}

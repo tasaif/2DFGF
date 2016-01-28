@@ -2,6 +2,7 @@
 #define SPRITE_H
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL2_rotozoom.h>
 #include <iostream>
 #include <string>
 #include "boost/filesystem.hpp"
@@ -18,6 +19,7 @@ class Sprite {
     Sprite(path, string);
     ~Sprite();
 
+    static void align(Sprite*, SDL_Rect&, unsigned);
     SDL_Surface* surface = NULL;
     SDL_Rect offset;
     void mkRect(unsigned, unsigned, Uint32);
@@ -27,6 +29,10 @@ class Sprite {
     void setPos(int, int);
     void align(unsigned);
     void alignTo(Sprite*, unsigned);
+    void alignFromRight(int);
+    void rotate(unsigned);
+    void flipHorizontal();
+    virtual Sprite* duplicate();
     path custom_path = "";
 
     static const unsigned HCENTER = 1;

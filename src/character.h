@@ -11,8 +11,8 @@ class Character {
     const unsigned placard_font_size = 65;
     string name;
     Sprite* icon;
-    Sprite* placard;
-    TextSprite* placard_name;
+    Sprite** placard;
+    TextSprite** placard_name;
     string placard_font;
     path load_path;
     //sound bgm
@@ -25,8 +25,8 @@ class Character {
     Character();
     virtual ~Character();
 
-    Sprite* getPlacard();
-    Sprite* getNamePlacard();
+    Sprite* getPlacard(unsigned);
+    Sprite* getNamePlacard(unsigned);
     Sprite* getIcon();
 };
 

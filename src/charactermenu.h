@@ -14,6 +14,8 @@ using namespace std;
 
 class CharacterMenu : public Scene {
   private:
+    CharacterIndex defaultp1character = ciNULL;
+    CharacterIndex defaultp2character = ciNULL;
     CharacterMenuState state = cmsNULL;
     Sprite* selection_box = NULL;
     Sprite* selection_backing = NULL;

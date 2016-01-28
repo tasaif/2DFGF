@@ -30,6 +30,18 @@ Sprite::~Sprite(){
   unload();
 }
 
+void Sprite::align(Sprite* _sprite, SDL_Rect& _offset, unsigned bitmask){
+  if (bitmask & Sprite::HCENTER){
+    _offset.x = Application::SCREEN_WIDTH / 2 - _sprite->surface->w/2;
+  }
+  if (bitmask & Sprite::VBOTTOM){
+    _offset.y = Application::SCREEN_HEIGHT - _sprite->surface->h;
+  }
+  if (bitmask & Sprite::VCENTER){
+    _offset.y = Application::SCREEN_HEIGHT/2 - _sprite->surface->h/2;
+  }
+}
+
 void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
   unload();
   surface = SDL_CreateRGBSurface(0, w, h, 32, app->rmask, app->gmask, app->bmask, app->amask);
@@ -68,15 +80,7 @@ void Sprite::setPos(int x, int y){
 }
 
 void Sprite::align(unsigned bitmask){
-  if (bitmask & HCENTER){
-    offset.x = Application::SCREEN_WIDTH / 2 - surface->w/2;
-  }
-  if (bitmask & VBOTTOM){
-    offset.y = Application::SCREEN_HEIGHT - surface->h;
-  }
-  if (bitmask & VCENTER){
-    offset.y = Application::SCREEN_HEIGHT/2 - surface->h/2;
-  }
+  align(this, offset, bitmask);
 }
 
 void Sprite::alignTo(Sprite* sprite, unsigned bitmask){
@@ -89,4 +93,35 @@ void Sprite::alignTo(Sprite* sprite, unsigned bitmask){
   if (bitmask & VCENTER){
     offset.y = sprite->offset.y + sprite->surface->h/2 - surface->h/2;
   }
+}
+
+void Sprite::alignFromRight(int margin){
+  offset.x = Application::SCREEN_WIDTH - surface->w - margin;
+}
+
+void Sprite::rotate(unsigned angle){
+  if (surface == NULL){
+    cout << "Warning: Tried to rotate a null surface" << endl;
+    return;
+  }
+  SDL_Surface* rotated_surface = rotozoomSurface(surface, angle, 1, SMOOTHING_OFF);
+  unload();
+  surface = rotated_surface;
+}
+
+void Sprite::flipHorizontal(){
+  if (surface == NULL){
+    cout << "Warning: Tried to rotate a null surface" << endl;
+    return;
+  }
+  SDL_Surface* flipped_surface = rotozoomSurfaceXY(surface, 0, -1, 1, SMOOTHING_OFF);
+  unload();
+  surface = flipped_surface;
+}
+
+Sprite* Sprite::duplicate(){
+  Sprite* retval = new Sprite();
+  retval->surface = SDL_ConvertSurface(surface, surface->format, surface->flags);
+  retval->offset = offset;
+  return retval;
 }

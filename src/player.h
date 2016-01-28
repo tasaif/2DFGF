@@ -13,8 +13,8 @@ class Player {
 
     Player();
     ~Player();
-    Sprite* getPlacard();
-    Sprite* getNamePlacard();
+    Sprite* getPlacard(unsigned);
+    Sprite* getNamePlacard(unsigned);
 };
 
 #endif
