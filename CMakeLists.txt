@@ -26,6 +26,7 @@ add_executable(fighter
   src/option.cpp
   src/optionsmenu.cpp
   src/optionsystem.cpp
+  src/player.cpp
   src/scene.cpp
   src/selectmenu.cpp
   src/sprite.cpp

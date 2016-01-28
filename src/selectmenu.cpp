@@ -41,13 +41,13 @@ bool SelectMenu::run(){
     exit_code = gsTITLE;
   }
   if (inputsys->Pressed(bLEFT, curjoy)){
-    if (curjoy == inputsys->p2){
+    if (curjoy == inputsys->p2->joystick){
       inputsys->clearP(curjoy);
     } else {
       inputsys->setP1(curjoy);
     }
   } else if (inputsys->Pressed(bRIGHT, curjoy)){
-    if (curjoy == inputsys->p1){
+    if (curjoy == inputsys->p1->joystick){
       inputsys->clearP(curjoy);
     } else {
       inputsys->setP2(curjoy);

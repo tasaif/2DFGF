@@ -8,6 +8,7 @@
 #include "selectmenu.h"
 #include "charactermenu.h"
 #include "gamestate.h"
+#include "player.h"
 
 class Application;
 class DrawSystem;
@@ -28,6 +29,7 @@ class Game {
     Game();
     ~Game();
 
+    Player** p = NULL;
     bool run();
 };
 

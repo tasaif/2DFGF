@@ -10,6 +10,7 @@
 #include "ltimer.h"
 using namespace std;
 
+class InputSystem;
 class DrawSystem;
 class Game;
 

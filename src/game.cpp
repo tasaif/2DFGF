@@ -1,6 +1,10 @@
 #include "game.h"
 
 Game::Game(){
+  p = new Player*[2];
+  p[0] = new Player();
+  p[1] = new Player();
+
   logo1 = new Billboard(gsLOGO2);
   logo2 = new Billboard(gsINTRO);
   title_menu = new Menu();
@@ -23,6 +27,9 @@ Game::~Game(){
   delete options_menu;
   delete select_menu;
   delete character_menu;
+  delete p[0];
+  delete p[1];
+  delete[] p;
 }
 
 bool Game::run(){

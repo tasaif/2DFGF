@@ -4,19 +4,24 @@
 #include <vector>
 #include "joystick.h"
 #include "keyboardjoystick.h"
+#include "game.h"
+#include "player.h"
 using namespace std;
+
+class Game;
 
 class InputSystem {
   private:
     vector<Joystick*> joysticks;
+    Game* game = NULL;
 
   public:
+    Player* p1 = NULL;
+    Player* p2 = NULL;
+
     InputSystem();
     ~InputSystem();
     void update();
-
-    Joystick* p1 = NULL;
-    Joystick* p2 = NULL;
 
     bool Pressed(Button);
     bool Pressed(Button, Joystick*&);
