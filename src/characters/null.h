@@ -3,10 +3,10 @@
 
 #include "../character.h"
 
-class CharNull : public Character {
+class NullChar : public Character {
   public:
-    CharNull();
-    ~CharNull();
+    NullChar();
+    ~NullChar();
 };
 
 #endif

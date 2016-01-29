@@ -30,7 +30,7 @@ bool Game::init(){
   options_menu->init("optionsmenu.png");
   select_menu->init("selectmenu.png");
   character_menu->init("charactermenu.png");
-  vs_scene->init(0x464646);
+  vs_scene->init();
 
   was_initialized = true;
 }

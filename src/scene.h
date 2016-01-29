@@ -38,6 +38,7 @@ class Scene {
     virtual bool run(){return false;}
     virtual GameState end(){return exit_code;}
     void setIndicatorPos(Option*);
+    bool init();
     bool init(string);
     bool init(unsigned);
     Player* getPlayer(unsigned);

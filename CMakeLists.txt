@@ -30,10 +30,12 @@ add_executable(fighter
   src/scene.cpp
   src/selectmenu.cpp
   src/sprite.cpp
+  src/stage.cpp
   src/textsprite.cpp
   src/vsscene.cpp
 
   src/characters/null.cpp
+  src/stages/null.cpp
 )
 target_link_libraries(fighter
   SDL2

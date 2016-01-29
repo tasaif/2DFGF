@@ -3,6 +3,7 @@
 
 #include "joystick.h"
 #include "character.h"
+#include "stage.h"
 #include "characterindex.h"
 
 class Player {
@@ -16,6 +17,7 @@ class Player {
     Sprite* getPlacard(unsigned);
     Sprite* getNamePlacard(unsigned);
     Character* getCharacter();
+    Stage* getStage();
 };
 
 #endif

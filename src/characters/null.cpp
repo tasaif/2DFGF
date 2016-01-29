@@ -1,8 +1,8 @@
 #include "null.h"
 
-CharNull::CharNull(){
+NullChar::NullChar(){
   init("NULL", "mode7.ttf");
 }
 
-CharNull::~CharNull(){
+NullChar::~NullChar(){
 }

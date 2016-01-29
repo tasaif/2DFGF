@@ -88,7 +88,7 @@ bool CharacterMenu::run(){
     icon = curchar != NULL ? curchar->getIcon() : charsys->getMissingCharacterIcon();
     offset.x = 154 + 83 * (i % 4);
     offset.y = (i < 4) ? 320 : 390;
-    drawsys->draw(icon, &offset);
+    drawsys->draw(icon, offset);
   }
   drawsys->draw(selection_box);
   for(unsigned i=0; i<options.size(); i++){

@@ -26,25 +26,26 @@ void Scene::setIndicatorPos(Option* option){
   indicator->offset.y = option->offset.y + option->surface->h/2 - indicator->surface->h/2;
 }
 
-bool Scene::init(string fname){
+bool Scene::init(){
   inputsys = app->inputsys;
   drawsys = app->drawsys;
   optionsys = app->optionsys;
   background = new Sprite();
-  if (fname != ""){
-    if(!setBackground(fname)) return false;
-  }
   initialized = true;
   return true;
 }
 
+bool Scene::init(string fname){
+  init();
+  if (fname != ""){
+    if(!setBackground(fname)) return false;
+  }
+  return true;
+}
+
 bool Scene::init(unsigned bgcolor){
-  inputsys = app->inputsys;
-  drawsys = app->drawsys;
-  optionsys = app->optionsys;
-  background = new Sprite();
+  init();
   background->mkRect(Application::SCREEN_WIDTH, Application::SCREEN_HEIGHT, bgcolor);
-  initialized = true;
   return true;
 }
 

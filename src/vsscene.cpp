@@ -14,12 +14,14 @@ bool VSScene::first(){
     cout << "VSScene was not initialized" << endl;
     return false;
   }
+  stage = getPlayer(0)->getStage();
+  stage->getBG(1)->dump();
   exit_code = gsNULL;
   return true;
 }
 
 bool VSScene::run(){
-  drawsys->draw(background);
+  stage->draw();
   if (inputsys->Pressed(bMK)){
     exit_code = gsCHARACTERS;
   }
@@ -28,6 +30,7 @@ bool VSScene::run(){
 }
 
 GameState VSScene::end(){
+  stage->getBG(1)->dump();
   return exit_code;
 }
 

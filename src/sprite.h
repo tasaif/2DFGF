@@ -11,6 +11,7 @@ using namespace std;
 
 class Sprite {
   private:
+    string fname;
     void init(path, string);
 
   public:
@@ -34,6 +35,7 @@ class Sprite {
     void flipHorizontal();
     virtual Sprite* duplicate();
     path custom_path = "";
+    void dump();
 
     static const unsigned HCENTER = 1;
     static const unsigned VBOTTOM = 2;

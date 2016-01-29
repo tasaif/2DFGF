@@ -5,12 +5,12 @@
 extern path image_path;
 extern Application* app;
 
-void Sprite::init(path _custom_path, string fname){
+void Sprite::init(path _custom_path, string _fname){
   offset.x = 0;
   offset.y = 0;
   custom_path = _custom_path;
-  if (fname != ""){
-    load(fname);
+  if (_fname != ""){
+    load(_fname);
   }
 }
 
@@ -18,12 +18,12 @@ Sprite::Sprite(){
   init(path(""), "");
 }
 
-Sprite::Sprite(string fname){
-  init(path(""), fname);
+Sprite::Sprite(string _fname){
+  init(path(""), _fname);
 }
 
-Sprite::Sprite(path _custom_path, string fname){
-  init(_custom_path, fname);
+Sprite::Sprite(path _custom_path, string _fname){
+  init(_custom_path, _fname);
 }
 
 Sprite::~Sprite(){
@@ -48,16 +48,17 @@ void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
   SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff));
 }
 
-void Sprite::load(string fname){
+void Sprite::load(string _fname){
   if (custom_path.string() == ""){
-    fname = (image_path / fname).string();
+    _fname = (image_path / _fname).string();
   } else {
-    fname = (custom_path / fname).string();
+    _fname = (custom_path / _fname).string();
   }
   unload();
-  surface = IMG_Load(fname.c_str());
+  fname = _fname;
+  surface = IMG_Load(_fname.c_str());
   if (surface == NULL){
-    cout << "Failed to load: " << fname << endl;
+    cout << "Failed to load: " << _fname << endl;
     return;
   }
 }
@@ -66,6 +67,7 @@ void Sprite::unload(){
   if (surface != NULL){
     SDL_FreeSurface(surface);
     surface = NULL;
+    fname = "";
   }
 }
 
@@ -124,4 +126,8 @@ Sprite* Sprite::duplicate(){
   retval->surface = SDL_ConvertSurface(surface, surface->format, surface->flags);
   retval->offset = offset;
   return retval;
+}
+
+void Sprite::dump(){
+  cout << fname << ": " << offset.x << ", " << offset.y << endl;
 }

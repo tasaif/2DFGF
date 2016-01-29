@@ -9,6 +9,7 @@
 #include "option.h"
 #include "button.h"
 #include "gamestate.h"
+#include "stage.h"
 using namespace std;
 
 class VSScene : public Scene {
@@ -17,6 +18,7 @@ class VSScene : public Scene {
     //sound option_changed;
     //sound option_selected;
     void setup_options();
+    Stage* stage = NULL;
 
   public:
     VSScene(CharacterSystem*);

@@ -15,7 +15,7 @@ class DrawSystem {
     DrawSystem();
     ~DrawSystem();
     void draw(Sprite*);
-    void draw(Sprite*, SDL_Rect*);
+    void draw(Sprite*, SDL_Rect);
     SDL_PixelFormat* format();
 };
 
