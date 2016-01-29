@@ -16,9 +16,6 @@ class InputSystem {
     Game* game = NULL;
 
   public:
-    Player* p1 = NULL;
-    Player* p2 = NULL;
-
     InputSystem();
     ~InputSystem();
     void update();
@@ -26,11 +23,6 @@ class InputSystem {
     bool Pressed(Button);
     bool Pressed(Button, Joystick*&);
     vector<Joystick*> getJoysticks();
-
-    void clearP(Joystick*);
-    void setP1(Joystick*);
-    void setP2(Joystick*);
-
 };
 
 #endif

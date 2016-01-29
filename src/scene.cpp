@@ -5,6 +5,7 @@ extern Application* app;
 
 Scene::Scene(){
   indicator = new TextSprite();
+  game = app->game;
 }
 
 Scene::~Scene(){
@@ -39,4 +40,11 @@ Option* Scene::createOption(unsigned _state){
   Option* retval = new Option(_state);
   options.push_back(retval);
   return retval;
+}
+
+Player* Scene::getPlayer(unsigned player){
+  if (game == NULL){
+    cout << "ERROR: getPlayer called without initializing game. Read scene.h" << endl;
+  }
+  return game->getP(player);
 }

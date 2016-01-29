@@ -40,9 +40,7 @@ bool Application::init(int argc, char* argv[]){
   fontsys = new FontSystem();
   optionsys = new OptionSystem();
   game = new Game();
-
-  inputsys->p1 = game->p[0];
-  inputsys->p2 = game->p[1];
+  game->init();
 
   fpsTimer.start();
   return true;

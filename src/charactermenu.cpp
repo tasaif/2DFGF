@@ -55,10 +55,10 @@ bool CharacterMenu::run(){
   Sprite* icon;
   SDL_Rect offset;
   drawsys->draw(background);
-  drawsys->draw(inputsys->p1->getPlacard(0));
-  drawsys->draw(inputsys->p2->getPlacard(1));
-  drawsys->draw(inputsys->p1->getNamePlacard(0));
-  drawsys->draw(inputsys->p2->getNamePlacard(1));
+  drawsys->draw(getPlacard(0));
+  drawsys->draw(getPlacard(1));
+  drawsys->draw(getNamePlacard(0));
+  drawsys->draw(getNamePlacard(1));
   drawsys->draw(selection_backing);
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);
@@ -95,4 +95,12 @@ bool CharacterMenu::run(){
 
 GameState CharacterMenu::end(){
   return exit_code;
+}
+
+Sprite* CharacterMenu::getPlacard(unsigned player){
+  return app->game->getP(player)->getPlacard(player);
+}
+
+Sprite* CharacterMenu::getNamePlacard(unsigned player){
+  return app->game->getP(player)->getNamePlacard(player);
 }

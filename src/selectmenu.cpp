@@ -4,13 +4,9 @@
 
 extern Application* app;
 
-void SelectMenu::setup_options(){
-  vector<Joystick*> sticks = inputsys->getJoysticks();
-}
-
 SelectMenu::SelectMenu(){
   inputsys = app->inputsys;
-  setup_options();
+  vector<Joystick*> sticks = inputsys->getJoysticks();
 }
 
 SelectMenu::~SelectMenu(){
@@ -25,7 +21,6 @@ bool SelectMenu::first(){
     return false;
   }
   exit_code = gsNULL;
-  state = smsNULL;
   return true;
 }
 
@@ -34,23 +29,22 @@ bool SelectMenu::run(){
   joysticks = inputsys->getJoysticks();
   drawsys->draw(background);
   for(unsigned i=0; i<joysticks.size(); i++){
-    curjoy = joysticks[i];
-    drawsys->draw(curjoy->getIcon());
+    drawsys->draw(joysticks[i]->getIcon());
   }
   if (inputsys->Pressed(bMK)){
     exit_code = gsTITLE;
   }
   if (inputsys->Pressed(bLEFT, curjoy)){
-    if (curjoy == inputsys->p2->joystick){
-      inputsys->clearP(curjoy);
+    if (game->isPlayer(1, curjoy)){
+      game->clearP(curjoy);
     } else {
-      inputsys->setP1(curjoy);
+      game->setP1(curjoy);
     }
   } else if (inputsys->Pressed(bRIGHT, curjoy)){
-    if (curjoy == inputsys->p1->joystick){
-      inputsys->clearP(curjoy);
+    if (game->isPlayer(0, curjoy)){
+      game->clearP(curjoy);
     } else {
-      inputsys->setP2(curjoy);
+      game->setP2(curjoy);
     }
   }
   if (inputsys->Pressed(bLK)){

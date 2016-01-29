@@ -1,6 +1,13 @@
 #include "game.h"
 
-Game::Game(){
+Game::Game(){ /* init and the constructor were
+                 separated because of the
+                 releationship between the Game
+                 object and Scene objects
+                 */
+}
+
+bool Game::init(){
   p = new Player*[2];
   p[0] = new Player();
   p[1] = new Player();
@@ -20,9 +27,12 @@ Game::Game(){
   options_menu->init("optionsmenu.png");
   select_menu->init("selectmenu.png");
   character_menu->init("charactermenu.png");
+
+  was_initialized = true;
 }
 
 Game::~Game(){
+  if (!was_initialized) return;
   delete logo1;
   delete logo2;
   delete title_menu;
@@ -114,4 +124,37 @@ bool Game::run(){
       return false;
   };
   return true;
+}
+
+void Game::clearP(Joystick* joystick){
+  if (joystick == NULL){
+    return;
+  }
+  if (p[0]->joystick == joystick){
+    p[0]->joystick = NULL;
+  } else if (p[1]->joystick == joystick){
+    p[1]->joystick = NULL;
+  }
+  joystick->getIcon()->align(Sprite::HCENTER);
+}
+
+void Game::setP1(Joystick* joystick){
+  clearP(p[0]->joystick);
+  p[0]->joystick = joystick;
+  joystick->getIcon()->offset.x = Application::SCREEN_WIDTH / 4 - joystick->getIcon()->surface->w/2;
+}
+
+void Game::setP2(Joystick* joystick){
+  clearP(p[1]->joystick);
+  p[1]->joystick = joystick;
+  joystick->getIcon()->offset.x = (Application::SCREEN_WIDTH / 4) * 3 - joystick->getIcon()->surface->w/2;
+}
+
+Player* Game::getP(unsigned player){
+  return p[player];
+}
+
+bool Game::isPlayer(unsigned player, Joystick* joystick){
+  if (p[player] == NULL) return false;
+  return p[player]->joystick == joystick;
 }

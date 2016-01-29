@@ -24,15 +24,23 @@ class Game {
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
     CharacterMenu* character_menu;
-    GameState gamestate = gsCHARACTERS;
+    GameState gamestate = gsTITLE;
+    Player** p = NULL;
+    bool was_initialized = false;
 
   public:
     Game();
     ~Game();
+    bool init();
 
     CharacterSystem* charsys;
-    Player** p = NULL;
     bool run();
+
+    void clearP(Joystick*);
+    void setP1(Joystick*);
+    void setP2(Joystick*);
+    Player* getP(unsigned);
+    bool isPlayer(unsigned, Joystick*);
 };
 
 #endif

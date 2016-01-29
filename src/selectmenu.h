@@ -17,9 +17,7 @@ using namespace std;
 class SelectMenu : public Scene {
   private:
     vector<Joystick*> joysticks;
-    SelectMenuState state = smsNULL;
     //sound controller moved
-    void setup_options();
 
   public:
     SelectMenu();

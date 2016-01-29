@@ -32,6 +32,8 @@ class CharacterMenu : public Scene {
     bool first();
     bool run();
     GameState end();
+    Sprite* getPlacard(unsigned);
+    Sprite* getNamePlacard(unsigned);
 };
 
 #endif

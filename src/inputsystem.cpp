@@ -59,27 +59,3 @@ vector<Joystick*> InputSystem::getJoysticks(){
   return joysticks;
 }
 
-void InputSystem::clearP(Joystick* joystick){
-  if (joystick == NULL){
-    return;
-  }
-  if (p1->joystick == joystick){
-    p1->joystick = NULL;
-  } else if (p2->joystick == joystick){
-    p2->joystick = NULL;
-  }
-  joystick->getIcon()->align(Sprite::HCENTER);
-}
-
-void InputSystem::setP1(Joystick* joystick){
-  clearP(p1->joystick);
-  p1->joystick = joystick;
-  joystick->getIcon()->offset.x = Application::SCREEN_WIDTH / 4 - joystick->getIcon()->surface->w/2;
-}
-
-void InputSystem::setP2(Joystick* joystick){
-  clearP(p2->joystick);
-  p2->joystick = joystick;
-  joystick->getIcon()->offset.x = (Application::SCREEN_WIDTH / 4) * 3 - joystick->getIcon()->surface->w/2;
-}
-
