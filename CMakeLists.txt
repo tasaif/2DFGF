@@ -31,6 +31,7 @@ add_executable(fighter
   src/selectmenu.cpp
   src/sprite.cpp
   src/textsprite.cpp
+  src/vsscene.cpp
 
   src/characters/null.cpp
 )

@@ -22,6 +22,7 @@ bool Game::init(){
   options_menu = new OptionsMenu();
   select_menu = new SelectMenu();
   character_menu = new CharacterMenu(charsys);
+  vs_scene = new VSScene(charsys);
 
   logo1->init("billboard1.bmp");
   logo2->init("billboard2.bmp");
@@ -29,12 +30,14 @@ bool Game::init(){
   options_menu->init("optionsmenu.png");
   select_menu->init("selectmenu.png");
   character_menu->init("charactermenu.png");
+  vs_scene->init(0x464646);
 
   was_initialized = true;
 }
 
 Game::~Game(){
   if (!was_initialized) return;
+  delete vs_scene;
   delete logo1;
   delete logo2;
   delete title_menu;
@@ -113,6 +116,9 @@ bool Game::run(){
       if (!character_menu->run()){
         gamestate = character_menu->end();
         switch(gamestate){
+          case gsVS:
+            vs_scene->first();
+            break;
           case gsSELECT:
             select_menu->first();
             break;
@@ -122,6 +128,17 @@ bool Game::run(){
       }
       break;
     case gsVS:
+      if (!vs_scene->run()){
+        gamestate = vs_scene->end();
+        switch(gamestate){
+          case gsCHARACTERS:
+            character_menu->first();
+            break;
+          default:
+            break;
+        };
+      }
+      break;
     case gsQUIT:
       return false;
   };

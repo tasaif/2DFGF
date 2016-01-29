@@ -66,6 +66,8 @@ bool CharacterMenu::first(){
     return false;
   }
   exit_code = gsNULL;
+  state[0] = cmsCHOOSING;
+  state[1] = cmsCHOOSING;
   return true;
 }
 
@@ -94,7 +96,9 @@ bool CharacterMenu::run(){
     drawsys->draw(curop);
   }
   for(unsigned i=0; i<2; i++){
-    drawsys->draw(icons[i]);
+    if (state[i] == cmsCHOOSING){
+      drawsys->draw(icons[i]);
+    }
   }
   /*for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
@@ -114,6 +118,9 @@ bool CharacterMenu::run(){
     Player* p = getP(player);
     switch(state[player]){
       case cmsCHOOSING:
+        if (p->joystick->Pressed(bMK)){
+          exit_code = gsSELECT;
+        }
         if (p->joystick->Pressed(bRIGHT)){
           if (p->charselect < NUMBEROFCHARACTERS - 1){
             p->charselect = (CharacterIndex)((unsigned)p->charselect + 1);
@@ -134,14 +141,22 @@ bool CharacterMenu::run(){
             p->charselect = (CharacterIndex)((unsigned)p->charselect - 4);
             updateIconOffset(player);
           }
+        } else if (p->joystick->Pressed(bLK)){
+          state[player] = cmsSELECTED;
         }
+        break;
+      case cmsSELECTED:
+        if (inputsys->Pressed(bMK)){
+          state[player] = cmsCHOOSING;
+        }
+        state[player] = cmsREADY;
         break;
       default:
         break;
     };
   }
-  if (inputsys->Pressed(bMK)){
-    exit_code = gsSELECT;
+  if (state[0] == cmsREADY && state[1] == cmsREADY){
+    exit_code = gsVS;
   }
   if (exit_code) return false;
   return true;

@@ -31,7 +31,19 @@ bool Scene::init(string fname){
   drawsys = app->drawsys;
   optionsys = app->optionsys;
   background = new Sprite();
-  if(!setBackground(fname)) return false;
+  if (fname != ""){
+    if(!setBackground(fname)) return false;
+  }
+  initialized = true;
+  return true;
+}
+
+bool Scene::init(unsigned bgcolor){
+  inputsys = app->inputsys;
+  drawsys = app->drawsys;
+  optionsys = app->optionsys;
+  background = new Sprite();
+  background->mkRect(Application::SCREEN_WIDTH, Application::SCREEN_HEIGHT, bgcolor);
   initialized = true;
   return true;
 }

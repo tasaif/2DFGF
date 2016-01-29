@@ -7,6 +7,7 @@
 #include "optionsmenu.h"
 #include "selectmenu.h"
 #include "charactermenu.h"
+#include "vsscene.h"
 #include "gamestate.h"
 #include "player.h"
 #include "charactersystem.h"
@@ -24,7 +25,8 @@ class Game {
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
     CharacterMenu* character_menu;
-    GameState gamestate = gsNULL;
+    VSScene* vs_scene;
+    GameState gamestate = gsSELECT;
     Player** p = NULL;
     bool was_initialized = false;
 
