@@ -19,11 +19,14 @@ class CharacterMenu : public Scene {
     CharacterMenuState state = cmsNULL;
     Sprite* selection_box = NULL;
     Sprite* selection_backing = NULL;
+    TextSprite** icons = NULL;
     //Option* bgm_option = NULL;
     //TextSprite* duration_level = NULL;
     //sound option_changed;
     //sound option_selected;
     void setup_options();
+    TextSprite* createIcon(unsigned);
+    void updateIconOffset(unsigned player);
 
   public:
     CharacterMenu(CharacterSystem*);
@@ -32,8 +35,12 @@ class CharacterMenu : public Scene {
     bool first();
     bool run();
     GameState end();
+
+    //unsigned is the player id 0 or 1
     Sprite* getPlacard(unsigned);
     Sprite* getNamePlacard(unsigned);
+    Character* getCharacter(unsigned);
+    Player* getP(unsigned);
 };
 
 #endif

@@ -15,6 +15,7 @@ class Player {
     ~Player();
     Sprite* getPlacard(unsigned);
     Sprite* getNamePlacard(unsigned);
+    Character* getCharacter();
 };
 
 #endif

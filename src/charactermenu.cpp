@@ -19,6 +19,20 @@ void CharacterMenu::setup_options(){
   duration_level->alignTo(duration_option, Sprite::VCENTER);*/
 }
 
+void CharacterMenu::updateIconOffset(unsigned player){
+  TextSprite* icon = icons[player];
+  Player* p = getP(player);
+  icon->offset.x = 154 + ((p->charselect%4)*83) + ((83-icon->surface->w*player)*player);
+  icon->offset.y = 390 - icon->surface->h + 70*(p->charselect > 3 ? 1 : 0);
+}
+
+TextSprite* CharacterMenu::createIcon(unsigned player){
+  TextSprite* retval = new TextSprite();
+  retval->setFont("mode7.ttf");
+  retval->init("P" + std::to_string(player+1), 15);
+  return retval;
+}
+
 CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   charsys = _charsys;
   optionsys = app->optionsys;
@@ -29,10 +43,19 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   selection_box = new Sprite("selectionbox.png");
   selection_box->offset.y = 320;
   selection_box->align(Sprite::HCENTER);
+  icons = new TextSprite*[2];
+  for(unsigned i=0; i<2; i++){
+    icons[i] = createIcon(i);
+    updateIconOffset(i);
+  }
   setup_options();
 }
 
 CharacterMenu::~CharacterMenu(){
+  for(unsigned i=0; i<2; i++){
+    delete icons[i];
+  }
+  delete[] icons;
   delete selection_box;
   delete selection_backing;
   //delete duration_level;
@@ -72,6 +95,9 @@ bool CharacterMenu::run(){
     curop = options[i];
     drawsys->draw(curop);
   }
+  for(unsigned i=0; i<2; i++){
+    drawsys->draw(icons[i]);
+  }
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     if (state == curop->getApplicableState()){
@@ -103,4 +129,12 @@ Sprite* CharacterMenu::getPlacard(unsigned player){
 
 Sprite* CharacterMenu::getNamePlacard(unsigned player){
   return app->game->getP(player)->getNamePlacard(player);
+}
+
+Character* CharacterMenu::getCharacter(unsigned player){
+  return app->game->getP(player)->getCharacter();
+}
+
+Player* CharacterMenu::getP(unsigned player){
+  return app->game->getP(player);
 }
