@@ -43,8 +43,8 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   selection_box = new Sprite("selectionbox.png");
   selection_box->offset.y = 320;
   selection_box->align(Sprite::HCENTER);
-  icons = new TextSprite*[2];
   for(unsigned i=0; i<2; i++){
+    state[i] = cmsCHOOSING;
     icons[i] = createIcon(i);
     updateIconOffset(i);
   }
@@ -55,7 +55,6 @@ CharacterMenu::~CharacterMenu(){
   for(unsigned i=0; i<2; i++){
     delete icons[i];
   }
-  delete[] icons;
   delete selection_box;
   delete selection_backing;
   //delete duration_level;
@@ -67,7 +66,6 @@ bool CharacterMenu::first(){
     return false;
   }
   exit_code = gsNULL;
-  state = cmsNULL;
   return true;
 }
 
@@ -98,7 +96,7 @@ bool CharacterMenu::run(){
   for(unsigned i=0; i<2; i++){
     drawsys->draw(icons[i]);
   }
-  for(unsigned i=0; i<options.size(); i++){
+  /*for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     if (state == curop->getApplicableState()){
       setIndicatorPos(curop);
@@ -111,6 +109,36 @@ bool CharacterMenu::run(){
       }
     }
     if (option_interacted) break;
+  }*/
+  for(unsigned player=0; player<2; player++){
+    Player* p = getP(player);
+    switch(state[player]){
+      case cmsCHOOSING:
+        if (p->joystick->Pressed(bRIGHT)){
+          if (p->charselect < NUMBEROFCHARACTERS - 1){
+            p->charselect = (CharacterIndex)((unsigned)p->charselect + 1);
+            updateIconOffset(player);
+          }
+        } else if (p->joystick->Pressed(bLEFT)){
+          if (p->charselect > 0){
+            p->charselect = (CharacterIndex)((unsigned)p->charselect - 1);
+            updateIconOffset(player);
+          }
+        } else if (p->joystick->Pressed(bDOWN)){
+          if (p->charselect < 4){
+            p->charselect = (CharacterIndex)((unsigned)p->charselect + 4);
+            updateIconOffset(player);
+          }
+        } else if (p->joystick->Pressed(bUP)){
+          if (p->charselect > 3){
+            p->charselect = (CharacterIndex)((unsigned)p->charselect - 4);
+            updateIconOffset(player);
+          }
+        }
+        break;
+      default:
+        break;
+    };
   }
   if (inputsys->Pressed(bMK)){
     exit_code = gsSELECT;

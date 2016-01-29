@@ -24,7 +24,7 @@ class Game {
     OptionsMenu* options_menu;
     SelectMenu* select_menu;
     CharacterMenu* character_menu;
-    GameState gamestate = gsTITLE;
+    GameState gamestate = gsNULL;
     Player** p = NULL;
     bool was_initialized = false;
 
@@ -41,6 +41,7 @@ class Game {
     void setP2(Joystick*);
     Player* getP(unsigned);
     bool isPlayer(unsigned, Joystick*);
+    bool playersReady();
 };
 
 #endif

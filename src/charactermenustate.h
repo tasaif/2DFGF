@@ -3,6 +3,7 @@
 
 enum CharacterMenuState {
   cmsNULL,
+  cmsCHOOSING,
   cmsQUIT
 };
 

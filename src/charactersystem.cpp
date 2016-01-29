@@ -5,7 +5,9 @@ CharacterSystem::CharacterSystem(){
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     characters[i] = NULL;
   }
-  characters[ciNULL] = new CharNull();
+  for(unsigned i=0; i<8; i++){
+    characters[i] = new CharNull();
+  }
   missing_character = new Sprite("missingcharacter.png");
 }
 

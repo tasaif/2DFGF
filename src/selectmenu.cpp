@@ -48,7 +48,9 @@ bool SelectMenu::run(){
     }
   }
   if (inputsys->Pressed(bLK)){
-    exit_code = gsCHARACTERS;
+    if (game->playersReady()){
+      exit_code = gsCHARACTERS;
+    }
   }
   if (exit_code) return false;
   return true;

@@ -1,16 +1,18 @@
 #include "game.h"
 
-Game::Game(){ /* init and the constructor were
+Game::Game(){
+}
+                /* init and the constructor were
                  separated because of the
                  releationship between the Game
                  object and Scene objects
                  */
-}
 
 bool Game::init(){
   p = new Player*[2];
   p[0] = new Player();
   p[1] = new Player();
+  //p[1] = new Player();
 
   charsys = new CharacterSystem();
 
@@ -157,4 +159,8 @@ Player* Game::getP(unsigned player){
 bool Game::isPlayer(unsigned player, Joystick* joystick){
   if (p[player] == NULL) return false;
   return p[player]->joystick == joystick;
+}
+
+bool Game::playersReady(){
+  return p[0]->joystick != NULL && p[1]->joystick != NULL;
 }

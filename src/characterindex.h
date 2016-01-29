@@ -4,7 +4,14 @@
 #define NUMBEROFCHARACTERS 8
 
 enum CharacterIndex {
-  ciNULL
+  ciNULL,
+  ciNULL1,
+  ciNULL2,
+  ciNULL3,
+  ciNULL4,
+  ciNULL5,
+  ciNULL6,
+  ciNULL7
 };
 
 #endif
