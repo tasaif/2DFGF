@@ -40,6 +40,7 @@ class VSScene : public Scene {
     //unsigned is the player id 0 or 1
     Character* getCharacter(unsigned);
     Player* getP(unsigned);
+    void incHealth(unsigned, unsigned);
 };
 
 #endif

@@ -16,9 +16,8 @@ Character::~Character(){
       delete placard_name[i];
       placard_name[i] = NULL;
     }
+    delete vsname[i];
   }
-  delete[] placard;
-  delete[] placard_name;
 }
 
 bool Character::init(string _name, string _placard_font){
@@ -27,11 +26,10 @@ bool Character::init(string _name, string _placard_font){
   std::transform(_name.begin(), _name.end(), _name.begin(), ::tolower);
   load_path = character_path / _name;
   icon = new Sprite(load_path, "icon.png");
-  placard = new Sprite*[2];
-  placard_name = new TextSprite*[2];
   for(unsigned i=0; i<2; i++){
     placard[i] = NULL;
     placard_name[i] = NULL;
+    vsname[i] = NULL;
   }
   placard[0] = new Sprite(load_path, "placard.png");
   placard[0]->offset.x = 25;
@@ -48,6 +46,15 @@ bool Character::init(string _name, string _placard_font){
   placard_name[0]->align(Sprite::VCENTER);
   placard_name[1]->align(Sprite::VCENTER);
   placard_name[1]->alignFromRight(25);
+  for(unsigned i=0; i<2; i++){
+    vsname[i] = new TextSprite();
+    vsname[i]->setFont("somethingstrange.ttf");
+    vsname[i]->setColor({0xff, 0xff, 0xff});
+    vsname[i]->init(name, VSNAMEHEIGHT);
+  }
+  vsname[0]->setPos(55, 44);
+  vsname[1]->setPos(0, 44);
+  vsname[1]->alignFromRight(55);
 }
 
 Sprite* Character::getPlacard(unsigned player){
@@ -60,4 +67,12 @@ Sprite* Character::getNamePlacard(unsigned player){
 
 Sprite* Character::getIcon(){
   return icon;
+}
+
+int Character::getHP(){
+  return hp;
+}
+
+TextSprite* Character::getVSName(unsigned player){
+  return vsname[player];
 }

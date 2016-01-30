@@ -4,9 +4,11 @@
 extern Application* app;
 
 Player::Player(){
+  healthBar = new Sprite();
 }
 
 Player::~Player(){
+  delete healthBar;
 }
 
 Sprite* Player::getPlacard(unsigned player){
@@ -23,4 +25,23 @@ Character* Player::getCharacter(){
 
 Stage* Player::getStage(){
   return app->game->charsys->getStage(charselect);
+}
+
+void Player::update_health_bar(){
+  healthBar->mkRect(hpwidth(), HPHEIGHT, HPCOLOR);
+}
+
+void Player::prep(){
+  maxhp = getCharacter()->getHP();
+  hp = maxhp;
+  update_health_bar();
+}
+
+unsigned Player::hpwidth(){
+  return (unsigned)(((float)hp / (float)maxhp) * (float)HPWIDTH);
+}
+
+void Player::incHealth(int val){
+  hp += val;
+  update_health_bar();
 }
