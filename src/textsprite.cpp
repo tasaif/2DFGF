@@ -59,3 +59,7 @@ TextSprite* TextSprite::duplicate(){
   retval->init(text, font->getFontSize(), offset.x, offset.y);
   return retval;
 }
+
+void TextSprite::setColor(SDL_Color _color){
+  color = _color;
+}

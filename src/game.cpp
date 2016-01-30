@@ -53,8 +53,15 @@ Game::~Game(){
 bool Game::run(){
   switch(gamestate){
     case gsNULL:
-      gamestate = gsLOGO1;
-      logo1->first();
+      if (debugstate == 1){
+        gamestate = gsVS;
+        setP1(app->inputsys->getJoysticks().front());
+        setP2(app->inputsys->getJoysticks().back());
+        vs_scene->first();
+      } else {
+        gamestate = gsLOGO1;
+        logo1->first();
+      }
       break;
     case gsLOGO1:
       if (!logo1->run()){

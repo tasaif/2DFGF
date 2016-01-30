@@ -6,6 +6,7 @@ path character_path;
 path image_path;
 path font_path;
 Application* app;
+unsigned debugstate = 1;
 
 void printSDLVersion(){
   SDL_version compiled;

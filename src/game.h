@@ -16,6 +16,7 @@ class Application;
 class DrawSystem;
 
 extern Application* app;
+extern unsigned debugstate;
 
 class Game {
   private:
@@ -26,7 +27,7 @@ class Game {
     SelectMenu* select_menu;
     CharacterMenu* character_menu;
     VSScene* vs_scene;
-    GameState gamestate = gsSELECT;
+    GameState gamestate = gsNULL;
     Player** p = NULL;
     bool was_initialized = false;
 

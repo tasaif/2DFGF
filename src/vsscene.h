@@ -10,6 +10,7 @@
 #include "button.h"
 #include "gamestate.h"
 #include "stage.h"
+#include "vsscenestate.h"
 using namespace std;
 
 class VSScene : public Scene {
@@ -19,6 +20,14 @@ class VSScene : public Scene {
     //sound option_selected;
     void setup_options();
     Stage* stage = NULL;
+    Sprite* overlay = NULL;
+    Sprite* tmpplayer1 = NULL;
+    Sprite* tmpplayer2 = NULL;
+    TextSprite* time = NULL;
+    LTimer timer;
+    VSSceneState state = vssNULL;
+    unsigned match_length;
+    unsigned countdown = 0;
 
   public:
     VSScene(CharacterSystem*);
