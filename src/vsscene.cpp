@@ -15,7 +15,6 @@ bool VSScene::first(){
     return false;
   }
   stage = getPlayer(0)->getStage();
-  stage->getBG(1)->dump();
   exit_code = gsNULL;
   return true;
 }
@@ -30,7 +29,6 @@ bool VSScene::run(){
 }
 
 GameState VSScene::end(){
-  stage->getBG(1)->dump();
   return exit_code;
 }
 

@@ -13,8 +13,8 @@ class Stage {
     //sound bgm
 
   public:
-    const unsigned WIDTH = 1480;
-    const unsigned HEIGHT = 1060;
+    const unsigned WIDTH = 1600;
+    const unsigned HEIGHT = 720;
     Stage();
     virtual ~Stage();
     void draw();
