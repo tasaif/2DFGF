@@ -11,7 +11,11 @@
 #include "gamestate.h"
 #include "stage.h"
 #include "vsscenestate.h"
+#include "fight.h"
+#include "fightsystem.h"
 using namespace std;
+
+class FightSystem;
 
 class VSScene : public Scene {
   private:
@@ -21,13 +25,12 @@ class VSScene : public Scene {
     void setup_options();
     Stage* stage = NULL;
     Sprite* overlay = NULL;
-    Sprite* tmpplayer1 = NULL;
-    Sprite* tmpplayer2 = NULL;
     TextSprite* time = NULL;
     LTimer timer;
     VSSceneState state = vssNULL;
     unsigned match_length;
     unsigned countdown = 0;
+    FightSystem* fightsys;
 
   public:
     VSScene(CharacterSystem*);

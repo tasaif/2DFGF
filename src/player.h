@@ -5,11 +5,21 @@
 #include "character.h"
 #include "stage.h"
 #include "characterindex.h"
+#include "playerstates.h"
+
+/*
+ * NOTE:
+ * Player position origin is bottom left of screen 60px up from
+ *  the bottom
+ * Player sprites are rendered center aligned with the player position
+ */
 
 class Player {
   private:
     unsigned hpwidth();
     void update_health_bar();
+    int pnum = -1;
+    SDL_Rect position;
 
   public:
     static const int HPWIDTH = 240;
@@ -20,6 +30,8 @@ class Player {
     Character* character = NULL;
     int hp;
     int maxhp;
+    int getPnum();
+    SDL_Rect getPosition();
 
     Player();
     ~Player();
@@ -31,6 +43,9 @@ class Player {
     void prep();
     Sprite* healthBar;
     void incHealth(int);
+    void setP(int);
+    void setPosition(int);
+    void setPosition(int, int);
 };
 
 #endif

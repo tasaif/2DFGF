@@ -10,7 +10,6 @@ class Character {
   private:
     static const int VSNAMEHEIGHT = 13;
     const unsigned placard_font_size = 65;
-    string name;
     Sprite* icon;
     TextSprite* vsname[2];
     Sprite* placard[2];
@@ -23,16 +22,19 @@ class Character {
   protected:
     bool init(string, string);
     int hp = 100;
+    string name;
 
   public:
     Character();
     virtual ~Character();
 
+    string getName();
     Sprite* getPlacard(unsigned);
     Sprite* getNamePlacard(unsigned);
     Sprite* getIcon();
     TextSprite* getVSName(unsigned);
     int getHP();
+    Sprite* tmp = NULL;
 };
 
 #endif

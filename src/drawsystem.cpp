@@ -2,9 +2,11 @@
 
 DrawSystem::DrawSystem(){
   screen = SDL_GetWindowSurface(app->gWindow);
+  cross = new Sprite("cross.png");
 }
 
 DrawSystem::~DrawSystem(){
+  delete cross;
 }
 
 void DrawSystem::draw(Sprite* sprite){
@@ -23,4 +25,10 @@ void DrawSystem::draw(Sprite* sprite, SDL_Rect offset){
 
 SDL_PixelFormat* DrawSystem::format(){
   return screen->format;
+}
+
+void DrawSystem::tick(SDL_Rect offset){
+  offset.x -= cross->surface->w/2;
+  offset.y -= cross->surface->h/2;
+  draw(cross, offset);
 }

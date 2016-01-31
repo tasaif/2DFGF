@@ -64,6 +64,10 @@ void Sprite::load(string _fname){
 }
 
 void Sprite::unload(){
+  if (flipped != NULL){
+    delete flipped;
+    flipped = NULL;
+  }
   if (surface != NULL){
     SDL_FreeSurface(surface);
     surface = NULL;
@@ -130,4 +134,13 @@ Sprite* Sprite::duplicate(){
 
 void Sprite::dump(){
   cout << fname << ": " << offset.x << ", " << offset.y << endl;
+}
+
+void Sprite::mkFlipped(){
+  if (flipped != NULL){
+    delete flipped;
+    flipped = NULL;
+  }
+  flipped = duplicate();
+  flipped->flipHorizontal();
 }

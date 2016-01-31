@@ -45,3 +45,24 @@ void Player::incHealth(int val){
   hp += val;
   update_health_bar();
 }
+
+int Player::getPnum(){
+  return pnum;
+}
+
+void Player::setP(int _pnum){
+  pnum = _pnum;
+}
+
+void Player::setPosition(int _x){
+  position.x = _x;
+}
+
+void Player::setPosition(int _x, int _y){
+  position.x = _x;
+  position.y = _y;
+}
+
+SDL_Rect Player::getPosition(){
+  return position;
+}

@@ -7,12 +7,6 @@ VSScene::VSScene(CharacterSystem* _charsys){
   charsys = _charsys;
   optionsys = app->optionsys;
   overlay = new Sprite("overlay.png");
-  tmpplayer1 = new Sprite(character_path, "null/animations/breathing/null-0.png");
-  tmpplayer2 = tmpplayer1->duplicate();
-  tmpplayer2->flipHorizontal();
-  tmpplayer1->setPos(93, 480-60-tmpplayer1->surface->h);
-  tmpplayer2->setPos(0, 480-60-tmpplayer1->surface->h);
-  tmpplayer2->alignFromRight(93);
   time = new TextSprite();
   time->setFont("nk57.ttf");
   time->setColor({0xff, 0xff, 0xff});
@@ -21,8 +15,6 @@ VSScene::VSScene(CharacterSystem* _charsys){
 }
 
 VSScene::~VSScene(){
-  delete tmpplayer1;
-  delete tmpplayer2;
   delete time;
   delete overlay;
 }
@@ -47,6 +39,8 @@ bool VSScene::first(){
   getPlayer(1)->healthBar->alignFromRight(44);
   incHealth(0, -100);
   incHealth(1, -10);
+  fightsys = new FightSystem();
+  fightsys->init(getPlayer(0), getPlayer(1));
   exit_code = gsNULL;
   return true;
 }
@@ -73,6 +67,8 @@ bool VSScene::run(){
       if (countdown == 0){
         state = vssTIME;
       }
+      fightsys->handleInputs();
+      fightsys->resolveHitBoxes();
       break;
     case vssTIME:
       timer.stop();
@@ -85,8 +81,7 @@ bool VSScene::run(){
   stage->draw();
   drawsys->draw(overlay);
   drawsys->draw(time);
-  drawsys->draw(tmpplayer1);
-  drawsys->draw(tmpplayer2);
+  fightsys->drawWith(drawsys);
   for(unsigned i=0; i<2; i++){
     drawsys->draw(getP(i)->healthBar);
     drawsys->draw(getCharacter(i)->getVSName(i));
@@ -99,6 +94,7 @@ bool VSScene::run(){
 }
 
 GameState VSScene::end(){
+  delete fightsys;
   timer.stop();
   return exit_code;
 }

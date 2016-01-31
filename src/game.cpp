@@ -167,12 +167,14 @@ void Game::clearP(Joystick* joystick){
 void Game::setP1(Joystick* joystick){
   clearP(p[0]->joystick);
   p[0]->joystick = joystick;
+  p[0]->setP(0);
   joystick->getIcon()->offset.x = Application::SCREEN_WIDTH / 4 - joystick->getIcon()->surface->w/2;
 }
 
 void Game::setP2(Joystick* joystick){
   clearP(p[1]->joystick);
   p[1]->joystick = joystick;
+  p[1]->setP(1);
   joystick->getIcon()->offset.x = (Application::SCREEN_WIDTH / 4) * 3 - joystick->getIcon()->surface->w/2;
 }
 

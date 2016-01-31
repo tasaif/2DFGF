@@ -20,10 +20,16 @@ class Sprite {
     Sprite(path, string);
     ~Sprite();
 
+    /* Note
+     * flipHorizontal will flip the surface member
+     * mkFlipped will populate the flipped member
+     */
     static void align(Sprite*, SDL_Rect&, unsigned);
     SDL_Surface* surface = NULL;
+    Sprite* flipped = NULL;
     SDL_Rect offset;
     void mkRect(unsigned, unsigned, Uint32);
+    void mkFlipped();
     void load(string);
     void unload();
     bool valid();

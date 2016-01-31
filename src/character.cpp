@@ -76,3 +76,7 @@ int Character::getHP(){
 TextSprite* Character::getVSName(unsigned player){
   return vsname[player];
 }
+
+string Character::getName(){
+  return name;
+}
