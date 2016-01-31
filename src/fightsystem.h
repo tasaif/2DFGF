@@ -8,6 +8,7 @@ class FightSystem {
   private:
     Player* p[2];
     Fight* f[2];
+    Sprite* shadow;
 
   public:
     FightSystem();
