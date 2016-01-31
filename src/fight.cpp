@@ -16,6 +16,14 @@ Fight::~Fight(){
 }
 
 void Fight::run(){
+  switch(state){
+    case psMATCHSTARTING:
+      state = psNEUTRAL;
+      break;
+    case psNEUTRAL:
+    default:
+      break;
+  };
   currentSprite = p->getCharacter()->tmp;
 }
 

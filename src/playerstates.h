@@ -4,7 +4,7 @@
 enum PlayerState {
   psNULL,
   psMATCHSTARTING,
-  psSTAND,
+  psNEUTRAL,
   psCROUCH,
   psWALKF,
   psWALKB,

@@ -48,6 +48,7 @@ class Joystick {
     Uint8* pressed_buffer = NULL;
     Button* mapping = NULL;
     Button sdlDirToButtonDir(Uint8);
+    Button direction;
     Sprite* icon = NULL;
 
   public:
@@ -56,6 +57,7 @@ class Joystick {
     virtual void update();
     virtual void setDefaultButtonMappings();
     virtual Uint8 Pressed(Button);
+    virtual Button getDirection();
     void dumpBuffer();
     void dumpPressedBuffer();
     Sprite* getIcon();

@@ -26,10 +26,16 @@ KeyboardJoystick::~KeyboardJoystick(){
 }
 
 void KeyboardJoystick::handle_directions(){
+  direction = bNULL;
+  unsigned found = 0;
   for(unsigned i=bUP; i<=bDOWNRIGHT; i++){
     previous_buffer[i] = current_buffer[i];
     if (i <= bRIGHT){
-      current_buffer[i] = keystate[mapping[i]];
+      current_buffer[i] = (unsigned)(found < 2) & keystate[mapping[i]];
+      if (current_buffer[i]){
+        direction = (Button)i;
+        found++;
+      }
     }
   }
   current_buffer[bUPLEFT] = 0;
@@ -41,21 +47,30 @@ void KeyboardJoystick::handle_directions(){
       current_buffer[bUP] = 0;
       current_buffer[bLEFT] = 0;
       current_buffer[bUPLEFT] = 1;
+      direction = bUPLEFT;
     } else if (current_buffer[bRIGHT]){
       current_buffer[bUP] = 0;
       current_buffer[bRIGHT] = 0;
       current_buffer[bUPRIGHT] = 1;
+      direction = bUPRIGHT;
     }
   } else if (current_buffer[bDOWN]){
     if (current_buffer[bLEFT]){
       current_buffer[bDOWN] = 0;
       current_buffer[bLEFT] = 0;
       current_buffer[bDOWNLEFT] = 1;
+      direction = bDOWNLEFT;
     } else if (current_buffer[bRIGHT]){
       current_buffer[bDOWN] = 0;
       current_buffer[bRIGHT] = 0;
       current_buffer[bDOWNRIGHT] = 1;
+      direction = bDOWNRIGHT;
     }
+  }
+  if (current_buffer[bUP] && current_buffer[bDOWN]){
+    current_buffer[bUP] = 0;
+  } else if (current_buffer[bLEFT] && current_buffer[bRIGHT]){
+    current_buffer[bLEFT] = 0;
   }
 }
 
@@ -103,4 +118,7 @@ void KeyboardJoystick::setDefaultButtonMappings(){
 
 Uint8 KeyboardJoystick::Pressed(Button button){
   return pressed_buffer[button];
+}
+
+Button KeyboardJoystick::getDirection(){
 }

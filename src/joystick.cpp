@@ -43,7 +43,7 @@ Joystick::~Joystick(){
   }
 }
 
-Button Joystick::sdlDirToButtonDir(Uint8 dir){
+Button Joystick::sdlDirToButtonDir(Uint8 dir){//Replace this with a map
   switch(dir){
     case SDL_HAT_UP:
       return bUP;
@@ -67,18 +67,16 @@ Button Joystick::sdlDirToButtonDir(Uint8 dir){
 
 void Joystick::update(){
   bool change = false;
-  Button button;
 
   // Handle directional buttons
   previous_hat = current_hat;
   current_hat = SDL_JoystickGetHat(device, 0);
-  button = sdlDirToButtonDir(current_hat);
-
+  direction = sdlDirToButtonDir(current_hat);
   if (previous_hat != current_hat){
     if (current_hat != SDL_HAT_CENTERED){
-      pressed_buffer[button] = 1;
+      pressed_buffer[direction] = 1;
       buffer.erase(buffer.begin());
-      buffer.push_back(button);
+      buffer.push_back(direction);
     }
     change = true;
   } else {
@@ -115,6 +113,10 @@ void Joystick::update(){
 
 Uint8 Joystick::Pressed(Button button){
   return pressed_buffer[button];
+}
+
+Button Joystick::getDirection(){
+  return direction;
 }
 
 void Joystick::setDefaultButtonMappings(){

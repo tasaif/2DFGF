@@ -18,6 +18,7 @@ class KeyboardJoystick : public Joystick {
     void update();
     void setDefaultButtonMappings();
     Uint8 Pressed(Button);
+    Button getDirection();
 };
 
 #endif
