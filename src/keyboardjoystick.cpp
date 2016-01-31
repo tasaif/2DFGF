@@ -120,5 +120,3 @@ Uint8 KeyboardJoystick::Pressed(Button button){
   return pressed_buffer[button];
 }
 
-Button KeyboardJoystick::getDirection(){
-}

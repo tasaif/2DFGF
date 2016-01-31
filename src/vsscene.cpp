@@ -81,11 +81,11 @@ bool VSScene::run(){
   stage->draw();
   drawsys->draw(overlay);
   drawsys->draw(time);
-  fightsys->drawWith(drawsys);
   for(unsigned i=0; i<2; i++){
     drawsys->draw(getP(i)->healthBar);
     drawsys->draw(getCharacter(i)->getVSName(i));
   }
+  fightsys->drawWith(drawsys);
   if (inputsys->Pressed(bMK)){
     exit_code = gsCHARACTERS;
   }

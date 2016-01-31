@@ -19,19 +19,18 @@ class Player {
     unsigned hpwidth();
     void update_health_bar();
     int pnum = -1;
-    SDL_Rect position;
 
   public:
     static const int HPWIDTH = 240;
     static const int HPHEIGHT = 9;
     static const unsigned HPCOLOR = 0xffc71cff;
+    SDL_Rect position;
     CharacterIndex charselect = ciNULL;
     Joystick* joystick = NULL;
     Character* character = NULL;
     int hp;
     int maxhp;
     int getPnum();
-    SDL_Rect getPosition();
 
     Player();
     ~Player();
@@ -44,8 +43,6 @@ class Player {
     Sprite* healthBar;
     void incHealth(int);
     void setP(int);
-    void setPosition(int);
-    void setPosition(int, int);
 };
 
 #endif

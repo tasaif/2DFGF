@@ -80,3 +80,4 @@ TextSprite* Character::getVSName(unsigned player){
 string Character::getName(){
   return name;
 }
+

@@ -48,7 +48,7 @@ class Joystick {
     Uint8* pressed_buffer = NULL;
     Button* mapping = NULL;
     Button sdlDirToButtonDir(Uint8);
-    Button direction;
+    Button direction = bNULL;
     Sprite* icon = NULL;
 
   public:
