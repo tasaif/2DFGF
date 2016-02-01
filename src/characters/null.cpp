@@ -15,11 +15,11 @@ NullChar::NullChar(){
   /*
    * The following values were found qualitatively
    */
-  jump_acc = -3.5;
+  jump_acc = -4;
   walkf_speed = 4;
-  walkb_speed = 3.6;
+  walkb_speed = 3;
   jumpf_speed = 10;
-  jumpb_speed = 10;
+  jumpb_speed = 5;
 }
 
 NullChar::~NullChar(){

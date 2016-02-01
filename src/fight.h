@@ -11,9 +11,9 @@ class Fight {
     Player* opponent;
     Sprite* currentSprite = NULL;
     PlayerState state = psMATCHSTARTING;
-    float dy_reset = 38; //qualitative
-    float dy;
-    float dx;
+    unsigned dy_reset = 38; //qualitative
+    unsigned dy;
+    unsigned dx;
 
     Button away = bNULL;
     Button towards = bNULL;
