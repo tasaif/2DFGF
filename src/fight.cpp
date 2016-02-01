@@ -21,7 +21,6 @@ void Fight::run(){
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
-  currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
 
   switch(state){
     case psMATCHSTARTING:

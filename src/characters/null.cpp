@@ -11,7 +11,7 @@ NullChar::NullChar(){
   for(unsigned i=0; i<psEND; i++){
     base_anim[i] = NULL;
   }
-  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/breathing", 14);
+  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/breathing", 7);
   /*
    * The following values were found qualitatively
    */
