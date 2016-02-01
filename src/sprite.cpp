@@ -144,3 +144,10 @@ void Sprite::mkFlipped(){
   flipped = duplicate();
   flipped->flipHorizontal();
 }
+
+Sprite* Sprite::getFlipped(){
+  if (flipped == NULL){
+    mkFlipped();
+  }
+  return flipped;
+}

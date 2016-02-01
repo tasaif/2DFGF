@@ -39,6 +39,7 @@ bool Application::init(int argc, char* argv[]){
   inputsys = new InputSystem();
   fontsys = new FontSystem();
   optionsys = new OptionSystem();
+  animsys = new AnimationSystem();
   game = new Game();
   game->init();
 
@@ -64,6 +65,9 @@ bool Application::run(){
 }
 
 void Application::quit(){
+  delete fontsys;
+  delete optionsys;
+  delete animsys;
   delete event;
   delete game;
   delete inputsys;

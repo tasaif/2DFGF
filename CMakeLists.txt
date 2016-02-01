@@ -33,12 +33,11 @@ add_executable(fighter
   src/stage.cpp
   src/textsprite.cpp
   src/vsscene.cpp
-
   src/characters/null.cpp
   src/stages/null.cpp
-
   src/fight.cpp
   src/fightsystem.cpp
+  src/animationsystem.cpp
 )
 target_link_libraries(fighter
   SDL2

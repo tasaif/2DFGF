@@ -4,6 +4,8 @@
 #include <string>
 #include "sprite.h"
 #include "textsprite.h"
+#include "playerstates.h"
+#include "animationsystem.h"
 using namespace std;
 
 class Character {
@@ -23,6 +25,7 @@ class Character {
     bool init(string, string);
     int hp = 100;
     string name;
+    Animation* base_anim[psEND];
 
   public:
     Character();
@@ -43,7 +46,7 @@ class Character {
     Sprite* getIcon();
     TextSprite* getVSName(unsigned);
     int getHP();
-    Sprite* tmp = NULL;
+    Animation* getBaseAnim(PlayerState);
 };
 
 #endif

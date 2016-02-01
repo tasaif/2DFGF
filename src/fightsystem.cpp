@@ -42,7 +42,7 @@ void FightSystem::drawWith(DrawSystem* drawsys){
     if (offset.x < opoffset.x){
       sprite = f[i]->getSprite();
     } else {
-      sprite = f[i]->getSprite()->flipped;
+      sprite = f[i]->getSprite()->getFlipped();
     }
     offset.x -= sprite->surface->w / 2;
     offset.y = Application::SCREEN_HEIGHT - 60 - offset.y - sprite->surface->h;

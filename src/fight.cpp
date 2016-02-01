@@ -11,7 +11,7 @@ Fight::Fight(Player* _p, Player* _opponent){
     p->position.x = Application::SCREEN_WIDTH - Application::SCREEN_WIDTH / 4;
   }
   p->position.y = 0;
-  currentSprite = p->getCharacter()->tmp;
+  currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
 }
 
 Fight::~Fight(){
@@ -21,14 +21,20 @@ void Fight::run(){
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
+  currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
 
   switch(state){
     case psMATCHSTARTING:
       state = psNEUTRAL;
       break;
     case psNEUTRAL:
+      currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
       if (p->joystick->Pressed(bLP)){
+        //c->getBaseAnim(psNEUTRAL)->animation_speed--;
+        //cout << c->getBaseAnim(psNEUTRAL)->animation_speed << endl;
       } else if (p->joystick->Pressed(bMP)){
+        //c->getBaseAnim(psNEUTRAL)->animation_speed++;
+        //cout << c->getBaseAnim(psNEUTRAL)->animation_speed << endl;
       } else if (p->joystick->Pressed(bHP)){
       } else if (p->joystick->Pressed(bHK)){
       }
@@ -72,7 +78,6 @@ void Fight::run(){
     default:
       break;
   };
-  currentSprite = p->getCharacter()->tmp;
 }
 
 Sprite* Fight::getSprite(){

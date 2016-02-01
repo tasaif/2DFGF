@@ -13,6 +13,8 @@ class Sprite {
   private:
     string fname;
     void init(path, string);
+    Sprite* flipped = NULL;
+    void mkFlipped();
 
   public:
     Sprite();
@@ -26,10 +28,8 @@ class Sprite {
      */
     static void align(Sprite*, SDL_Rect&, unsigned);
     SDL_Surface* surface = NULL;
-    Sprite* flipped = NULL;
     SDL_Rect offset;
     void mkRect(unsigned, unsigned, Uint32);
-    void mkFlipped();
     void load(string);
     void unload();
     bool valid();
@@ -42,6 +42,7 @@ class Sprite {
     virtual Sprite* duplicate();
     path custom_path = "";
     void dump();
+    Sprite* getFlipped();
 
     static const unsigned HCENTER = 1;
     static const unsigned VBOTTOM = 2;

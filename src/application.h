@@ -6,6 +6,7 @@
 #include "inputsystem.h"
 #include "fontsystem.h"
 #include "optionsystem.h"
+#include "animationsystem.h"
 #include "game.h"
 #include "ltimer.h"
 using namespace std;
@@ -30,6 +31,7 @@ class Application {
     InputSystem* inputsys;
     FontSystem* fontsys;
     OptionSystem* optionsys;
+    AnimationSystem* animsys;
     SDL_Event* event;
     Game* game;
 
