@@ -31,14 +31,11 @@ class Character {
     Character();
     virtual ~Character();
 
-    /*
-     * The following values were found qualitatively and
-     * should be changed to const when the "correct" values
-     * are found
-     */
-    const float jump_acc = -3.5;
-    const float walkf_speed = 4;
-    const float walkb_speed = 3.6;
+    float jump_acc = -3.5;
+    float walkf_speed = 4;
+    float walkb_speed = 3.6;
+    float jumpf_speed = 4.8;
+    float jumpb_speed = 4.5;
 
     string getName();
     Sprite* getPlacard(unsigned);

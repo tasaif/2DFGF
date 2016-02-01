@@ -12,6 +12,14 @@ NullChar::NullChar(){
     base_anim[i] = NULL;
   }
   base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/breathing", 14);
+  /*
+   * The following values were found qualitatively
+   */
+  jump_acc = -3.5;
+  walkf_speed = 4;
+  walkb_speed = 3.6;
+  jumpf_speed = 10;
+  jumpb_speed = 10;
 }
 
 NullChar::~NullChar(){

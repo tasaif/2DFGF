@@ -51,6 +51,16 @@ void Fight::run(){
           dx = (away == bRIGHT ? c->walkb_speed : c->walkf_speed);
           state = away == bRIGHT ? psWALKB : psWALKF;
           break;
+        case bUPRIGHT:
+          dy = dy_reset;
+          dx = (away == bRIGHT ? c->jumpb_speed : c->jumpf_speed);
+          state = away == bRIGHT ? psJUMPB : psJUMPF;
+          break;
+        case bUPLEFT:
+          dy = dy_reset;
+          dx = -1 * (away == bLEFT ? c->jumpb_speed : c->jumpf_speed);
+          state = away == bLEFT ? psJUMPB : psJUMPF;
+          break;
         default:
           break;
       };
@@ -68,6 +78,16 @@ void Fight::run(){
       }
       break;
     case psJUMPU:
+      dy += c->jump_acc;
+      p->position.y += dy;
+      if (p->position.y <= 0){
+        p->position.y = 0;
+        state = psNEUTRAL;
+      }
+      break;
+    case psJUMPF:
+    case psJUMPB:
+      p->position.x += dx;
       dy += c->jump_acc;
       p->position.y += dy;
       if (p->position.y <= 0){
