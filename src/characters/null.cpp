@@ -19,7 +19,7 @@ NullChar::NullChar(){
   walkf_speed = 4;
   walkb_speed = 3;
   jumpf_speed = 10;
-  jumpb_speed = 5;
+  jumpb_speed = 8;
 }
 
 NullChar::~NullChar(){
