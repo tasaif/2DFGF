@@ -52,12 +52,24 @@ AnimationSystem::AnimationSystem(){
 AnimationSystem::~AnimationSystem(){
 }
 
+bool AnimationSystem::alphabetical_sort(string left, string right){
+  for (unsigned i=0; i<left.size() && i<right.size(); i++){
+    if (left[i] < right[i]) return true;
+  }
+  return false;
+}
+
 Animation* AnimationSystem::makeAnimation(path folder_path, unsigned animation_speed){
   Animation* retval = new Animation(folder_path, animation_speed);
   directory_iterator files = directory_iterator(folder_path);
   directory_iterator ending = directory_iterator();
+  vector<string> file_names;
   for(directory_iterator e = files; e != ending; e++){
-    retval->addFrame(e->path().filename().string());
+    file_names.push_back(e->path().filename().string());
+  }
+  sort(file_names.begin(), file_names.end(), alphabetical_sort);
+  for(unsigned i=0; i<file_names.size(); i++){
+    retval->addFrame(file_names[i]);
   }
   return retval;
 }

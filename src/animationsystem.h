@@ -28,9 +28,11 @@ class Animation {
     unsigned current_frame = 0;
     path custom_path;
     unsigned animation_counter = 0;
-    unsigned animation_speed = 10;
 
   public:
+    //Change this to private
+    unsigned animation_speed = 10;
+
     Animation(path, unsigned);
     ~Animation();
     void addFrame(string);
@@ -39,6 +41,9 @@ class Animation {
 };
 
 class AnimationSystem {
+  private:
+    static bool alphabetical_sort(string, string);
+
   public:
     AnimationSystem();
     ~AnimationSystem();

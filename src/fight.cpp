@@ -29,13 +29,17 @@ void Fight::run(){
     case psNEUTRAL:
       currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
       if (p->joystick->Pressed(bLP)){
-        //c->getBaseAnim(psNEUTRAL)->animation_speed--;
-        //cout << c->getBaseAnim(psNEUTRAL)->animation_speed << endl;
+        c->getBaseAnim(psWALKF)->animation_speed--;
+        cout << c->getBaseAnim(psWALKF)->animation_speed << endl;
       } else if (p->joystick->Pressed(bMP)){
-        //c->getBaseAnim(psNEUTRAL)->animation_speed++;
-        //cout << c->getBaseAnim(psNEUTRAL)->animation_speed << endl;
+        c->getBaseAnim(psWALKF)->animation_speed++;
+        cout << c->getBaseAnim(psWALKF)->animation_speed << endl;
       } else if (p->joystick->Pressed(bHP)){
+        c->walkf_speed++;
+        cout << c->walkf_speed;
       } else if (p->joystick->Pressed(bHK)){
+        c->walkf_speed--;
+        cout << c->walkf_speed;
       }
       switch(dir){
         case bUP:
@@ -71,6 +75,7 @@ void Fight::run(){
       }
       break;
     case psWALKF:
+      currentSprite = c->getBaseAnim(psWALKF)->getSprite();
       p->position.x += dx;
       if (dir != towards){
         state = psNEUTRAL;

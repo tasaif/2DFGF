@@ -12,11 +12,12 @@ NullChar::NullChar(){
     base_anim[i] = NULL;
   }
   base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/breathing", 7);
+  base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 3);
   /*
    * The following values were found qualitatively
    */
   jump_acc = -4;
-  walkf_speed = 4;
+  walkf_speed = 7;
   walkb_speed = 3;
   jumpf_speed = 10;
   jumpb_speed = 8;
