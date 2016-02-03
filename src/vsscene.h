@@ -35,8 +35,6 @@ class VSScene : public Scene {
     Camera* camera;
 
   public:
-    static const int FLOOR_HEIGHT = 60;
-
     VSScene(CharacterSystem*);
     ~VSScene();
 

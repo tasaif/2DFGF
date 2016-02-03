@@ -17,10 +17,33 @@ Fight::Fight(Player* _p, Player* _opponent){
 Fight::~Fight(){
 }
 
+unsigned abs_unsigned(int n){
+  return n < 0 ? n * -1 : n;
+}
+
+int Fight::limitCheck(int dx){
+  int max_distance = Application::SCREEN_WIDTH;
+  int min_value = Stage::LEFT_MOST;
+  int max_value = Stage::RIGHT_MOST;
+  int newx = p->position.x + dx;
+  int new_distance = abs_unsigned(p->position.x + dx - opponent->position.x);
+  if (new_distance > max_distance){
+    return 0;
+  }
+  if (newx > max_value){
+    return max_value - p->position.x;
+  }
+  if (newx < min_value){
+    return min_value - p->position.x;
+  }
+  return dx;
+}
+
 void Fight::run(){
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
+  distance = abs_unsigned(opponent->position.x - p->position.x);
 
   switch(state){
     case psMATCHSTARTING:
@@ -69,14 +92,14 @@ void Fight::run(){
       };
       break;
     case psWALKB:
-      p->position.x += dx;
+      p->position.x += limitCheck(dx);
       if (dir != away){
         state = psNEUTRAL;
       }
       break;
     case psWALKF:
       currentSprite = c->getBaseAnim(psWALKF)->getSprite();
-      p->position.x += dx;
+      p->position.x += limitCheck(dx);
       if (dir != towards){
         state = psNEUTRAL;
       }
@@ -90,8 +113,16 @@ void Fight::run(){
       }
       break;
     case psJUMPF:
+      p->position.x += limitCheck(dx);
+      dy += c->jump_acc;
+      p->position.y += dy;
+      if (p->position.y <= 0){
+        p->position.y = 0;
+        state = psNEUTRAL;
+      }
+      break;
     case psJUMPB:
-      p->position.x += dx;
+      p->position.x += limitCheck(dx);
       dy += c->jump_acc;
       p->position.y += dy;
       if (p->position.y <= 0){

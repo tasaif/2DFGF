@@ -14,10 +14,12 @@ class Fight {
     unsigned dy_reset = 38; //qualitative
     unsigned dy;
     unsigned dx;
+    unsigned distance;
 
     Button away = bNULL;
     Button towards = bNULL;
     Button dir = bNULL;
+    int limitCheck(int);
 
   public:
     Fight(Player*, Player*);

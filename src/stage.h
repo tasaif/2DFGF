@@ -12,9 +12,13 @@ class Stage {
     //sound bgm
 
   public:
+    static const int FLOOR_HEIGHT = 60;
+    static const unsigned WIDTH = 1600;
+    static const unsigned HEIGHT = 720;
+    // In Camera coordinates
+    static const int LEFT_MOST = (int)WIDTH / -2;
+    static const int RIGHT_MOST = (int)WIDTH / 2;
     vector<Sprite*> backgrounds;
-    const unsigned WIDTH = 1600;
-    const unsigned HEIGHT = 720;
     Stage();
     virtual ~Stage();
     void draw();
