@@ -33,6 +33,3 @@ void Stage::resetPos(){
   }
 }
 
-Sprite* Stage::getBG(unsigned i){
-  return backgrounds[i];
-}

@@ -27,6 +27,7 @@ bool VSScene::first(){
     return false;
   }
   stage = getPlayer(0)->getStage();
+  camera->setStage(stage);
   match_length = optionsys->getMatchDuration();
   if (match_length){
     timer.start();
@@ -80,7 +81,7 @@ bool VSScene::run(){
     default:
       break;
   };
-  stage->draw();
+  camera->drawBG();
   drawsys->draw(overlay);
   drawsys->draw(time);
   for(unsigned i=0; i<2; i++){

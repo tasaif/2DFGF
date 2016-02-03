@@ -8,18 +8,17 @@ using namespace std;
 
 class Stage {
   protected:
-    vector<Sprite*> backgrounds;
     void push(string);
     //sound bgm
 
   public:
+    vector<Sprite*> backgrounds;
     const unsigned WIDTH = 1600;
     const unsigned HEIGHT = 720;
     Stage();
     virtual ~Stage();
     void draw();
     void resetPos();
-    Sprite* getBG(unsigned);
 };
 
 #endif

@@ -32,3 +32,7 @@ void DrawSystem::tick(SDL_Rect offset){
   offset.y -= cross->surface->h/2;
   draw(cross, offset);
 }
+
+void DrawSystem::fill(unsigned color){
+  SDL_FillRect(screen, NULL, color);
+}

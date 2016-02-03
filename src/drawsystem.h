@@ -19,6 +19,7 @@ class DrawSystem {
     void draw(Sprite*, SDL_Rect);
     SDL_PixelFormat* format();
     void tick(SDL_Rect);
+    void fill(unsigned);
 };
 
 #endif
