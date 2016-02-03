@@ -23,8 +23,20 @@ void FightSystem::handleInputs(){
 void FightSystem::resolveHitBoxes(){
 }
 
-void FightSystem::drawWith(DrawSystem* drawsys){
-  SDL_Rect offset;
+//void FightSystem::drawWith(Camera* camera, SDL_Rect _offset){
+//}
+
+void FightSystem::drawWith(Camera* camera){
+  SDL_Rect center;
+  center.x = (p[0]->position.x + p[1]->position.x) / 2;
+  center.y = (p[0]->position.y + p[1]->position.y) / 2;
+  //center.x = 0;
+  //center.y = 0;
+  camera->setFocus(center);
+  for(unsigned i=0; i<2; i++){
+    camera->draw(p[i]->position.x < p[1-i]->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), p[i]->position);
+  }
+/*  SDL_Rect offset;
   SDL_Rect opoffset;
   Sprite* sprite;
 
@@ -32,7 +44,7 @@ void FightSystem::drawWith(DrawSystem* drawsys){
     shadow->offset = p[i]->position;
     shadow->offset.x -= shadow->surface->w / 2;
     shadow->offset.y = 420 - shadow->surface->h / 2 - 10;
-    drawsys->draw(shadow);
+    camera->draw(shadow);
   }
 
   for(unsigned i=0; i<2; i++){
@@ -46,6 +58,7 @@ void FightSystem::drawWith(DrawSystem* drawsys){
     }
     offset.x -= sprite->surface->w / 2;
     offset.y = Application::SCREEN_HEIGHT - 60 - offset.y - sprite->surface->h;
-    drawsys->draw(sprite, offset);
+    camera->draw(sprite, offset);
   }
+  */
 }

@@ -13,6 +13,7 @@
 #include "vsscenestate.h"
 #include "fight.h"
 #include "fightsystem.h"
+#include "camera.h"
 using namespace std;
 
 class FightSystem;
@@ -31,8 +32,11 @@ class VSScene : public Scene {
     unsigned match_length;
     unsigned countdown = 0;
     FightSystem* fightsys;
+    Camera* camera;
 
   public:
+    static const int FLOOR_HEIGHT = 60;
+
     VSScene(CharacterSystem*);
     ~VSScene();
 

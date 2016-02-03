@@ -24,6 +24,10 @@ class Player {
     static const int HPWIDTH = 240;
     static const int HPHEIGHT = 9;
     static const unsigned HPCOLOR = 0xffc71cff;
+    /*
+     * This position is passed to the camera
+     * It is not in normal screen coordinates
+     */
     SDL_Rect position;
     CharacterIndex charselect = ciNULL;
     Joystick* joystick = NULL;

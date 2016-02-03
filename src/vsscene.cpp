@@ -8,6 +8,7 @@ VSScene::VSScene(CharacterSystem* _charsys){
   optionsys = app->optionsys;
   overlay = new Sprite("overlay.png");
   time = new TextSprite();
+  camera = new Camera(app->drawsys);
   time->setFont("nk57.ttf");
   time->setColor({0xff, 0xff, 0xff});
   time->init("99", 45, 0, 12);
@@ -15,6 +16,7 @@ VSScene::VSScene(CharacterSystem* _charsys){
 }
 
 VSScene::~VSScene(){
+  delete camera;
   delete time;
   delete overlay;
 }
@@ -85,7 +87,7 @@ bool VSScene::run(){
     drawsys->draw(getP(i)->healthBar);
     drawsys->draw(getCharacter(i)->getVSName(i));
   }
-  fightsys->drawWith(drawsys);
+  fightsys->drawWith(camera);
   if (inputsys->Pressed(bMK)){
     exit_code = gsCHARACTERS;
   }

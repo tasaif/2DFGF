@@ -3,6 +3,9 @@
 
 #include "drawsystem.h"
 #include "fight.h"
+#include "camera.h"
+
+class Camera;
 
 class FightSystem {
   private:
@@ -17,7 +20,8 @@ class FightSystem {
     void init(Player*, Player*);
     void handleInputs();
     void resolveHitBoxes();
-    void drawWith(DrawSystem*);
+    void drawWith(Camera*);
+    void drawWith(Camera*, SDL_Rect);
 };
 
 #endif

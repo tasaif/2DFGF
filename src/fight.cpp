@@ -6,9 +6,9 @@ Fight::Fight(Player* _p, Player* _opponent){
   c = p->getCharacter();
   opponent = _opponent;
   if (p->getPnum() == 0){
-    p->position.x = Application::SCREEN_WIDTH / 4;
+    p->position.x = -1 * Application::SCREEN_WIDTH / 4;
   } else {
-    p->position.x = Application::SCREEN_WIDTH - Application::SCREEN_WIDTH / 4;
+    p->position.x = Application::SCREEN_WIDTH / 4;
   }
   p->position.y = 0;
   currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
