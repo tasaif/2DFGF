@@ -28,6 +28,7 @@ class Animation {
     unsigned current_frame = 0;
     path custom_path;
     unsigned animation_counter = 0;
+    unsigned loop_count = 0;
 
   public:
     //Change this to private
@@ -38,6 +39,8 @@ class Animation {
     void addFrame(string);
     path getPath();
     Sprite* getSprite();
+    bool loopComplete();
+    void reset();
 };
 
 class AnimationSystem {

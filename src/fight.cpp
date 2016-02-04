@@ -40,6 +40,7 @@ int Fight::limitCheck(int dx){
 }
 
 void Fight::run(){
+  Animation* tmpAnim;
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
@@ -87,6 +88,12 @@ void Fight::run(){
           dx = -1 * (away == bLEFT ? c->jumpb_speed : c->jumpf_speed);
           state = away == bLEFT ? psJUMPB : psJUMPF;
           break;
+        case bDOWNLEFT:
+        case bDOWNRIGHT:
+        case bDOWN:
+          state = psPRECROUCH;
+          c->getBaseAnim(psPRECROUCH)->reset();
+          break;
         default:
           break;
       };
@@ -128,6 +135,30 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
+      }
+      break;
+    case psPRECROUCH:
+      tmpAnim = c->getBaseAnim(psPRECROUCH);
+      currentSprite = tmpAnim->getSprite();
+      cout << "foo" << endl;
+      if (tmpAnim->loopComplete()){
+        state = psCROUCH;
+        c->getBaseAnim(psCROUCH)->reset();
+      }
+      break;
+    case psCROUCH:
+      currentSprite = c->getBaseAnim(psCROUCH)->getSprite();
+      if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
+        state = psPOSTCROUCH;
+        c->getBaseAnim(psPOSTCROUCH)->reset();
+      }
+      break;
+    case psPOSTCROUCH:
+      tmpAnim = c->getBaseAnim(psPOSTCROUCH);
+      currentSprite = tmpAnim->getSprite();
+      if (tmpAnim->loopComplete()){
+        state = psNEUTRAL;
+        c->getBaseAnim(psNEUTRAL)->reset();
       }
       break;
     default:

@@ -34,12 +34,25 @@ Sprite* Animation::getSprite(){
   animation_counter++;
   if (animation_counter >= animation_speed){
     current_frame++;
+    if (current_frame == frames.size() - 1){
+      loop_count++;
+    }
     if (current_frame >= frames.size()){
       current_frame = 0;
     }
     animation_counter = 0;
   }
   return frames[current_frame]->getSprite();
+}
+
+bool Animation::loopComplete(){
+  return (bool)loop_count;
+}
+
+void Animation::reset(){
+  animation_counter = 0;
+  current_frame = 0;
+  loop_count = 0;
 }
 
 path Animation::getPath(){
@@ -73,3 +86,4 @@ Animation* AnimationSystem::makeAnimation(path folder_path, unsigned animation_s
   }
   return retval;
 }
+

@@ -84,3 +84,4 @@ string Character::getName(){
 Animation* Character::getBaseAnim(PlayerState ps){
   return base_anim[ps];
 }
+
