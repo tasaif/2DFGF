@@ -39,6 +39,7 @@ class Animation {
     void addFrame(string);
     path getPath();
     Sprite* getSprite();
+    Sprite* primeSprite();
     bool loopComplete();
     void reset();
 };

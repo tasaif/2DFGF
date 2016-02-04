@@ -34,15 +34,18 @@ Sprite* Animation::getSprite(){
   animation_counter++;
   if (animation_counter >= animation_speed){
     current_frame++;
-    if (current_frame == frames.size() - 1){
-      loop_count++;
-    }
     if (current_frame >= frames.size()){
       current_frame = 0;
+      loop_count++;
     }
     animation_counter = 0;
   }
   return frames[current_frame]->getSprite();
+}
+
+Sprite* Animation::primeSprite(){
+  reset();
+  return frames[0]->getSprite();
 }
 
 bool Animation::loopComplete(){

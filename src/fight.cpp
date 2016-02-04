@@ -142,16 +142,19 @@ void Fight::run(){
     case psPRECROUCH:
       tmpAnim = c->getBaseAnim(psPRECROUCH);
       currentSprite = tmpAnim->getSprite();
-      if (tmpAnim->loopComplete()){
+      if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
+        state = psPOSTCROUCH;
+        currentSprite = c->getBaseAnim(psPOSTCROUCH)->primeSprite();
+      } else if (tmpAnim->loopComplete()){
         state = psCROUCH;
-        c->getBaseAnim(psCROUCH)->reset();
+        currentSprite = c->getBaseAnim(psCROUCH)->primeSprite();
       }
       break;
     case psCROUCH:
       currentSprite = c->getBaseAnim(psCROUCH)->getSprite();
       if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
         state = psPOSTCROUCH;
-        c->getBaseAnim(psPOSTCROUCH)->reset();
+        currentSprite = c->getBaseAnim(psPOSTCROUCH)->primeSprite();
       }
       break;
     case psPOSTCROUCH:
@@ -159,7 +162,7 @@ void Fight::run(){
       currentSprite = tmpAnim->getSprite();
       if (tmpAnim->loopComplete()){
         state = psNEUTRAL;
-        c->getBaseAnim(psNEUTRAL)->reset();
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     default:
