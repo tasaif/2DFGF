@@ -102,6 +102,7 @@ void Fight::run(){
       p->position.x += limitCheck(dx);
       if (dir != away){
         state = psNEUTRAL;
+        c->getBaseAnim(psNEUTRAL)->reset();
       }
       break;
     case psWALKF:
@@ -109,6 +110,7 @@ void Fight::run(){
       p->position.x += limitCheck(dx);
       if (dir != towards){
         state = psNEUTRAL;
+        c->getBaseAnim(psNEUTRAL)->reset();
       }
       break;
     case psJUMPU:
@@ -140,7 +142,6 @@ void Fight::run(){
     case psPRECROUCH:
       tmpAnim = c->getBaseAnim(psPRECROUCH);
       currentSprite = tmpAnim->getSprite();
-      cout << "foo" << endl;
       if (tmpAnim->loopComplete()){
         state = psCROUCH;
         c->getBaseAnim(psCROUCH)->reset();

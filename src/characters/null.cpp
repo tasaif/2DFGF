@@ -13,9 +13,9 @@ NullChar::NullChar(){
   }
   base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 7);
   base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 3);
-  base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 2);
+  base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 3);
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 10);
-  base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 2);
+  base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 3);
   /*
    * The following values were found qualitatively
    */
