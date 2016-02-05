@@ -1,5 +1,4 @@
 #include "movesystem.h"
-#include "moves/nullmoves.h"
 
 MoveSystem::MoveSystem(){
 }
@@ -15,20 +14,6 @@ MoveSystem::~MoveSystem(){
 }
 
 bool MoveSystem::checkForMove(){
-  switch(f->getState()){
-    case psWALKF:
-    case psWALKB:
-    case psNEUTRAL:
-      if (p->joystick->Pressed(bLP)){
-        type = psNORMAL;
-        number = nunLP;
-        f->setSprite(c->getNormAnim(number)->primeSprite());
-        return true;
-      }
-      break;
-    default:
-      break;
-  }
+  cout << "Error: checkForMove being called for parent class MoveSystem" << endl;
   return false;
 }
-

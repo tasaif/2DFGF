@@ -1,12 +1,13 @@
 #include "../application.h"
 #include "null.h"
+#include "../moves/null.h"
 
 extern path character_path;
 extern Application* app;
 
 NullChar::NullChar(){
   animsys = app->animsys;
-  movesys = new MoveSystem();
+  movesys = new NullMoveSystem();
   init("NULL", "mode7.ttf");
   hp = 200;
   norm_anim = new Animation*[nunEND];

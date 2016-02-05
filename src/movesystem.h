@@ -20,8 +20,7 @@ class MoveSystem {
     MoveSystem();
     ~MoveSystem();
     void init(Fight*);
-
-    bool checkForMove();
+    virtual bool checkForMove();
 
     PlayerState type = psNULL;
     unsigned number = 0;
