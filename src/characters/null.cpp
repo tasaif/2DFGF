@@ -12,15 +12,16 @@ NullChar::NullChar(){
     base_anim[i] = NULL;
   }
   base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 8);
-  base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 3);
+  base_anim[psWALKB] = animsys->makeAnimation(character_path / "null/animations/walkb", 4);
+  base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 4);
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
-  base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 4);
+  base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
   /*
    * The following values were found qualitatively
    */
   jump_acc = -4;
-  walkf_speed = 7;
+  walkf_speed = 6;
   walkb_speed = 3;
   jumpf_speed = 10;
   jumpb_speed = 8;

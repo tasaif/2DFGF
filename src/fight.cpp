@@ -73,10 +73,12 @@ void Fight::run(){
         case bLEFT:
           dx = -1 * (away == bLEFT ? c->walkb_speed : c->walkf_speed);
           state = away == bLEFT ? psWALKB : psWALKF;
+          currentSprite = c->getBaseAnim(state)->primeSprite();
           break;
         case bRIGHT:
           dx = (away == bRIGHT ? c->walkb_speed : c->walkf_speed);
           state = away == bRIGHT ? psWALKB : psWALKF;
+          currentSprite = c->getBaseAnim(state)->primeSprite();
           break;
         case bUPRIGHT:
           dy = dy_reset;
@@ -99,10 +101,11 @@ void Fight::run(){
       };
       break;
     case psWALKB:
+      currentSprite = c->getBaseAnim(psWALKB)->getSprite();
       p->position.x += limitCheck(dx);
       if (dir != away){
         state = psNEUTRAL;
-        c->getBaseAnim(psNEUTRAL)->reset();
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     case psWALKF:
@@ -110,7 +113,7 @@ void Fight::run(){
       p->position.x += limitCheck(dx);
       if (dir != towards){
         state = psNEUTRAL;
-        c->getBaseAnim(psNEUTRAL)->reset();
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     case psJUMPU:
@@ -119,6 +122,7 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     case psJUMPF:
@@ -128,6 +132,7 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     case psJUMPB:
@@ -137,6 +142,7 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
       }
       break;
     case psPRECROUCH:
