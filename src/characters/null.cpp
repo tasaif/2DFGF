@@ -21,7 +21,7 @@ NullChar::NullChar(){
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
-  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 4);
+  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
   /*
    * The following values were found qualitatively
    */
