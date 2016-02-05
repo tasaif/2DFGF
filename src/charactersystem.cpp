@@ -39,6 +39,14 @@ Stage* CharacterSystem::getStage(CharacterIndex i){
 
 Character* CharacterSystem::mkCharacter(CharacterIndex i){
   // Add each character here
-  Character* retval = new NullChar();
+  Character* retval = NULL;
+  switch(i){
+    case ciNULL:
+      retval = new NullChar();
+      break;
+    default:
+      retval = new NullChar();
+      break;
+  };
   return retval;
 }

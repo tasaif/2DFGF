@@ -14,6 +14,8 @@
  * Player sprites are rendered center aligned with the player position
  */
 
+class Character;
+
 class Player {
   private:
     unsigned hpwidth();

@@ -1,7 +1,10 @@
 #include "movesystem.h"
 #include "moves/nullmoves.h"
 
-MoveSystem::MoveSystem(Fight* _f){
+MoveSystem::MoveSystem(){
+}
+
+void MoveSystem::init(Fight* _f){
   f = _f;
   p = f->getP();
   c = p->getCharacter();

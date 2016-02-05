@@ -88,3 +88,7 @@ Animation* Character::getBaseAnim(PlayerState ps){
 Animation* Character::getNormAnim(unsigned number){
   return norm_anim[number];
 }
+
+MoveSystem* Character::getMoveSys(){
+  return movesys;
+}

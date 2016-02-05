@@ -10,15 +10,16 @@ class Character;
 class Fight;
 
 class MoveSystem {
-  private:
+  protected:
     Character* c = NULL;
     Player* p = NULL;
     Fight* f = NULL;
     vector<Button>* buffer = NULL;
 
   public:
-    MoveSystem(Fight*);
+    MoveSystem();
     ~MoveSystem();
+    void init(Fight*);
 
     bool checkForMove();
 

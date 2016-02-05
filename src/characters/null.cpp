@@ -6,6 +6,7 @@ extern Application* app;
 
 NullChar::NullChar(){
   animsys = app->animsys;
+  movesys = new MoveSystem();
   init("NULL", "mode7.ttf");
   hp = 200;
   norm_anim = new Animation*[nunEND];
@@ -21,7 +22,7 @@ NullChar::NullChar(){
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
-  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
+  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 1);
   /*
    * The following values were found qualitatively
    */
@@ -33,6 +34,7 @@ NullChar::NullChar(){
 }
 
 NullChar::~NullChar(){
+  delete movesys;
   for(unsigned i=0; i<psEND; i++){
     if (base_anim[i] != NULL){
       delete base_anim[i];

@@ -6,7 +6,10 @@
 #include "textsprite.h"
 #include "playerstates.h"
 #include "animationsystem.h"
+#include "movesystem.h"
 using namespace std;
+
+class MoveSystem;
 
 class Character {
   private:
@@ -24,6 +27,7 @@ class Character {
   protected:
     bool init(string, string);
     int hp = 100;
+    MoveSystem* movesys = NULL;
     string name;
     Animation* base_anim[psEND];
     Animation** norm_anim;
@@ -46,6 +50,7 @@ class Character {
     int getHP();
     Animation* getBaseAnim(PlayerState);
     Animation* getNormAnim(unsigned);
+    MoveSystem* getMoveSys();
 };
 
 #endif

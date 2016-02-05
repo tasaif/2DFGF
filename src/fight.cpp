@@ -4,7 +4,8 @@
 Fight::Fight(Player* _p, Player* _opponent){
   p = _p;
   c = p->getCharacter();
-  movesys = new MoveSystem(this);
+  movesys = c->getMoveSys();
+  movesys->init(this);
   opponent = _opponent;
   if (p->getPnum() == 0){
     p->position.x = -1 * Application::SCREEN_WIDTH / 4;
@@ -16,7 +17,6 @@ Fight::Fight(Player* _p, Player* _opponent){
 }
 
 Fight::~Fight(){
-  delete movesys;
 }
 
 unsigned abs_unsigned(int n){

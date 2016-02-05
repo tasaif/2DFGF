@@ -6,6 +6,8 @@
 #include "movesystem.h"
 
 class MoveSystem;
+class Player;
+class Character;
 
 class Fight {
   private:
