@@ -4,7 +4,7 @@
 Fight::Fight(Player* _p, Player* _opponent){
   p = _p;
   c = p->getCharacter();
-  movesys = new MoveSystem(c, p);
+  movesys = new MoveSystem(this);
   opponent = _opponent;
   if (p->getPnum() == 0){
     p->position.x = -1 * Application::SCREEN_WIDTH / 4;
@@ -185,3 +185,6 @@ Sprite* Fight::getSprite(){
   return currentSprite;
 }
 
+Player* Fight::getP(){
+  return p;
+}

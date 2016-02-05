@@ -1,16 +1,13 @@
 #include "movesystem.h"
 
-MoveSystem::MoveSystem(Character* _c, Player* _p){
-  c = _c;
-  p = _p;
+MoveSystem::MoveSystem(Fight* _f){
+  f = _f;
+  p = f->getP();
+  c = p->getCharacter();
   buffer = p->joystick->getBufferAddress();
 }
 
 MoveSystem::~MoveSystem(){
-}
-
-void MoveSystem::setPlayerBuffer(vector<Button>* _buffer){
-  buffer = _buffer;
 }
 
 void MoveSystem::calcMove(){

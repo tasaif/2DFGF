@@ -5,6 +5,8 @@
 #include "playerstates.h"
 #include "movesystem.h"
 
+class MoveSystem;
+
 class Fight {
   private:
     Player* p;
@@ -31,6 +33,7 @@ class Fight {
 
     void run();
     Sprite* getSprite();
+    Player* getP();
 };
 
 #endif

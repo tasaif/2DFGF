@@ -26,7 +26,7 @@ class Character {
     int hp = 100;
     string name;
     Animation* base_anim[psEND];
-    Animation** move_anim;
+    Animation** norm_anim;
 
   public:
     Character();

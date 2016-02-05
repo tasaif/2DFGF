@@ -4,19 +4,21 @@
 #include "player.h"
 #include "character.h"
 #include "button.h"
+#include "fight.h"
 
 class Character;
+class Fight;
 
 class MoveSystem {
   private:
     Character* c = NULL;
     Player* p = NULL;
+    Fight* f = NULL;
     vector<Button>* buffer = NULL;
 
   public:
-    MoveSystem(Character*, Player*);
+    MoveSystem(Fight*);
     ~MoveSystem();
-    void setPlayerBuffer(vector<Button>*);
 
     void calcMove();
     PlayerState getState(PlayerState);
