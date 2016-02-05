@@ -89,7 +89,7 @@ bool VSScene::run(){
     drawsys->draw(getCharacter(i)->getVSName(i));
   }
   fightsys->drawWith(camera);
-  if (inputsys->Pressed(bMK)){
+  if (inputsys->Pressed(bSELECT)){
     exit_code = gsCHARACTERS;
   }
   if (exit_code) return false;

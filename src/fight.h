@@ -3,6 +3,7 @@
 
 #include "player.h"
 #include "playerstates.h"
+#include "movesystem.h"
 
 class Fight {
   private:
@@ -11,14 +12,17 @@ class Fight {
     Player* opponent;
     Sprite* currentSprite = NULL;
     PlayerState state = psMATCHSTARTING;
+    MoveSystem* movesys;
     unsigned dy_reset = 38; //qualitative
     unsigned dy;
     unsigned dx;
     unsigned distance;
+    unsigned move_number;
 
     Button away = bNULL;
     Button towards = bNULL;
     Button dir = bNULL;
+    Button curbutton = bNULL;
     int limitCheck(int);
 
   public:

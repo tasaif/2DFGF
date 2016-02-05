@@ -158,3 +158,11 @@ void Joystick::dumpPressedBuffer(){
 Sprite* Joystick::getIcon(){
   return icon;
 }
+
+Button Joystick::lastButton(){
+  return buffer.back();
+}
+
+vector<Button>* Joystick::getBufferAddress(){
+  return &buffer;
+}

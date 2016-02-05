@@ -39,6 +39,7 @@ add_executable(fighter
   src/fightsystem.cpp
   src/animationsystem.cpp
   src/camera.cpp
+  src/movesystem.cpp
 )
 target_link_libraries(fighter
   SDL2

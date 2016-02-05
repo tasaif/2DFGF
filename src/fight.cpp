@@ -4,6 +4,7 @@
 Fight::Fight(Player* _p, Player* _opponent){
   p = _p;
   c = p->getCharacter();
+  movesys = new MoveSystem(c, p);
   opponent = _opponent;
   if (p->getPnum() == 0){
     p->position.x = -1 * Application::SCREEN_WIDTH / 4;
@@ -15,6 +16,7 @@ Fight::Fight(Player* _p, Player* _opponent){
 }
 
 Fight::~Fight(){
+  delete movesys;
 }
 
 unsigned abs_unsigned(int n){
@@ -45,6 +47,22 @@ void Fight::run(){
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
+  curbutton = p->joystick->lastButton();
+
+  switch(curbutton){
+    case bLK:
+    case bMK:
+    case bHK:
+    case bLP:
+    case bMP:
+    case bHP:
+      movesys->calcMove();
+      state = movesys->getState(state);
+      move_number = movesys->getMoveNumber();
+      break;
+    default:
+      break;
+  };
 
   switch(state){
     case psMATCHSTARTING:
@@ -52,19 +70,6 @@ void Fight::run(){
       break;
     case psNEUTRAL:
       currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
-      if (p->joystick->Pressed(bLP)){
-        c->getBaseAnim(psWALKF)->animation_speed--;
-        cout << c->getBaseAnim(psWALKF)->animation_speed << endl;
-      } else if (p->joystick->Pressed(bMP)){
-        c->getBaseAnim(psWALKF)->animation_speed++;
-        cout << c->getBaseAnim(psWALKF)->animation_speed << endl;
-      } else if (p->joystick->Pressed(bHP)){
-        c->walkf_speed++;
-        cout << c->walkf_speed;
-      } else if (p->joystick->Pressed(bHK)){
-        c->walkf_speed--;
-        cout << c->walkf_speed;
-      }
       switch(dir){
         case bUP:
           dy = dy_reset;

@@ -58,9 +58,11 @@ class Joystick {
     virtual void setDefaultButtonMappings();
     virtual Uint8 Pressed(Button);
     virtual Button getDirection();
+    Button lastButton();
     void dumpBuffer();
     void dumpPressedBuffer();
     Sprite* getIcon();
+    vector<Button>* getBufferAddress();
 };
 
 #endif
