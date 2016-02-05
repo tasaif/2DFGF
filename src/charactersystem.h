@@ -21,6 +21,7 @@ class CharacterSystem {
     Character* getCharacter(CharacterIndex);
     Sprite* getMissingCharacterIcon();
     Stage* getStage(CharacterIndex);
+    Character* mkCharacter(CharacterIndex);
 };
 
 #endif

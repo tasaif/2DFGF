@@ -15,7 +15,7 @@ NullChar::NullChar(){
   for(unsigned i=0; i<nunEND; i++){
     norm_anim[i] = NULL;
   }
-  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 8);
+  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 5);
   base_anim[psWALKB] = animsys->makeAnimation(character_path / "null/animations/walkb", 4);
   base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 4);
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);

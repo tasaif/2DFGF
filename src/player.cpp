@@ -20,7 +20,8 @@ Sprite* Player::getNamePlacard(unsigned player){
 }
 
 Character* Player::getCharacter(){
-  return app->game->charsys->getCharacter(charselect);
+  //return app->game->charsys->getCharacter(charselect);
+  return character;
 }
 
 Stage* Player::getStage(){
@@ -32,6 +33,9 @@ void Player::update_health_bar(){
 }
 
 void Player::prep(){
+  if (character == NULL){
+    character = app->game->charsys->mkCharacter(charselect);
+  }
   maxhp = getCharacter()->getHP();
   hp = maxhp;
   update_health_bar();

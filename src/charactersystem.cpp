@@ -36,3 +36,9 @@ Sprite* CharacterSystem::getMissingCharacterIcon(){
 Stage* CharacterSystem::getStage(CharacterIndex i){
   return stages[i];
 }
+
+Character* CharacterSystem::mkCharacter(CharacterIndex i){
+  // Add each character here
+  Character* retval = new NullChar();
+  return retval;
+}
