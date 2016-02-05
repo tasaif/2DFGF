@@ -19,12 +19,10 @@ class Fight {
     unsigned dy;
     unsigned dx;
     unsigned distance;
-    unsigned move_number;
 
     Button away = bNULL;
     Button towards = bNULL;
     Button dir = bNULL;
-    Button curbutton = bNULL;
     int limitCheck(int);
 
   public:
@@ -34,6 +32,8 @@ class Fight {
     void run();
     Sprite* getSprite();
     Player* getP();
+    PlayerState getState();
+    void setSprite(Sprite*);
 };
 
 #endif

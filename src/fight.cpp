@@ -47,24 +47,21 @@ void Fight::run(){
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
-  curbutton = p->joystick->lastButton();
 
-  switch(curbutton){
-    case bLK:
-    case bMK:
-    case bHK:
-    case bLP:
-    case bMP:
-    case bHP:
-      movesys->calcMove();
-      state = movesys->getState(state);
-      move_number = movesys->getMoveNumber();
-      break;
-    default:
-      break;
-  };
+  if (movesys->checkForMove()){
+    state = movesys->type;
+  }
 
   switch(state){
+    case psNORMAL:
+      tmpAnim = c->getNormAnim(movesys->number);
+      if (tmpAnim->loopComplete()){
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        state = psNEUTRAL;
+      } else {
+        currentSprite = c->getNormAnim(movesys->number)->getSprite();
+      }
+      break;
     case psMATCHSTARTING:
       state = psNEUTRAL;
       break;
@@ -187,4 +184,12 @@ Sprite* Fight::getSprite(){
 
 Player* Fight::getP(){
   return p;
+}
+
+PlayerState Fight::getState(){
+  return state;
+}
+
+void Fight::setSprite(Sprite* sprite){
+  currentSprite = sprite;
 }

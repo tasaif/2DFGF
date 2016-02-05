@@ -1,4 +1,5 @@
 #include "movesystem.h"
+#include "moves/nullmoves.h"
 
 MoveSystem::MoveSystem(Fight* _f){
   f = _f;
@@ -10,13 +11,21 @@ MoveSystem::MoveSystem(Fight* _f){
 MoveSystem::~MoveSystem(){
 }
 
-void MoveSystem::calcMove(){
+bool MoveSystem::checkForMove(){
+  switch(f->getState()){
+    case psWALKF:
+    case psWALKB:
+    case psNEUTRAL:
+      if (p->joystick->Pressed(bLP)){
+        type = psNORMAL;
+        number = nunLP;
+        f->setSprite(c->getNormAnim(number)->primeSprite());
+        return true;
+      }
+      break;
+    default:
+      break;
+  }
+  return false;
 }
 
-PlayerState MoveSystem::getState(PlayerState state){
-  return state;
-}
-
-unsigned MoveSystem::getMoveNumber(){
-  return 0;
-}

@@ -45,6 +45,7 @@ class Character {
     TextSprite* getVSName(unsigned);
     int getHP();
     Animation* getBaseAnim(PlayerState);
+    Animation* getNormAnim(unsigned);
 };
 
 #endif

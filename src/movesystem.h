@@ -20,9 +20,10 @@ class MoveSystem {
     MoveSystem(Fight*);
     ~MoveSystem();
 
-    void calcMove();
-    PlayerState getState(PlayerState);
-    unsigned getMoveNumber();
+    bool checkForMove();
+
+    PlayerState type = psNULL;
+    unsigned number = 0;
 };
 
 #endif
