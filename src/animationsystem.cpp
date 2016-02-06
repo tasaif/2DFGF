@@ -66,23 +66,23 @@ Frame* Animation::getFrame(unsigned i){
   return frames[i];
 }
 
-void Animation::mkDefBox(unsigned start, unsigned end, SDL_Rect box){
+void Animation::mkDefBox(unsigned start, unsigned end, HitBox box){
   for(unsigned i=start; i<end; i++){
     getFrame(i)->def_boxes.push_back(box);
   }
 }
 
-void Animation::mkAtkBox(unsigned start, unsigned end, SDL_Rect box){
+void Animation::mkAtkBox(unsigned start, unsigned end, HitBox box){
   for(unsigned i=start; i<end; i++){
     getFrame(i)->atk_boxes.push_back(box);
   }
 }
 
-vector<SDL_Rect>* Animation::currentDefBoxes(){
+vector<HitBox>* Animation::currentDefBoxes(){
   return &frames[current_frame]->def_boxes;
 }
 
-vector<SDL_Rect>* Animation::currentAtkBoxes(){
+vector<HitBox>* Animation::currentAtkBoxes(){
   return &frames[current_frame]->atk_boxes;
 }
 
@@ -114,8 +114,8 @@ Animation* AnimationSystem::makeAnimation(path folder_path, unsigned animation_s
   return retval;
 }
 
-SDL_Rect AnimationSystem::mkBox(int x, int y, int w, int h){
-  SDL_Rect offset;
+HitBox AnimationSystem::mkBox(int x, int y, int w, int h){
+  HitBox offset;
   offset.x = x;
   offset.y = y;
   offset.w = w;

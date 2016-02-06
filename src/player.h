@@ -25,7 +25,7 @@ class Player {
     unsigned hpwidth();
     void update_health_bar();
     int pnum = -1;
-    SDL_Rect normalize_box(SDL_Rect);
+    HitBox normalize_box(HitBox);
 
   public:
     static const int HPWIDTH = 240;
@@ -56,8 +56,8 @@ class Player {
     Sprite* healthBar;
     void incHealth(int);
     void setP(int);
-    vector<SDL_Rect> getDefBoxes();
-    vector<SDL_Rect> getAtkBoxes();
+    vector<HitBox> getDefBoxes();
+    vector<HitBox> getAtkBoxes();
 };
 
 #endif

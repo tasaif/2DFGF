@@ -32,8 +32,8 @@ void FightSystem::drawWith(Camera* camera){
   Player* player;
   Player* opponent;
   SDL_Rect tmpbox;
-  vector<SDL_Rect> def_boxes;
-  vector<SDL_Rect> atk_boxes;
+  vector<HitBox> def_boxes;
+  vector<HitBox> atk_boxes;
   center.x = (p[0]->position.x + p[1]->position.x) / 2;
   center.y = (p[0]->position.y + p[1]->position.y) / 2;
   camera->setFocus(center);

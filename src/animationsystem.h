@@ -6,9 +6,11 @@
 #include <vector>
 #include "boost/filesystem.hpp"
 #include "sprite.h"
+#include "hitbox.h"
 using namespace boost::filesystem;
 using namespace std;
 
+class HitBox;
 class Animation;
 
 class Frame {
@@ -20,8 +22,8 @@ class Frame {
     Frame(Animation*, string);
     ~Frame();
     Sprite* getSprite();
-    vector<SDL_Rect> def_boxes;
-    vector<SDL_Rect> atk_boxes;
+    vector<HitBox> def_boxes;
+    vector<HitBox> atk_boxes;
 };
 
 class Animation {
@@ -45,10 +47,10 @@ class Animation {
     bool loopComplete();
     void reset();
     Frame* getFrame(unsigned);
-    void mkDefBox(unsigned, unsigned, SDL_Rect);
-    void mkAtkBox(unsigned, unsigned, SDL_Rect);
-    vector<SDL_Rect>* currentDefBoxes();
-    vector<SDL_Rect>* currentAtkBoxes();
+    void mkDefBox(unsigned, unsigned, HitBox);
+    void mkAtkBox(unsigned, unsigned, HitBox);
+    vector<HitBox>* currentDefBoxes();
+    vector<HitBox>* currentAtkBoxes();
 };
 
 class AnimationSystem {
@@ -59,7 +61,7 @@ class AnimationSystem {
     AnimationSystem();
     ~AnimationSystem();
     Animation* makeAnimation(path, unsigned);
-    SDL_Rect mkBox(int, int, int, int);
+    HitBox mkBox(int, int, int, int);
 };
 
 #endif

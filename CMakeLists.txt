@@ -41,6 +41,7 @@ add_executable(fighter
   src/camera.cpp
   src/movesystem.cpp
   src/moves/null.cpp
+  src/hitbox.cpp
 )
 target_link_libraries(fighter
   SDL2

@@ -58,16 +58,16 @@ void Player::setP(int _pnum){
   pnum = _pnum;
 }
 
-SDL_Rect Player::normalize_box(SDL_Rect hitbox){
+HitBox Player::normalize_box(HitBox hitbox){
   bool right_side = opponent->position.x > position.x;
   hitbox.x = position.x + (right_side ? 1 : -1) * hitbox.x;
   hitbox.y = position.y + hitbox.y;
   return hitbox;
 }
 
-vector<SDL_Rect> Player::getDefBoxes(){
-  vector<SDL_Rect> retval;
-  vector<SDL_Rect>* def_boxes = NULL;
+vector<HitBox> Player::getDefBoxes(){
+  vector<HitBox> retval;
+  vector<HitBox>* def_boxes = NULL;
   if (fight->getAnim() == NULL) return retval;
   def_boxes = fight->getAnim()->currentDefBoxes();
   if (def_boxes == NULL) return retval;
@@ -77,9 +77,9 @@ vector<SDL_Rect> Player::getDefBoxes(){
   return retval;
 }
 
-vector<SDL_Rect> Player::getAtkBoxes(){
-  vector<SDL_Rect> retval;
-  vector<SDL_Rect>* atk_boxes = NULL;
+vector<HitBox> Player::getAtkBoxes(){
+  vector<HitBox> retval;
+  vector<HitBox>* atk_boxes = NULL;
   if (fight->getAnim() == NULL) return retval;
   atk_boxes = fight->getAnim()->currentAtkBoxes();
   if (atk_boxes == NULL) return retval;
