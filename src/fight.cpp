@@ -3,6 +3,7 @@
 
 Fight::Fight(Player* _p, Player* _opponent){
   p = _p;
+  p->fight = this;
   c = p->getCharacter();
   movesys = c->getMoveSys();
   movesys->init(this);
@@ -42,7 +43,6 @@ int Fight::limitCheck(int dx){
 }
 
 void Fight::run(){
-  Animation* tmpAnim;
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
@@ -54,8 +54,8 @@ void Fight::run(){
 
   switch(state){
     case psNORMAL:
-      tmpAnim = c->getNormAnim(movesys->number);
-      if (tmpAnim->loopComplete()){
+      currentAnim = c->getNormAnim(movesys->number);
+      if (currentAnim->loopComplete()){
         currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
         state = psNEUTRAL;
       } else {
@@ -66,7 +66,8 @@ void Fight::run(){
       state = psNEUTRAL;
       break;
     case psNEUTRAL:
-      currentSprite = c->getBaseAnim(psNEUTRAL)->getSprite();
+      currentAnim = c->getBaseAnim(psNEUTRAL);
+      currentSprite = currentAnim->getSprite();
       switch(dir){
         case bUP:
           dy = dy_reset;
@@ -75,12 +76,14 @@ void Fight::run(){
         case bLEFT:
           dx = -1 * (away == bLEFT ? c->walkb_speed : c->walkf_speed);
           state = away == bLEFT ? psWALKB : psWALKF;
-          currentSprite = c->getBaseAnim(state)->primeSprite();
+          currentAnim = c->getBaseAnim(state);
+          currentSprite = currentAnim->primeSprite();
           break;
         case bRIGHT:
           dx = (away == bRIGHT ? c->walkb_speed : c->walkf_speed);
           state = away == bRIGHT ? psWALKB : psWALKF;
-          currentSprite = c->getBaseAnim(state)->primeSprite();
+          currentAnim = c->getBaseAnim(state);
+          currentSprite = currentAnim->primeSprite();
           break;
         case bUPRIGHT:
           dy = dy_reset;
@@ -103,19 +106,23 @@ void Fight::run(){
       };
       break;
     case psWALKB:
-      currentSprite = c->getBaseAnim(psWALKB)->getSprite();
+      currentAnim = c->getBaseAnim(psWALKB);
+      currentSprite = currentAnim->getSprite();
       p->position.x += limitCheck(dx);
       if (dir != away){
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psWALKF:
-      currentSprite = c->getBaseAnim(psWALKF)->getSprite();
+      currentAnim = c->getBaseAnim(psWALKF);
+      currentSprite = currentAnim->getSprite();
       p->position.x += limitCheck(dx);
       if (dir != towards){
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psJUMPU:
@@ -124,7 +131,8 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psJUMPF:
@@ -134,7 +142,8 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psJUMPB:
@@ -144,33 +153,39 @@ void Fight::run(){
       if (p->position.y <= 0){
         p->position.y = 0;
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psPRECROUCH:
-      tmpAnim = c->getBaseAnim(psPRECROUCH);
-      currentSprite = tmpAnim->getSprite();
+      currentAnim = c->getBaseAnim(psPRECROUCH);
+      currentSprite = currentAnim->getSprite();
       if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
         state = psPOSTCROUCH;
-        currentSprite = c->getBaseAnim(psPOSTCROUCH)->primeSprite();
-      } else if (tmpAnim->loopComplete()){
+        currentAnim = c->getBaseAnim(psPOSTCROUCH);
+        currentSprite = currentAnim->primeSprite();
+      } else if (currentAnim->loopComplete()){
         state = psCROUCH;
-        currentSprite = c->getBaseAnim(psCROUCH)->primeSprite();
+        currentAnim = c->getBaseAnim(psCROUCH);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psCROUCH:
-      currentSprite = c->getBaseAnim(psCROUCH)->getSprite();
+      currentAnim = c->getBaseAnim(psCROUCH);
+      currentSprite = currentAnim->getSprite();
       if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
         state = psPOSTCROUCH;
-        currentSprite = c->getBaseAnim(psPOSTCROUCH)->primeSprite();
+        currentAnim = c->getBaseAnim(psPOSTCROUCH);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     case psPOSTCROUCH:
-      tmpAnim = c->getBaseAnim(psPOSTCROUCH);
-      currentSprite = tmpAnim->getSprite();
-      if (tmpAnim->loopComplete()){
+      currentAnim = c->getBaseAnim(psPOSTCROUCH);
+      currentSprite = currentAnim->getSprite();
+      if (currentAnim->loopComplete()){
         state = psNEUTRAL;
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
       }
       break;
     default:
@@ -180,6 +195,10 @@ void Fight::run(){
 
 Sprite* Fight::getSprite(){
   return currentSprite;
+}
+
+Animation* Fight::getAnim(){
+  return currentAnim;
 }
 
 Player* Fight::getP(){

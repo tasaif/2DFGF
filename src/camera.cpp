@@ -49,3 +49,15 @@ void Camera::drawBG(){
     drawsys->draw(stage->backgrounds[i], repos);
   }
 }
+
+void Camera::drawBox(SDL_Rect box, Uint32 color){
+  box.x = Application::SCREEN_WIDTH/2 - box.w/2 - offset.x + box.x;
+  box.y = (int)Application::SCREEN_HEIGHT - (int)Stage::FLOOR_HEIGHT - box.h - box.y;
+  drawsys->fill(box, color);
+}
+
+void Camera::drawBox(vector<SDL_Rect> boxes, Uint32 color){
+  for(unsigned i=0; i<boxes.size(); i++){
+    drawBox(boxes[i], color);
+  }
+}

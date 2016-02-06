@@ -20,6 +20,7 @@ class Frame {
     Frame(Animation*, string);
     ~Frame();
     Sprite* getSprite();
+    vector<SDL_Rect> def_boxes;
 };
 
 class Animation {
@@ -42,6 +43,9 @@ class Animation {
     Sprite* primeSprite();
     bool loopComplete();
     void reset();
+    Frame* getFrame(unsigned);
+    void mkDefBox(unsigned, unsigned, SDL_Rect);
+    vector<SDL_Rect>* currentDefBoxes();
 };
 
 class AnimationSystem {
@@ -52,6 +56,7 @@ class AnimationSystem {
     AnimationSystem();
     ~AnimationSystem();
     Animation* makeAnimation(path, unsigned);
+    SDL_Rect mkBox(int, int, int, int);
 };
 
 #endif

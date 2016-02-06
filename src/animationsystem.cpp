@@ -62,6 +62,20 @@ path Animation::getPath(){
   return custom_path;
 }
 
+Frame* Animation::getFrame(unsigned i){
+  return frames[i];
+}
+
+void Animation::mkDefBox(unsigned start, unsigned end, SDL_Rect box){
+  for(unsigned i=0; i<end; i++){
+    getFrame(i)->def_boxes.push_back(box);
+  }
+}
+
+vector<SDL_Rect>* Animation::currentDefBoxes(){
+  return &frames[current_frame]->def_boxes;
+}
+
 AnimationSystem::AnimationSystem(){
 }
 
@@ -90,3 +104,11 @@ Animation* AnimationSystem::makeAnimation(path folder_path, unsigned animation_s
   return retval;
 }
 
+SDL_Rect AnimationSystem::mkBox(int x, int y, int w, int h){
+  SDL_Rect offset;
+  offset.x = x;
+  offset.y = y;
+  offset.w = w;
+  offset.h = h;
+  return offset;
+}

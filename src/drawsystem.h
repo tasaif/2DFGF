@@ -20,6 +20,7 @@ class DrawSystem {
     SDL_PixelFormat* format();
     void tick(SDL_Rect);
     void fill(unsigned);
+    void fill(SDL_Rect, Uint32);
 };
 
 #endif

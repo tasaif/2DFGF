@@ -58,3 +58,19 @@ void Player::setP(int _pnum){
   pnum = _pnum;
 }
 
+vector<SDL_Rect> Player::getDefBoxes(){
+  vector<SDL_Rect> retval;
+  vector<SDL_Rect>* def_boxes = NULL;
+  bool right_side = opponent->position.x > position.x;
+  SDL_Rect box;
+  if (fight->getAnim() == NULL) return retval;
+  def_boxes = fight->getAnim()->currentDefBoxes();
+  if (def_boxes == NULL) return retval;
+  for(unsigned i=0; i<def_boxes->size(); i++){
+    box = (*def_boxes)[i];
+    box.x = position.x + (right_side ? 1 : -1) * box.x;
+    box.y = position.y + box.y;
+    retval.push_back(box);
+  }
+  return retval;
+}

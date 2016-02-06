@@ -20,6 +20,8 @@ class Camera {
     void draw(Sprite*);
     void draw(Sprite*, SDL_Rect);
     void drawBG();
+    void drawBox(SDL_Rect, Uint32);
+    void drawBox(vector<SDL_Rect>, Uint32);
 };
 
 #endif

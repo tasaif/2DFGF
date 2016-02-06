@@ -36,3 +36,7 @@ void DrawSystem::tick(SDL_Rect offset){
 void DrawSystem::fill(unsigned color){
   SDL_FillRect(screen, NULL, color);
 }
+
+void DrawSystem::fill(SDL_Rect offset, Uint32 color){
+  SDL_FillRect(screen, &offset, SDL_MapRGBA(screen->format, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff));
+}

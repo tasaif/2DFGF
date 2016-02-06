@@ -15,6 +15,7 @@ class Fight {
     Character* c;
     Player* opponent;
     Sprite* currentSprite = NULL;
+    Animation* currentAnim = NULL;
     PlayerState state = psMATCHSTARTING;
     MoveSystem* movesys;
     unsigned dy_reset = 38; //qualitative
@@ -33,6 +34,7 @@ class Fight {
 
     void run();
     Sprite* getSprite();
+    Animation* getAnim();
     Player* getP();
     PlayerState getState();
     void setSprite(Sprite*);

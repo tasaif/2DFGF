@@ -6,6 +6,9 @@
 #include "stage.h"
 #include "characterindex.h"
 #include "playerstates.h"
+#include "fight.h"
+#include <vector>
+using namespace std;
 
 /*
  * NOTE:
@@ -15,6 +18,7 @@
  */
 
 class Character;
+class Fight;
 
 class Player {
   private:
@@ -34,6 +38,8 @@ class Player {
     CharacterIndex charselect = ciNULL;
     Joystick* joystick = NULL;
     Character* character = NULL;
+    Fight* fight = NULL;
+    Player* opponent = NULL;
     int hp;
     int maxhp;
     int getPnum();
@@ -49,6 +55,7 @@ class Player {
     Sprite* healthBar;
     void incHealth(int);
     void setP(int);
+    vector<SDL_Rect> getDefBoxes();
 };
 
 #endif

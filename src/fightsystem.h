@@ -21,7 +21,6 @@ class FightSystem {
     void handleInputs();
     void resolveHitBoxes();
     void drawWith(Camera*);
-    void drawWith(Camera*, SDL_Rect);
 };
 
 #endif
