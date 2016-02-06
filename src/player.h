@@ -26,6 +26,7 @@ class Player {
     void update_health_bar();
     int pnum = -1;
     HitBox normalize_box(HitBox);
+    vector<HitBox> atk_boxes;
 
   public:
     static const int HPWIDTH = 240;
@@ -57,7 +58,7 @@ class Player {
     void incHealth(int);
     void setP(int);
     vector<HitBox> getDefBoxes();
-    vector<HitBox> getAtkBoxes();
+    vector<HitBox>* getAtkBoxes();
 };
 
 #endif

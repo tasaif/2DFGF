@@ -25,6 +25,24 @@ void FightSystem::handleInputs(){
 }
 
 void FightSystem::resolveHitBoxes(){
+  HitBox* box;
+  Player* player;
+  Player* opponent;
+  vector<HitBox> def_boxes;
+  vector<HitBox>* atk_boxes;
+  for(unsigned i=0; i<2; i++){
+    player = p[i];
+    opponent = p[1-i];
+    atk_boxes = player->getAtkBoxes();
+    def_boxes = opponent->getDefBoxes();
+    for (int i=atk_boxes->size()-1; i>=0; i--){
+      box = &(*atk_boxes)[i];
+      box->life_span--;
+      if (box->life_span <= 0){
+        atk_boxes->erase(atk_boxes->begin() + i);
+      }
+    }
+  }
 }
 
 void FightSystem::drawWith(Camera* camera){
@@ -46,7 +64,7 @@ void FightSystem::drawWith(Camera* camera){
     player = p[i];
     opponent = p[1-i];
     def_boxes = player->getDefBoxes();
-    atk_boxes = player->getAtkBoxes();
+    atk_boxes = *(player->getAtkBoxes());
     camera->draw(player->position.x < opponent->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), player->position);
     if (debugstate == 1){
       camera->drawBox(def_boxes, 0x0000ff7f);

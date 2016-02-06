@@ -72,10 +72,9 @@ void Animation::mkDefBox(unsigned start, unsigned end, HitBox box){
   }
 }
 
-void Animation::mkAtkBox(unsigned start, unsigned end, HitBox box){
-  for(unsigned i=start; i<end; i++){
-    getFrame(i)->atk_boxes.push_back(box);
-  }
+void Animation::mkAtkBox(unsigned frame_number, unsigned life_span, HitBox box){
+  box.life_span = life_span;
+  getFrame(frame_number)->atk_boxes.push_back(box);
 }
 
 vector<HitBox>* Animation::currentDefBoxes(){

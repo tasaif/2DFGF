@@ -7,8 +7,7 @@ class HitBox : public SDL_Rect {
   public:
     HitBox();
     ~HitBox();
-
-    unsigned identifier = 0;
+    unsigned life_span = 1;
 };
 
 #endif

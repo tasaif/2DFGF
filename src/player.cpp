@@ -77,14 +77,13 @@ vector<HitBox> Player::getDefBoxes(){
   return retval;
 }
 
-vector<HitBox> Player::getAtkBoxes(){
-  vector<HitBox> retval;
-  vector<HitBox>* atk_boxes = NULL;
-  if (fight->getAnim() == NULL) return retval;
-  atk_boxes = fight->getAnim()->currentAtkBoxes();
-  if (atk_boxes == NULL) return retval;
-  for(unsigned i=0; i<atk_boxes->size(); i++){
-    retval.push_back(normalize_box((*atk_boxes)[i]));
+vector<HitBox>* Player::getAtkBoxes(){
+  vector<HitBox>* new_atk_boxes = NULL;
+  if (fight->getAnim() == NULL) return &atk_boxes;
+  new_atk_boxes = fight->getAnim()->currentAtkBoxes();
+  if (new_atk_boxes == NULL) return &atk_boxes;
+  for(unsigned i=0; i<new_atk_boxes->size(); i++){
+    atk_boxes.push_back(normalize_box((*new_atk_boxes)[i]));
   }
-  return retval;
+  return &atk_boxes;
 }
