@@ -25,6 +25,7 @@ class Player {
     unsigned hpwidth();
     void update_health_bar();
     int pnum = -1;
+    SDL_Rect normalize_box(SDL_Rect);
 
   public:
     static const int HPWIDTH = 240;
@@ -56,6 +57,7 @@ class Player {
     void incHealth(int);
     void setP(int);
     vector<SDL_Rect> getDefBoxes();
+    vector<SDL_Rect> getAtkBoxes();
 };
 
 #endif

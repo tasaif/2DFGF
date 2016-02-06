@@ -33,6 +33,7 @@ void FightSystem::drawWith(Camera* camera){
   Player* opponent;
   SDL_Rect tmpbox;
   vector<SDL_Rect> def_boxes;
+  vector<SDL_Rect> atk_boxes;
   center.x = (p[0]->position.x + p[1]->position.x) / 2;
   center.y = (p[0]->position.y + p[1]->position.y) / 2;
   camera->setFocus(center);
@@ -45,9 +46,11 @@ void FightSystem::drawWith(Camera* camera){
     player = p[i];
     opponent = p[1-i];
     def_boxes = player->getDefBoxes();
+    atk_boxes = player->getAtkBoxes();
     camera->draw(player->position.x < opponent->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), player->position);
     if (debugstate == 1){
       camera->drawBox(def_boxes, 0x0000ff7f);
+      camera->drawBox(atk_boxes, 0xff00007f);
     }
   }
 }

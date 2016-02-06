@@ -67,13 +67,23 @@ Frame* Animation::getFrame(unsigned i){
 }
 
 void Animation::mkDefBox(unsigned start, unsigned end, SDL_Rect box){
-  for(unsigned i=0; i<end; i++){
+  for(unsigned i=start; i<end; i++){
     getFrame(i)->def_boxes.push_back(box);
+  }
+}
+
+void Animation::mkAtkBox(unsigned start, unsigned end, SDL_Rect box){
+  for(unsigned i=start; i<end; i++){
+    getFrame(i)->atk_boxes.push_back(box);
   }
 }
 
 vector<SDL_Rect>* Animation::currentDefBoxes(){
   return &frames[current_frame]->def_boxes;
+}
+
+vector<SDL_Rect>* Animation::currentAtkBoxes(){
+  return &frames[current_frame]->atk_boxes;
 }
 
 AnimationSystem::AnimationSystem(){

@@ -21,6 +21,7 @@ class Frame {
     ~Frame();
     Sprite* getSprite();
     vector<SDL_Rect> def_boxes;
+    vector<SDL_Rect> atk_boxes;
 };
 
 class Animation {
@@ -45,7 +46,9 @@ class Animation {
     void reset();
     Frame* getFrame(unsigned);
     void mkDefBox(unsigned, unsigned, SDL_Rect);
+    void mkAtkBox(unsigned, unsigned, SDL_Rect);
     vector<SDL_Rect>* currentDefBoxes();
+    vector<SDL_Rect>* currentAtkBoxes();
 };
 
 class AnimationSystem {

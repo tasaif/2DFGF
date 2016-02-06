@@ -58,19 +58,33 @@ void Player::setP(int _pnum){
   pnum = _pnum;
 }
 
+SDL_Rect Player::normalize_box(SDL_Rect hitbox){
+  bool right_side = opponent->position.x > position.x;
+  hitbox.x = position.x + (right_side ? 1 : -1) * hitbox.x;
+  hitbox.y = position.y + hitbox.y;
+  return hitbox;
+}
+
 vector<SDL_Rect> Player::getDefBoxes(){
   vector<SDL_Rect> retval;
   vector<SDL_Rect>* def_boxes = NULL;
-  bool right_side = opponent->position.x > position.x;
-  SDL_Rect box;
   if (fight->getAnim() == NULL) return retval;
   def_boxes = fight->getAnim()->currentDefBoxes();
   if (def_boxes == NULL) return retval;
   for(unsigned i=0; i<def_boxes->size(); i++){
-    box = (*def_boxes)[i];
-    box.x = position.x + (right_side ? 1 : -1) * box.x;
-    box.y = position.y + box.y;
-    retval.push_back(box);
+    retval.push_back(normalize_box((*def_boxes)[i]));
+  }
+  return retval;
+}
+
+vector<SDL_Rect> Player::getAtkBoxes(){
+  vector<SDL_Rect> retval;
+  vector<SDL_Rect>* atk_boxes = NULL;
+  if (fight->getAnim() == NULL) return retval;
+  atk_boxes = fight->getAnim()->currentAtkBoxes();
+  if (atk_boxes == NULL) return retval;
+  for(unsigned i=0; i<atk_boxes->size(); i++){
+    retval.push_back(normalize_box((*atk_boxes)[i]));
   }
   return retval;
 }
