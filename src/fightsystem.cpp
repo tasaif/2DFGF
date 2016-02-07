@@ -38,8 +38,18 @@ void FightSystem::resolveHitBoxes(){
     for (int i=atk_boxes->size()-1; i>=0; i--){
       box = &(*atk_boxes)[i];
       box->life_span--;
-      if (box->life_span <= 0){
+      //Died of old age
+      if (box->life_span < 0){
         atk_boxes->erase(atk_boxes->begin() + i);
+      } else {
+        for(unsigned j=0; j<def_boxes.size(); j++){
+          //Died due to collision
+          if (box->overlaps(def_boxes[j])){
+            cout << "HIT!" << endl;
+            atk_boxes->erase(atk_boxes->begin() + i);
+            break;
+          }
+        }
       }
     }
   }
@@ -64,9 +74,14 @@ void FightSystem::drawWith(Camera* camera){
     player = p[i];
     opponent = p[1-i];
     def_boxes = player->getDefBoxes();
-    atk_boxes = *(player->getAtkBoxes());
+    atk_boxes = *player->getAtkBoxes();
     camera->draw(player->position.x < opponent->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), player->position);
-    if (debugstate == 1){
+  }
+  if (debugstate == 1){
+    for(unsigned i=0; i<2; i++){
+      player = p[i];
+      def_boxes = player->getDefBoxes();
+      atk_boxes = *player->getAtkBoxes();
       camera->drawBox(def_boxes, 0x0000ff7f);
       camera->drawBox(atk_boxes, 0xff00007f);
     }

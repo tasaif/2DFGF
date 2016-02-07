@@ -59,6 +59,7 @@ class Player {
     void setP(int);
     vector<HitBox> getDefBoxes();
     vector<HitBox>* getAtkBoxes();
+    void spawnAtkBox(HitBox);
 };
 
 #endif

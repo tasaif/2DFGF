@@ -51,8 +51,7 @@ void Camera::drawBG(){
 }
 
 void Camera::drawBox(HitBox box, Uint32 color){
-  box.x = Application::SCREEN_WIDTH/2 - box.w/2 - offset.x + box.x;
-  box.y = (int)Application::SCREEN_HEIGHT - (int)Stage::FLOOR_HEIGHT - box.h - box.y;
+  box.x = box.x - offset.x;
   drawsys->fill(box, color);
 }
 

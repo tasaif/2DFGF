@@ -7,7 +7,9 @@ class HitBox : public SDL_Rect {
   public:
     HitBox();
     ~HitBox();
-    unsigned life_span = 1;
+    int life_span = 1;
+
+    bool overlaps(HitBox);
 };
 
 #endif

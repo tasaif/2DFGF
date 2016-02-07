@@ -19,6 +19,7 @@ class Camera {
     void setFocus(SDL_Rect);
     void draw(Sprite*);
     void draw(Sprite*, SDL_Rect);
+    void draw(Sprite*, SDL_Rect, Player*);
     void drawBG();
     void drawBox(HitBox, Uint32);
     void drawBox(vector<HitBox>, Uint32);

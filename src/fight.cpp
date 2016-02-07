@@ -191,6 +191,19 @@ void Fight::run(){
     default:
       break;
   };
+
+  //Spawn hitboxes if necessary
+  vector<HitBox>* new_atk_boxes;
+  if (prevSprite != currentSprite && currentAnim != NULL){
+    new_atk_boxes = currentAnim->currentAtkBoxes();
+    if (new_atk_boxes){
+      for(unsigned i=0; i<new_atk_boxes->size(); i++){
+        p->spawnAtkBox((*new_atk_boxes)[i]);
+      }
+    }
+  }
+
+  prevSprite = currentSprite;
 }
 
 Sprite* Fight::getSprite(){

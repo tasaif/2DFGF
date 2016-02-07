@@ -14,6 +14,7 @@ class Fight {
     Player* p;
     Character* c;
     Player* opponent;
+    Sprite* prevSprite = NULL;
     Sprite* currentSprite = NULL;
     Animation* currentAnim = NULL;
     PlayerState state = psMATCHSTARTING;

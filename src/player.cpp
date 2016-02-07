@@ -60,8 +60,8 @@ void Player::setP(int _pnum){
 
 HitBox Player::normalize_box(HitBox hitbox){
   bool right_side = opponent->position.x > position.x;
-  hitbox.x = position.x + (right_side ? 1 : -1) * hitbox.x;
-  hitbox.y = position.y + hitbox.y;
+  hitbox.x = Application::SCREEN_WIDTH / 2 + position.x - hitbox.w/2 + (right_side ? 1 : -1) * hitbox.x;
+  hitbox.y = Application::SCREEN_HEIGHT - Stage::FLOOR_HEIGHT - (position.y + hitbox.y + hitbox.h);
   return hitbox;
 }
 
@@ -78,12 +78,10 @@ vector<HitBox> Player::getDefBoxes(){
 }
 
 vector<HitBox>* Player::getAtkBoxes(){
-  vector<HitBox>* new_atk_boxes = NULL;
-  if (fight->getAnim() == NULL) return &atk_boxes;
-  new_atk_boxes = fight->getAnim()->currentAtkBoxes();
-  if (new_atk_boxes == NULL) return &atk_boxes;
-  for(unsigned i=0; i<new_atk_boxes->size(); i++){
-    atk_boxes.push_back(normalize_box((*new_atk_boxes)[i]));
-  }
   return &atk_boxes;
 }
+
+void Player::spawnAtkBox(HitBox box){
+  atk_boxes.push_back(normalize_box(box));
+}
+
