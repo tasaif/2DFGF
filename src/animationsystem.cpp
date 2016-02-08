@@ -48,6 +48,10 @@ Sprite* Animation::primeSprite(){
   return frames[0]->getSprite();
 }
 
+Sprite* Animation::currentSprite(){
+  return frames[current_frame]->getSprite();
+}
+
 bool Animation::loopComplete(){
   return (bool)loop_count;
 }

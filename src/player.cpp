@@ -59,9 +59,15 @@ void Player::setP(int _pnum){
 }
 
 HitBox Player::normalize_box(HitBox hitbox){
-  bool right_side = opponent->position.x > position.x;
-  hitbox.x = Application::SCREEN_WIDTH / 2 + position.x - hitbox.w/2 + (right_side ? 1 : -1) * hitbox.x;
-  hitbox.y = Application::SCREEN_HEIGHT - Stage::FLOOR_HEIGHT - (position.y + hitbox.y + hitbox.h);
+  Animation* anim = fight->getAnim();
+  Sprite* sprite = anim->currentSprite();
+  bool right_side = opponent->position.x < position.x;
+  if (right_side){
+    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x + sprite->surface->w/2 - hitbox.x - hitbox.w;
+  } else {
+    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x - sprite->surface->w/2 + hitbox.x;
+  }
+  hitbox.y = Application::SCREEN_HEIGHT - Stage::FLOOR_HEIGHT - position.y + hitbox.y - sprite->surface->h;
   return hitbox;
 }
 

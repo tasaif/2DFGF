@@ -25,13 +25,13 @@ NullChar::NullChar(){
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
 
-  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(0, 5, 110, 65));
-  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(0, 75, 70, 65));
-  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(0, 145, 95, 45));
-  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(5, 175, 30, 40));
+  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(62, 6, 26, 43));
+  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(10, 35, 101, 43));
+  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(38, 68, 54, 53));
+  base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(6, 131, 104, 87));
 
   //base_anim[psNEUTRAL]->mkAtkBox(0, 6, animsys->mkBox(85, 170, 45, 20));
-  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(85, 170, 50, 20));
+  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(171, 32, 65, 24));
 
   /*
    * The following values were found qualitatively

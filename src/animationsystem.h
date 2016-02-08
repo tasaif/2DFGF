@@ -44,6 +44,7 @@ class Animation {
     path getPath();
     Sprite* getSprite();
     Sprite* primeSprite();
+    Sprite* currentSprite();
     bool loopComplete();
     void reset();
     Frame* getFrame(unsigned);
