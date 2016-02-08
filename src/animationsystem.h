@@ -33,6 +33,7 @@ class Animation {
     path custom_path;
     unsigned animation_counter = 0;
     unsigned loop_count = 0;
+    unsigned initialized_animation_speed;
 
   public:
     //Change this to private
@@ -52,6 +53,7 @@ class Animation {
     void mkAtkBox(unsigned, unsigned, HitBox);
     vector<HitBox>* currentDefBoxes();
     vector<HitBox>* currentAtkBoxes();
+    void setAnimationSpeed(unsigned);
 };
 
 class AnimationSystem {

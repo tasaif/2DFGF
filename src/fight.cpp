@@ -48,6 +48,23 @@ void Fight::run(){
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
 
+  switch(state){
+    case psHURTLIGHT:
+      currentAnim = c->getBaseAnim(psHURTLIGHT);
+      if (previous_state != psHURTLIGHT){
+        currentAnim->reset();
+        currentSprite = currentAnim->primeSprite();
+      } else if (currentAnim->loopComplete()){
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        state = psNEUTRAL;
+      } else {
+        currentSprite = currentAnim->getSprite();
+      }
+      break;
+    default:
+      break;
+  };
+
   if (movesys->checkForMove()){
     state = movesys->type;
   }
@@ -204,6 +221,7 @@ void Fight::run(){
   }
 
   prevSprite = currentSprite;
+  previous_state = state;
 }
 
 Sprite* Fight::getSprite(){
@@ -224,4 +242,13 @@ PlayerState Fight::getState(){
 
 void Fight::setSprite(Sprite* sprite){
   currentSprite = sprite;
+}
+
+// The stun timer actually just sets the animation speed
+void Fight::setStunTimer(PlayerState _type, int _stun_timer){
+  c->getBaseAnim(psHURTLIGHT)->setAnimationSpeed(_stun_timer);
+}
+
+void Fight::hitBy(PlayerState _state){
+  state = _state;
 }

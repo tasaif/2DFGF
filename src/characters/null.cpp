@@ -23,6 +23,7 @@ NullChar::NullChar(){
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
+  base_anim[psHURTLIGHT] = animsys->makeAnimation(character_path / "null/animations/hurtlight", 3);
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
 
   base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(62, 6, 26, 43));

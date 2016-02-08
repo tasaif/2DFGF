@@ -16,6 +16,7 @@ Sprite* Frame::getSprite(){
 Animation::Animation(path _custom_path, unsigned _animation_speed){
   custom_path = _custom_path;
   animation_speed = _animation_speed;
+  initialized_animation_speed = animation_speed;
 }
 
 Animation::~Animation(){
@@ -60,6 +61,7 @@ void Animation::reset(){
   animation_counter = 0;
   current_frame = 0;
   loop_count = 0;
+  animation_speed = initialized_animation_speed;
 }
 
 path Animation::getPath(){
@@ -87,6 +89,10 @@ vector<HitBox>* Animation::currentDefBoxes(){
 
 vector<HitBox>* Animation::currentAtkBoxes(){
   return &frames[current_frame]->atk_boxes;
+}
+
+void Animation::setAnimationSpeed(unsigned _speed){
+  animation_speed = _speed;
 }
 
 AnimationSystem::AnimationSystem(){
@@ -125,3 +131,4 @@ HitBox AnimationSystem::mkBox(int x, int y, int w, int h){
   offset.h = h;
   return offset;
 }
+

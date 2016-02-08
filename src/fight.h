@@ -17,12 +17,14 @@ class Fight {
     Sprite* prevSprite = NULL;
     Sprite* currentSprite = NULL;
     Animation* currentAnim = NULL;
+    PlayerState previous_state = psNULL;
     PlayerState state = psMATCHSTARTING;
     MoveSystem* movesys;
     unsigned dy_reset = 38; //qualitative
     unsigned dy;
     unsigned dx;
     unsigned distance;
+    int stun_timer = 0;
 
     Button away = bNULL;
     Button towards = bNULL;
@@ -39,6 +41,8 @@ class Fight {
     Player* getP();
     PlayerState getState();
     void setSprite(Sprite*);
+    void setStunTimer(PlayerState, int);
+    void hitBy(PlayerState);
 };
 
 #endif

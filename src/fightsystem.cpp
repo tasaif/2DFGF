@@ -46,6 +46,8 @@ void FightSystem::resolveHitBoxes(){
           //Died due to collision
           if (box->overlaps(def_boxes[j])){
             cout << "HIT!" << endl;
+            opponent->fight->hitBy(box->type);
+            opponent->fight->setStunTimer(box->type, box->hit_stun);
             atk_boxes->erase(atk_boxes->begin() + i);
             break;
           }

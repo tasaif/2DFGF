@@ -15,6 +15,7 @@ enum PlayerState {
   psJUMPF,
   psBLOCK,
   psCROUCHBLOCK,
+  psHURTLIGHT,
   psHIT,
   psJUGGLED,
   psGRAB,
