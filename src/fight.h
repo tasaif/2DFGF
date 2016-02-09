@@ -46,6 +46,8 @@ class Fight {
     void hitBy(PlayerState);
     bool blocking();
     void enGarde(HitBox*);
+    bool getPushed(int);
+    int moveHorizontally(int);
 };
 
 #endif

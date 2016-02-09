@@ -132,7 +132,7 @@ void Fight::run(){
     case psWALKB:
       currentAnim = c->getBaseAnim(psWALKB);
       currentSprite = currentAnim->getSprite();
-      p->position.x += limitCheck(dx);
+      moveHorizontally(dx);
       if (dir != away){
         state = psNEUTRAL;
         currentAnim = c->getBaseAnim(psNEUTRAL);
@@ -142,7 +142,7 @@ void Fight::run(){
     case psWALKF:
       currentAnim = c->getBaseAnim(psWALKF);
       currentSprite = currentAnim->getSprite();
-      p->position.x += limitCheck(dx);
+      moveHorizontally(dx);
       if (dir != towards){
         state = psNEUTRAL;
         currentAnim = c->getBaseAnim(psNEUTRAL);
@@ -160,7 +160,7 @@ void Fight::run(){
       }
       break;
     case psJUMPF:
-      p->position.x += limitCheck(dx);
+      moveHorizontally(dx);
       dy += c->jump_acc;
       p->position.y += dy;
       if (p->position.y <= 0){
@@ -171,7 +171,7 @@ void Fight::run(){
       }
       break;
     case psJUMPB:
-      p->position.x += limitCheck(dx);
+      moveHorizontally(dx);
       dy += c->jump_acc;
       p->position.y += dy;
       if (p->position.y <= 0){
@@ -283,4 +283,13 @@ void Fight::enGarde(HitBox* box){
     currentAnim = c->getBaseAnim(psBLOCK);
   }
   currentSprite = currentAnim->primeSprite();
+}
+
+bool Fight::getPushed(int _dx){
+  return false;
+}
+
+int Fight::moveHorizontally(int _dx){
+  next_step = limitCheck(_dx);
+  p->position.x += next_step;
 }
