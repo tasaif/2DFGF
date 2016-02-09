@@ -90,8 +90,8 @@ void FightSystem::drawWith(Camera* camera){
       player = p[i];
       def_boxes = player->getDefBoxes();
       atk_boxes = *player->getAtkBoxes();
-      camera->drawBox(def_boxes, 0x0000ff7f);
-      camera->drawBox(atk_boxes, 0xff00007f);
+      //camera->drawBox(def_boxes, 0x0000ff7f);
+      //camera->drawBox(atk_boxes, 0xff00007f);
     }
   }
 }

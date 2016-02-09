@@ -24,6 +24,7 @@ class Fight {
     unsigned dy;
     unsigned dx;
     unsigned distance;
+    unsigned next_step;
     int block_stun = 0;
 
     Button away = bNULL;

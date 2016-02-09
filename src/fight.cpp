@@ -48,6 +48,10 @@ void Fight::run(){
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
 
+  if (movesys->checkForMove()){
+    state = movesys->type;
+  }
+
   switch(state){
     case psHURTHEAVY:
     case psHURTLIGHT:
@@ -62,15 +66,6 @@ void Fight::run(){
         currentSprite = currentAnim->getSprite();
       }
       break;
-    default:
-      break;
-  };
-
-  if (movesys->checkForMove()){
-    state = movesys->type;
-  }
-
-  switch(state){
     case psCROUCHBLOCK:
     case psBLOCK:
       if (block_stun < 0){
