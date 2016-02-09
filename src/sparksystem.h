@@ -10,9 +10,10 @@ class Camera;
 
 class Spark {
   public:
-    Spark(Animation*, HitBox*);
+    Spark(Animation*, HitBox*, bool);
     ~Spark();
     bool dead;
+    bool leftSide;
     Animation* src;
     SDL_Rect offset;
     unsigned frame_number;
@@ -26,14 +27,14 @@ class SparkSystem {
     AnimationSystem* animsys;
     Animation* hit_source;
     Animation* block_source;
-    void mkSpark(Animation*, HitBox*);
+    void mkSpark(Animation*, HitBox*, bool);
     vector<Spark*> sparks;
 
   public:
     SparkSystem(AnimationSystem*);
     ~SparkSystem();
-    void mkHitSpark(HitBox*);
-    void mkGuardSpark(HitBox*);
+    void mkHitSpark(HitBox*, bool);
+    void mkGuardSpark(HitBox*, bool);
     void drawWith(Camera*);
 };
 

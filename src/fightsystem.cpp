@@ -34,6 +34,7 @@ void FightSystem::resolveHitBoxes(){
   for(unsigned i=0; i<2; i++){
     player = p[i];
     opponent = p[1-i];
+    bool leftSide = player->position.x < opponent->position.x;
     atk_boxes = player->getAtkBoxes();
     def_boxes = opponent->getDefBoxes();
     for (int i=atk_boxes->size()-1; i>=0; i--){
@@ -45,10 +46,10 @@ void FightSystem::resolveHitBoxes(){
         for(unsigned j=0; j<def_boxes.size(); j++){
           if (box->overlaps(def_boxes[j])){
             if (opponent->fight->blocking()){
-              sparksys->mkGuardSpark(box);
+              sparksys->mkGuardSpark(box, leftSide);
               opponent->fight->enGarde(box);
             } else {
-              sparksys->mkHitSpark(box);
+              sparksys->mkHitSpark(box, leftSide);
               opponent->fight->hitBy(box->type);
               opponent->fight->setStunTimer(box->type, box->hit_stun);
               atk_boxes->erase(atk_boxes->begin() + i);

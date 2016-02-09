@@ -2,13 +2,17 @@
 
 extern path image_path;
 
-Spark::Spark(Animation* _src, HitBox* box){
+Spark::Spark(Animation* _src, HitBox* box, bool _leftSide){
   src = _src;
   offset = *box;
+  leftSide = _leftSide;
   frame_number = 0;
   dead = false;
   animation_speed = 1;
   animation_counter = 0;
+  if (leftSide){
+    offset.x += offset.w;
+  }
 }
 
 Spark::~Spark(){
@@ -37,16 +41,16 @@ SparkSystem::SparkSystem(AnimationSystem* _animsys){
 SparkSystem::~SparkSystem(){
 }
 
-void SparkSystem::mkSpark(Animation* src, HitBox* box){
-  sparks.push_back(new Spark(src, box));
+void SparkSystem::mkSpark(Animation* src, HitBox* box, bool leftSide){
+  sparks.push_back(new Spark(src, box, leftSide));
 }
 
-void SparkSystem::mkGuardSpark(HitBox* box){
-  mkSpark(block_source, box);
+void SparkSystem::mkGuardSpark(HitBox* box, bool leftSide){
+  mkSpark(block_source, box, leftSide);
 }
 
-void SparkSystem::mkHitSpark(HitBox* box){
-  mkSpark(hit_source, box);
+void SparkSystem::mkHitSpark(HitBox* box, bool leftSide){
+  mkSpark(hit_source, box, leftSide);
 }
 
 void SparkSystem::drawWith(Camera* cam){
