@@ -25,11 +25,13 @@ NullChar::NullChar(){
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
   base_anim[psHURTLIGHT] = animsys->makeAnimation(character_path / "null/animations/hurtlight", 3);
+  base_anim[psHURTHEAVY] = animsys->makeAnimation(character_path / "null/animations/hurtheavy", 3);
   base_anim[psBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);
   base_anim[psBLOCK]->setDontLoop(true);
   base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);
   base_anim[psCROUCHBLOCK]->setDontLoop(true);
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
+  norm_anim[nunHP] = animsys->makeAnimation(character_path / "null/animations/standinghp", 2);
 
   //Defense boxes
   base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(62, 6, 26, 43));
@@ -41,7 +43,8 @@ NullChar::NullChar(){
 
   //Attack boxes
   //base_anim[psNEUTRAL]->mkAtkBox(0, 6, animsys->mkBox(85, 170, 45, 20));
-  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(171, 32, 65, 24));
+  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(171, 32, 65, 24), psHURTLIGHT);
+  norm_anim[nunHP]->mkAtkBox(4, 3, animsys->mkBox(186, 27, 17, 19), psHURTHEAVY);
 
   /*
    * The following values were found qualitatively

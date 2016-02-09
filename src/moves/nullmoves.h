@@ -4,6 +4,7 @@
 enum NullNormalMove {
   nunNULL,
   nunLP,
+  nunHP,
   nunEND
 };
 

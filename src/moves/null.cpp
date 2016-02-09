@@ -12,7 +12,12 @@ bool NullMoveSystem::checkForMove(){
     case psWALKF:
     case psWALKB:
     case psNEUTRAL:
-      if (p->joystick->Pressed(bLP)){
+      if (p->joystick->Pressed(bHP)){
+        type = psNORMAL;
+        number = nunHP;
+        f->setSprite(c->getNormAnim(number)->primeSprite());
+        return true;
+      } else if (p->joystick->Pressed(bLP)){
         type = psNORMAL;
         number = nunLP;
         f->setSprite(c->getNormAnim(number)->primeSprite());

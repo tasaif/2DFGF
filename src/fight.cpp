@@ -49,9 +49,10 @@ void Fight::run(){
   distance = abs_unsigned(opponent->position.x - p->position.x);
 
   switch(state){
+    case psHURTHEAVY:
     case psHURTLIGHT:
-      currentAnim = c->getBaseAnim(psHURTLIGHT);
-      if (previous_state != psHURTLIGHT){
+      currentAnim = c->getBaseAnim(state);
+      if (previous_state != state){
         currentAnim->reset();
         currentSprite = currentAnim->primeSprite();
       } else if (currentAnim->loopComplete()){
@@ -257,7 +258,7 @@ void Fight::setSprite(Sprite* sprite){
 
 // The stun timer actually just sets the animation speed
 void Fight::setStunTimer(PlayerState _type, int _stun_timer){
-  c->getBaseAnim(psHURTLIGHT)->setAnimationSpeed(_stun_timer);
+  c->getBaseAnim(_type)->setAnimationSpeed(_stun_timer);
 }
 
 void Fight::hitBy(PlayerState _state){

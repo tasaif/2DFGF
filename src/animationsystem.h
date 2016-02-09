@@ -51,7 +51,7 @@ class Animation {
     void reset();
     Frame* getFrame(unsigned);
     void mkDefBox(unsigned, unsigned, HitBox);
-    void mkAtkBox(unsigned, unsigned, HitBox);
+    void mkAtkBox(unsigned, unsigned, HitBox, PlayerState);
     vector<HitBox>* currentDefBoxes();
     vector<HitBox>* currentAtkBoxes();
     void setAnimationSpeed(unsigned);
