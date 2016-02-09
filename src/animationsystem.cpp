@@ -139,3 +139,7 @@ HitBox AnimationSystem::mkBox(int x, int y, int w, int h){
   return offset;
 }
 
+unsigned Animation::numberOfFrames(){
+  return frames.size();
+}
+

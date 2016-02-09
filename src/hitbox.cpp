@@ -1,7 +1,7 @@
 #include "hitbox.h"
 
 HitBox::HitBox(){
-  block_stun = 2;
+  block_stun = 5;
 }
 
 HitBox::~HitBox(){

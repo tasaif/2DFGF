@@ -42,7 +42,7 @@ bool VSScene::first(){
   getPlayer(1)->healthBar->alignFromRight(44);
   incHealth(0, -100);
   incHealth(1, -10);
-  fightsys = new FightSystem();
+  fightsys = new FightSystem(app->sparksys);
   fightsys->init(getPlayer(0), getPlayer(1));
   exit_code = gsNULL;
   return true;

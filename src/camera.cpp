@@ -24,6 +24,16 @@ void Camera::draw(Sprite* sprite){
   draw(sprite, sprite->offset);
 }
 
+bool Camera::draw(Spark* spark){
+  Sprite* sprite = spark->getSprite();
+  if (sprite == NULL) return false;
+  SDL_Rect repos = spark->offset;
+  repos.x = repos.x - offset.x - sprite->surface->w/2;
+  repos.y = repos.y - sprite->surface->h/2;
+  drawsys->draw(sprite, repos);
+  return true;
+}
+
 void Camera::draw(Sprite* sprite, SDL_Rect _offset){
   SDL_Rect repos;
   repos.x = _offset.x + Application::SCREEN_WIDTH/2 - sprite->surface->w/2 - offset.x;

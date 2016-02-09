@@ -56,6 +56,7 @@ class Animation {
     vector<HitBox>* currentAtkBoxes();
     void setAnimationSpeed(unsigned);
     void setDontLoop(bool);
+    unsigned numberOfFrames();
 };
 
 class AnimationSystem {

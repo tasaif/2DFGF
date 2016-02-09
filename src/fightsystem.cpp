@@ -2,7 +2,8 @@
 
 extern unsigned debugstate;
 
-FightSystem::FightSystem(){
+FightSystem::FightSystem(SparkSystem* _sparksys){
+  sparksys = _sparksys;
   shadow = new Sprite("shadow.png");
 }
 
@@ -44,8 +45,10 @@ void FightSystem::resolveHitBoxes(){
         for(unsigned j=0; j<def_boxes.size(); j++){
           if (box->overlaps(def_boxes[j])){
             if (opponent->fight->blocking()){
+              sparksys->mkGuardSpark(box);
               opponent->fight->enGarde(box);
             } else {
+              sparksys->mkHitSpark(box);
               opponent->fight->hitBy(box->type);
               opponent->fight->setStunTimer(box->type, box->hit_stun);
               atk_boxes->erase(atk_boxes->begin() + i);
@@ -80,6 +83,7 @@ void FightSystem::drawWith(Camera* camera){
     atk_boxes = *player->getAtkBoxes();
     camera->draw(player->position.x < opponent->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), player->position);
   }
+  sparksys->drawWith(camera);
   if (debugstate == 1){
     for(unsigned i=0; i<2; i++){
       player = p[i];

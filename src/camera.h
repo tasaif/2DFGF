@@ -3,6 +3,12 @@
 
 #include "drawsystem.h"
 #include "sprite.h"
+#include "sparksystem.h"
+
+class DrawSystem;
+class Stage;
+class Player;
+class Spark;
 
 class Camera {
   private:
@@ -18,6 +24,7 @@ class Camera {
     void setStage(Stage*);
     void setFocus(SDL_Rect);
     void draw(Sprite*);
+    bool draw(Spark*);
     void draw(Sprite*, SDL_Rect);
     void draw(Sprite*, SDL_Rect, Player*);
     void drawBG();

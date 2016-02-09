@@ -4,17 +4,20 @@
 #include "drawsystem.h"
 #include "fight.h"
 #include "camera.h"
+#include "sparksystem.h"
 
 class Camera;
+class SparkSystem;
 
 class FightSystem {
   private:
     Player* p[2];
     Fight* f[2];
     Sprite* shadow;
+    SparkSystem* sparksys;
 
   public:
-    FightSystem();
+    FightSystem(SparkSystem*);
     ~FightSystem();
 
     void init(Player*, Player*);
