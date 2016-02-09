@@ -34,6 +34,7 @@ class Animation {
     unsigned animation_counter = 0;
     unsigned loop_count = 0;
     unsigned initialized_animation_speed;
+    bool dont_loop = false;
 
   public:
     //Change this to private
@@ -54,6 +55,7 @@ class Animation {
     vector<HitBox>* currentDefBoxes();
     vector<HitBox>* currentAtkBoxes();
     void setAnimationSpeed(unsigned);
+    void setDontLoop(bool);
 };
 
 class AnimationSystem {

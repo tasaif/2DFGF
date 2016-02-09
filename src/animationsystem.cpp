@@ -32,6 +32,9 @@ void Animation::addFrame(string fname){
 }
 
 Sprite* Animation::getSprite(){
+  if (dont_loop && current_frame == frames.size() - 1){
+    return frames[current_frame]->getSprite();
+  }
   animation_counter++;
   if (animation_counter >= animation_speed){
     current_frame++;
@@ -93,6 +96,10 @@ vector<HitBox>* Animation::currentAtkBoxes(){
 
 void Animation::setAnimationSpeed(unsigned _speed){
   animation_speed = _speed;
+}
+
+void Animation::setDontLoop(bool _dont_loop){
+  dont_loop = _dont_loop;
 }
 
 AnimationSystem::AnimationSystem(){

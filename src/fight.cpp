@@ -70,6 +70,17 @@ void Fight::run(){
   }
 
   switch(state){
+    case psCROUCHBLOCK:
+    case psBLOCK:
+      if (block_stun < 0){
+        state = psNEUTRAL;
+        currentAnim = c->getBaseAnim(psNEUTRAL);
+        currentSprite = currentAnim->primeSprite();
+      } else {
+        currentSprite = currentAnim->getSprite();
+        block_stun--;
+      }
+      break;
     case psNORMAL:
       currentAnim = c->getNormAnim(movesys->number);
       if (currentAnim->loopComplete()){
@@ -251,4 +262,29 @@ void Fight::setStunTimer(PlayerState _type, int _stun_timer){
 
 void Fight::hitBy(PlayerState _state){
   state = _state;
+}
+
+bool Fight::blocking(){
+  if (away == bLEFT){
+    if (dir == bLEFT || dir == bDOWNLEFT){
+      return true;
+    }
+  } else {
+    if (dir == bRIGHT || dir == bDOWNRIGHT){
+      return true;
+    }
+  }
+  return false;
+}
+
+void Fight::enGarde(HitBox* box){
+  block_stun = box->block_stun;
+  if (state == psCROUCH){
+    state = psCROUCHBLOCK;
+    currentAnim = c->getBaseAnim(psCROUCHBLOCK);
+  } else {
+    state = psBLOCK;
+    currentAnim = c->getBaseAnim(psBLOCK);
+  }
+  currentSprite = currentAnim->primeSprite();
 }

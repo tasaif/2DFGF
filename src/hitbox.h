@@ -11,6 +11,7 @@ class HitBox : public SDL_Rect {
     int life_span = 1;
     int hit_stun = 3;
     int damage = 5;
+    int block_stun = 10;
     PlayerState type = psHURTLIGHT;
 
     bool overlaps(HitBox);

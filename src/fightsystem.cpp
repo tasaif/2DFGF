@@ -38,17 +38,18 @@ void FightSystem::resolveHitBoxes(){
     for (int i=atk_boxes->size()-1; i>=0; i--){
       box = &(*atk_boxes)[i];
       box->life_span--;
-      //Died of old age
       if (box->life_span < 0){
         atk_boxes->erase(atk_boxes->begin() + i);
       } else {
         for(unsigned j=0; j<def_boxes.size(); j++){
-          //Died due to collision
           if (box->overlaps(def_boxes[j])){
-            cout << "HIT!" << endl;
-            opponent->fight->hitBy(box->type);
-            opponent->fight->setStunTimer(box->type, box->hit_stun);
-            atk_boxes->erase(atk_boxes->begin() + i);
+            if (opponent->fight->blocking()){
+              opponent->fight->enGarde(box);
+            } else {
+              opponent->fight->hitBy(box->type);
+              opponent->fight->setStunTimer(box->type, box->hit_stun);
+              atk_boxes->erase(atk_boxes->begin() + i);
+            }
             break;
           }
         }
@@ -84,8 +85,8 @@ void FightSystem::drawWith(Camera* camera){
       player = p[i];
       def_boxes = player->getDefBoxes();
       atk_boxes = *player->getAtkBoxes();
-      camera->drawBox(def_boxes, 0x0000ff7f);
-      camera->drawBox(atk_boxes, 0xff00007f);
+      //camera->drawBox(def_boxes, 0x0000ff7f);
+      //camera->drawBox(atk_boxes, 0xff00007f);
     }
   }
 }

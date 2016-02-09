@@ -24,7 +24,7 @@ class Fight {
     unsigned dy;
     unsigned dx;
     unsigned distance;
-    int stun_timer = 0;
+    int block_stun = 0;
 
     Button away = bNULL;
     Button towards = bNULL;
@@ -43,6 +43,8 @@ class Fight {
     void setSprite(Sprite*);
     void setStunTimer(PlayerState, int);
     void hitBy(PlayerState);
+    bool blocking();
+    void enGarde(HitBox*);
 };
 
 #endif
