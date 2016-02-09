@@ -1,5 +1,6 @@
 #include "application.h"
 #include "fight.h"
+#include "helper.h"
 
 Fight::Fight(Player* _p, Player* _opponent){
   p = _p;
@@ -290,6 +291,11 @@ bool Fight::getPushed(int _dx){
 }
 
 int Fight::moveHorizontally(int _dx){
+  int peekpos;
   next_step = limitCheck(_dx);
+  peekpos = p->position.x + next_step;
+  if (inBetween(p->position.x, opponent->position.x, peekpos)){
+    cout << p->position.x << ' ' << peekpos << ' ' << opponent->position.x << endl;
+  }
   p->position.x += next_step;
 }

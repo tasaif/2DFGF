@@ -43,6 +43,7 @@ add_executable(fighter
   src/moves/null.cpp
   src/hitbox.cpp
   src/sparksystem.cpp
+  src/helper.cpp
 )
 target_link_libraries(fighter
   SDL2
