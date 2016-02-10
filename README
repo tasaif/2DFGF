@@ -1,4 +1,7 @@
-Debian
+# 2DFGF
+2D Fighting Game Framework
+
+#Debian
   Packages
     libsdl2-dev libsdl2-image-dev libboost-filesystem-dev libsdl2-ttf-dev libsdl2-mixer-dev libsdl2-gfx-dev
 
