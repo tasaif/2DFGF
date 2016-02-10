@@ -28,7 +28,7 @@ NullChar::NullChar(){
   base_anim[psHURTHEAVY] = animsys->makeAnimation(character_path / "null/animations/hurtheavy", 3);
   base_anim[psBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);
   base_anim[psBLOCK]->setDontLoop(true);
-  base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);
+  base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/crouchblock", 1);
   base_anim[psCROUCHBLOCK]->setDontLoop(true);
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
   norm_anim[nunHP] = animsys->makeAnimation(character_path / "null/animations/standinghp", 2);

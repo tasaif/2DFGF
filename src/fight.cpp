@@ -70,8 +70,8 @@ void Fight::run(){
     case psCROUCHBLOCK:
     case psBLOCK:
       if (block_stun < 0){
-        state = psNEUTRAL;
-        currentAnim = c->getBaseAnim(psNEUTRAL);
+        state = state == psBLOCK ? psNEUTRAL : psCROUCH;
+        currentAnim = c->getBaseAnim(state);
         currentSprite = currentAnim->primeSprite();
       } else {
         currentSprite = currentAnim->getSprite();
