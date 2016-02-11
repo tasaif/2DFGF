@@ -54,6 +54,7 @@ void Fight::run(){
   }
 
   switch(state){
+    case psHURTCROUCH:
     case psHURTHEAVY:
     case psHURTLIGHT:
       currentAnim = c->getBaseAnim(state);
@@ -61,8 +62,15 @@ void Fight::run(){
         currentAnim->reset();
         currentSprite = currentAnim->primeSprite();
       } else if (currentAnim->loopComplete()){
-        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
-        state = psNEUTRAL;
+        if (crouching){
+          state = psCROUCH;
+          currentAnim = c->getBaseAnim(state);
+          currentSprite = c->getBaseAnim(state)->primeSprite();
+        } else {
+          state = psNEUTRAL;
+          currentAnim = c->getBaseAnim(state);
+          currentSprite = c->getBaseAnim(state)->primeSprite();
+        }
       } else {
         currentSprite = currentAnim->getSprite();
       }
@@ -196,6 +204,7 @@ void Fight::run(){
       }
       break;
     case psCROUCH:
+      crouching = true;
       currentAnim = c->getBaseAnim(psCROUCH);
       currentSprite = currentAnim->getSprite();
       if (dir != bDOWN && dir != bDOWNLEFT && dir != bDOWNRIGHT){
@@ -205,6 +214,7 @@ void Fight::run(){
       }
       break;
     case psPOSTCROUCH:
+      crouching = false;
       currentAnim = c->getBaseAnim(psPOSTCROUCH);
       currentSprite = currentAnim->getSprite();
       if (currentAnim->loopComplete()){
@@ -258,7 +268,11 @@ void Fight::setStunTimer(PlayerState _type, int _stun_timer){
 }
 
 void Fight::hitBy(PlayerState _state){
-  state = _state;
+  if (crouching){
+    state = psHURTCROUCH;
+  } else {
+    state = _state;
+  }
 }
 
 bool Fight::blocking(){

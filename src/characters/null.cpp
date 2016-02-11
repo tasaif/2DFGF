@@ -24,6 +24,7 @@ NullChar::NullChar(){
   base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
   base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
   base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
+  base_anim[psHURTCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouchhurt", 3);
   base_anim[psHURTLIGHT] = animsys->makeAnimation(character_path / "null/animations/hurtlight", 3);
   base_anim[psHURTHEAVY] = animsys->makeAnimation(character_path / "null/animations/hurtheavy", 3);
   base_anim[psBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);

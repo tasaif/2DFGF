@@ -26,6 +26,7 @@ class Fight {
     unsigned distance;
     unsigned next_step;
     int block_stun = 0;
+    bool crouching = false;
 
     Button away = bNULL;
     Button towards = bNULL;
