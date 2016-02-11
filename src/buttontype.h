@@ -1,7 +1,7 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BUTTONTYPE_H
+#define BUTTONTYPE_H
 
-enum Button {
+enum ButtonType {
   bNULL,
   bUP,
   bDOWN,
@@ -16,14 +16,9 @@ enum Button {
   bLP,
   bMP,
   bHP,
-  bTP,
   bLK,
   bMK,
   bHK,
-  bTK,
-  bOVERHEAD,
-  bTAUNT,
-  bHARDRESET,
   bEND
 };
 

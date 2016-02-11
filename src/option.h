@@ -3,7 +3,7 @@
 
 #include "textsprite.h"
 #include "menustate.h"
-#include "button.h"
+#include "buttontype.h"
 
 class Menu;
 

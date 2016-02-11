@@ -7,7 +7,7 @@
 #include "scene.h"
 #include "ltimer.h"
 #include "option.h"
-#include "button.h"
+#include "buttontype.h"
 #include "gamestate.h"
 #include "stage.h"
 #include "vsscenestate.h"

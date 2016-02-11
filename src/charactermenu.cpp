@@ -100,20 +100,6 @@ bool CharacterMenu::run(){
       drawsys->draw(icons[i]);
     }
   }
-  /*for(unsigned i=0; i<options.size(); i++){
-    curop = options[i];
-    if (state == curop->getApplicableState()){
-      setIndicatorPos(curop);
-      for (unsigned button = bNULL; button < bEND; button++){
-        if (curop->press_func[button] != NULL && inputsys->Pressed((Button)button)){
-          curop->press_func[button]();
-          option_interacted = true;
-          break;
-        }
-      }
-    }
-    if (option_interacted) break;
-  }*/
   for(unsigned player=0; player<2; player++){
     Player* p = getP(player);
     switch(state[player]){

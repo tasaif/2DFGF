@@ -8,7 +8,7 @@
 #include "ltimer.h"
 #include "option.h"
 #include "charactermenustate.h"
-#include "button.h"
+#include "buttontype.h"
 #include "gamestate.h"
 using namespace std;
 

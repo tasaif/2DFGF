@@ -22,7 +22,7 @@ Joystick::Joystick(unsigned sdl_joy_number){
   for(unsigned i=0; i<bEND; i++){
     pressed_buffer[i] = bNULL;
   }
-  mapping = new Button[raw_buffer_length];
+  mapping = new ButtonType[raw_buffer_length];
   for(int i=0; i<raw_buffer_length; i++){
     mapping[i] = bNULL;
   }
@@ -43,7 +43,7 @@ Joystick::~Joystick(){
   }
 }
 
-Button Joystick::sdlDirToButtonDir(Uint8 dir){//Replace this with a map
+ButtonType Joystick::sdlDirToButtonDir(Uint8 dir){//Replace this with a map
   switch(dir){
     case SDL_HAT_UP:
       return bUP;
@@ -111,11 +111,11 @@ void Joystick::update(){
   }
 }
 
-Uint8 Joystick::Pressed(Button button){
+Uint8 Joystick::Pressed(ButtonType button){
   return pressed_buffer[button];
 }
 
-Button Joystick::getDirection(){
+ButtonType Joystick::getDirection(){
   return direction;
 }
 
@@ -124,9 +124,7 @@ void Joystick::setDefaultButtonMappings(){
   mapping[1] = bMK;
   mapping[2] = bLK;
   mapping[3] = bLP;
-  mapping[4] = bTK;
   mapping[5] = bHK;
-  mapping[6] = bTP;
   mapping[7] = bHP;
   mapping[8] = bSELECT;
   mapping[9] = bSTART;
@@ -159,10 +157,10 @@ Sprite* Joystick::getIcon(){
   return icon;
 }
 
-Button Joystick::lastButton(){
+ButtonType Joystick::lastButton(){
   return buffer.back();
 }
 
-vector<Button>* Joystick::getBufferAddress(){
+vector<ButtonType>* Joystick::getBufferAddress(){
   return &buffer;
 }

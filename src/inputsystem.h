@@ -20,8 +20,8 @@ class InputSystem {
     ~InputSystem();
     void update();
 
-    bool Pressed(Button);
-    bool Pressed(Button, Joystick*&);
+    bool Pressed(ButtonType);
+    bool Pressed(ButtonType, Joystick*&);
     vector<Joystick*> getJoysticks();
 };
 

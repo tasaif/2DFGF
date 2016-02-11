@@ -33,7 +33,7 @@ void KeyboardJoystick::handle_directions(){
     if (i <= bRIGHT){
       current_buffer[i] = (unsigned)(found < 2) & keystate[mapping[i]];
       if (current_buffer[i]){
-        direction = (Button)i;
+        direction = (ButtonType)i;
         found++;
       }
     }
@@ -88,7 +88,7 @@ void KeyboardJoystick::update(){
     if (!previous_buffer[i] & current_buffer[i]){
       pressed_buffer[i] = 1;
       buffer.erase(buffer.begin());
-      buffer.push_back((Button)i);
+      buffer.push_back((ButtonType)i);
       change = true;
     } else {
       pressed_buffer[i] = 0;
@@ -109,14 +109,12 @@ void KeyboardJoystick::setDefaultButtonMappings(){
   mapping[bLP] = SDL_SCANCODE_A;
   mapping[bMP] = SDL_SCANCODE_S;
   mapping[bHP] = SDL_SCANCODE_D;
-  mapping[bTP] = SDL_SCANCODE_F;
   mapping[bLK] = SDL_SCANCODE_Z;
   mapping[bMK] = SDL_SCANCODE_X;
   mapping[bHK] = SDL_SCANCODE_C;
-  mapping[bTK] = SDL_SCANCODE_V;
 }
 
-Uint8 KeyboardJoystick::Pressed(Button button){
+Uint8 KeyboardJoystick::Pressed(ButtonType button){
   return pressed_buffer[button];
 }
 

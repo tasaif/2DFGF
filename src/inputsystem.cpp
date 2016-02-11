@@ -36,7 +36,7 @@ void InputSystem::update(){
   }
 }
 
-bool InputSystem::Pressed(Button button){
+bool InputSystem::Pressed(ButtonType button){
   for (unsigned i=0; i<joysticks.size(); i++){
     if (joysticks[i]->Pressed(button)){
       return true;
@@ -45,7 +45,7 @@ bool InputSystem::Pressed(Button button){
   return false;
 }
 
-bool InputSystem::Pressed(Button button, Joystick* &joystick){
+bool InputSystem::Pressed(ButtonType button, Joystick* &joystick){
   for (unsigned i=0; i<joysticks.size(); i++){
     if (joysticks[i]->Pressed(button)){
       joystick = joysticks[i];

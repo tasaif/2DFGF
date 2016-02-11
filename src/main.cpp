@@ -6,7 +6,12 @@ path character_path;
 path image_path;
 path font_path;
 Application* app;
-unsigned debugstate = 1;
+unsigned debugstate = 0; /*
+                            This is for starting the application at
+                            different points.
+                            0 - Normal running
+                            1 - Fighting
+                          */
 
 void printSDLVersion(){
   SDL_version compiled;

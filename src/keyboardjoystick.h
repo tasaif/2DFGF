@@ -17,7 +17,7 @@ class KeyboardJoystick : public Joystick {
     ~KeyboardJoystick();
     void update();
     void setDefaultButtonMappings();
-    Uint8 Pressed(Button);
+    Uint8 Pressed(ButtonType);
 };
 
 #endif

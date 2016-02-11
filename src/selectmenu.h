@@ -8,7 +8,7 @@
 #include "ltimer.h"
 #include "option.h"
 #include "selectmenustate.h"
-#include "button.h"
+#include "buttontype.h"
 #include "gamestate.h"
 #include "optionsystem.h"
 #include "joystick.h"

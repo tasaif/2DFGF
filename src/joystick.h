@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <SDL.h>
-#include "button.h"
+#include "buttontype.h"
 #include "sprite.h"
 using namespace std;
 
@@ -39,16 +39,16 @@ class Joystick {
     Joystick();
     SDL_Joystick* device = NULL;
     const unsigned buffer_size = 20;
-    vector<Button> buffer;
+    vector<ButtonType> buffer;
     int raw_buffer_length = 0;
     Uint8* current_buffer = NULL;
     Uint8* previous_buffer = NULL;
     Uint8 current_hat = 0;
     Uint8 previous_hat = 0;
     Uint8* pressed_buffer = NULL;
-    Button* mapping = NULL;
-    Button sdlDirToButtonDir(Uint8);
-    Button direction = bNULL;
+    ButtonType* mapping = NULL;
+    ButtonType sdlDirToButtonDir(Uint8);
+    ButtonType direction = bNULL;
     Sprite* icon = NULL;
 
   public:
@@ -56,13 +56,13 @@ class Joystick {
     virtual ~Joystick();
     virtual void update();
     virtual void setDefaultButtonMappings();
-    virtual Uint8 Pressed(Button);
-    virtual Button getDirection();
-    Button lastButton();
+    virtual Uint8 Pressed(ButtonType);
+    virtual ButtonType getDirection();
+    ButtonType lastButton();
     void dumpBuffer();
     void dumpPressedBuffer();
     Sprite* getIcon();
-    vector<Button>* getBufferAddress();
+    vector<ButtonType>* getBufferAddress();
 };
 
 #endif

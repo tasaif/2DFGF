@@ -79,7 +79,7 @@ bool Menu::run(){
     if (state == curop->getApplicableState()){
       setIndicatorPos(curop);
       for (unsigned button = bNULL; button < bEND; button++){
-        if (curop->press_func[button] != NULL && inputsys->Pressed((Button)button)){
+        if (curop->press_func[button] != NULL && inputsys->Pressed((ButtonType)button)){
           curop->press_func[button]();
           option_interacted = true;
           break;

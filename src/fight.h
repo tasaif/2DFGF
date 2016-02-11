@@ -29,9 +29,9 @@ class Fight {
     bool crouching = false;
     bool grounded = true;
 
-    Button away = bNULL;
-    Button towards = bNULL;
-    Button dir = bNULL;
+    ButtonType away = bNULL;
+    ButtonType towards = bNULL;
+    ButtonType dir = bNULL;
     int limitCheck(int);
 
   public:

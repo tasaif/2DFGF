@@ -3,7 +3,7 @@
 
 #include "player.h"
 #include "character.h"
-#include "button.h"
+#include "buttontype.h"
 #include "fight.h"
 
 class Character;
@@ -14,7 +14,7 @@ class MoveSystem {
     Character* c = NULL;
     Player* p = NULL;
     Fight* f = NULL;
-    vector<Button>* buffer = NULL;
+    vector<ButtonType>* buffer = NULL;
 
   public:
     MoveSystem();
