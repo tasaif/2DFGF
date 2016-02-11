@@ -99,6 +99,7 @@ void Fight::run(){
       state = psNEUTRAL;
       break;
     case psNEUTRAL:
+      grounded = true;
       currentAnim = c->getBaseAnim(psNEUTRAL);
       currentSprite = currentAnim->getSprite();
       switch(dir){
@@ -159,6 +160,7 @@ void Fight::run(){
       }
       break;
     case psJUMPU:
+      grounded = false;
       dy += c->jump_acc;
       p->position.y += dy;
       if (p->position.y <= 0){
@@ -169,6 +171,7 @@ void Fight::run(){
       }
       break;
     case psJUMPF:
+      grounded = false;
       moveHorizontally(dx);
       dy += c->jump_acc;
       p->position.y += dy;
@@ -180,6 +183,7 @@ void Fight::run(){
       }
       break;
     case psJUMPB:
+      grounded = false;
       moveHorizontally(dx);
       dy += c->jump_acc;
       p->position.y += dy;
@@ -308,8 +312,9 @@ int Fight::moveHorizontally(int _dx){
   int peekpos;
   next_step = limitCheck(_dx);
   peekpos = p->position.x + next_step;
-  if (inBetween(p->position.x, opponent->position.x, peekpos)){
-    cout << p->position.x << ' ' << peekpos << ' ' << opponent->position.x << endl;
+  if (grounded && inBetween(p->position.x, opponent->position.x, peekpos)){
+    opponent->fight->moveHorizontally(_dx);
   }
   p->position.x += next_step;
 }
+
