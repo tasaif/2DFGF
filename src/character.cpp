@@ -89,6 +89,10 @@ Animation* Character::getNormAnim(unsigned number){
   return norm_anim[number];
 }
 
+Animation* Character::getSpecAnim(unsigned number){
+  return spec_anim[number];
+}
+
 MoveSystem* Character::getMoveSys(){
   return movesys;
 }

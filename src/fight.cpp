@@ -86,6 +86,15 @@ void Fight::run(){
         block_stun--;
       }
       break;
+    case psSPECIAL:
+      currentAnim = c->getSpecAnim(movesys->number);
+      if (currentAnim->loopComplete()){
+        currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
+        state = psNEUTRAL;
+      } else {
+        currentSprite = c->getSpecAnim(movesys->number)->getSprite();
+      }
+      break;
     case psNORMAL:
       currentAnim = c->getNormAnim(movesys->number);
       if (currentAnim->loopComplete()){

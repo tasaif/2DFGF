@@ -2,6 +2,7 @@
 #include "nullmoves.h"
 
 NullMoveSystem::NullMoveSystem(){
+
 }
 
 NullMoveSystem::~NullMoveSystem(){
@@ -21,6 +22,11 @@ bool NullMoveSystem::checkForMove(){
         type = psNORMAL;
         number = nunLP;
         f->setSprite(c->getNormAnim(number)->primeSprite());
+        return true;
+      } else if (p->joystick->Pressed(bMP)){
+        type = psSPECIAL;
+        number = nusFIREBALL;
+        f->setSprite(c->getSpecAnim(number)->primeSprite());
         return true;
       }
       break;

@@ -31,6 +31,7 @@ class Character {
     string name;
     Animation* base_anim[psEND];
     Animation** norm_anim;
+    Animation** spec_anim;
 
   public:
     Character();
@@ -50,6 +51,7 @@ class Character {
     int getHP();
     Animation* getBaseAnim(PlayerState);
     Animation* getNormAnim(unsigned);
+    Animation* getSpecAnim(unsigned);
     MoveSystem* getMoveSys();
 };
 

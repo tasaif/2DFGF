@@ -120,6 +120,10 @@ void Sprite::flipHorizontal(){
     cout << "Warning: Tried to rotate a null surface" << endl;
     return;
   }
+  /*
+   * The following broke with no warning when the file was a png with "Indexed" colors
+   * Had to switch the mode of the image to RGB in GIMP
+   */
   SDL_Surface* flipped_surface = rotozoomSurfaceXY(surface, 0, -1, 1, SMOOTHING_OFF);
   unload();
   surface = flipped_surface;

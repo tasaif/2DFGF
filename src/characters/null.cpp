@@ -11,11 +11,15 @@ NullChar::NullChar(){
   init("NULL", "mode7.ttf");
   hp = 200;
   norm_anim = new Animation*[nunEND];
+  spec_anim = new Animation*[nusEND];
   for(unsigned i=0; i<psEND; i++){
     base_anim[i] = NULL;
   }
   for(unsigned i=0; i<nunEND; i++){
     norm_anim[i] = NULL;
+  }
+  for(unsigned i=0; i<nusEND; i++){
+    spec_anim[i] = NULL;
   }
   // Animation loading
   base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 5);
@@ -31,8 +35,13 @@ NullChar::NullChar(){
   base_anim[psBLOCK]->setDontLoop(true);
   base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/crouchblock", 1);
   base_anim[psCROUCHBLOCK]->setDontLoop(true);
+
+  //Normal Animations
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
   norm_anim[nunHP] = animsys->makeAnimation(character_path / "null/animations/standinghp", 2);
+
+  //Special Animations
+  spec_anim[nusFIREBALL] = animsys->makeAnimation(character_path / "null/animations/moves/fireball", 4);
 
   //Defense boxes
   base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(62, 6, 26, 43));
@@ -65,4 +74,18 @@ NullChar::~NullChar(){
       base_anim[i] = NULL;
     }
   }
+  for(unsigned i=0; i<nunEND; i++){
+    if(norm_anim[i] != NULL){
+      delete norm_anim[i];
+      norm_anim[i] = NULL;
+    }
+  }
+  for(unsigned i=0; i<nusEND; i++){
+    if(spec_anim[i] != NULL){
+      delete spec_anim[i];
+      spec_anim[i] = NULL;
+    }
+  }
+  delete[] norm_anim;
+  delete[] spec_anim;
 }

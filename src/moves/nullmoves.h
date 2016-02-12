@@ -8,4 +8,10 @@ enum NullNormalMove {
   nunEND
 };
 
+enum NullSpecialMove {
+  nusNULL,
+  nusFIREBALL,
+  nusEND
+};
+
 #endif
