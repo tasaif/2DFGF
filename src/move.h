@@ -13,7 +13,7 @@ class Move {
     Animation* anim;
     PlayerState type;
     unsigned move_number;
-    static ButtonType strToButtonType(string);
+    static ButtonType keyToButtonType(string);
     static vector<ButtonType> parseCmd(string);
 
   public:
@@ -21,6 +21,7 @@ class Move {
     ~Move();
 
     void init(string, Animation*, unsigned, PlayerState);
+    void dump();
 };
 
 #endif
