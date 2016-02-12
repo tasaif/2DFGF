@@ -313,8 +313,12 @@ int Fight::moveHorizontally(int _dx){
   next_step = limitCheck(_dx);
   peekpos = p->position.x + next_step;
   if (grounded && inBetween(p->position.x, opponent->position.x, peekpos)){
-    opponent->fight->moveHorizontally(_dx);
+    if (opponent->fight->moveHorizontally(_dx) != 0){
+      p->position.x += next_step;
+    }
+  } else {
+    p->position.x += next_step;
   }
-  p->position.x += next_step;
+  return next_step;
 }
 

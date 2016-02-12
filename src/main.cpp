@@ -6,7 +6,7 @@ path character_path;
 path image_path;
 path font_path;
 Application* app;
-unsigned debugstate = 0; /*
+unsigned debugstate = 1; /*
                             This is for starting the application at
                             different points.
                             0 - Normal running
