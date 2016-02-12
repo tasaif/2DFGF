@@ -8,6 +8,7 @@ Fight::Fight(Player* _p, Player* _opponent){
   c = p->getCharacter();
   movesys = c->getMoveSys();
   movesys->init(this);
+  movesys->initCharacterMoves();
   opponent = _opponent;
   if (p->getPnum() == 0){
     p->position.x = -1 * Application::SCREEN_WIDTH / 4;

@@ -5,6 +5,7 @@
 #include "character.h"
 #include "buttontype.h"
 #include "fight.h"
+#include "move.h"
 
 class Character;
 class Fight;
@@ -15,11 +16,14 @@ class MoveSystem {
     Player* p = NULL;
     Fight* f = NULL;
     vector<ButtonType>* buffer = NULL;
+    vector<Move> moves;
+    Move mkMove(string, Animation*, unsigned, PlayerState);
 
   public:
     MoveSystem();
     ~MoveSystem();
     void init(Fight*);
+    virtual void initCharacterMoves();
     virtual bool checkForMove();
 
     PlayerState type = psNULL;

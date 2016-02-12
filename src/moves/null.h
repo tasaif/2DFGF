@@ -2,15 +2,12 @@
 #define NULLMOVESYS_H
 
 #include "../movesystem.h"
-#include "../move.h"
 
 class NullMoveSystem : public MoveSystem {
-  private:
-    vector<Move> moves;
-
   public:
     NullMoveSystem();
     ~NullMoveSystem();
+    void initCharacterMoves();
     bool checkForMove();
 };
 

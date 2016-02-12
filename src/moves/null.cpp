@@ -2,10 +2,14 @@
 #include "nullmoves.h"
 
 NullMoveSystem::NullMoveSystem(){
-
 }
 
 NullMoveSystem::~NullMoveSystem(){
+}
+
+// This is not in the constructor because of an ordering issue
+void NullMoveSystem::initCharacterMoves(){
+  mkMove("236lP", c->getSpecAnim(nusFIREBALL), nusFIREBALL, psSPECIAL);
 }
 
 bool NullMoveSystem::checkForMove(){
