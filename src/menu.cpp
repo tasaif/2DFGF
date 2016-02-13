@@ -76,7 +76,7 @@ bool Menu::run(){
   }
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
-    if (state == curop->getApplicableState()){
+    if (state != msNULL && state == curop->getApplicableState()){
       setIndicatorPos(curop);
       for (unsigned button = bNULL; button < bEND; button++){
         if (curop->press_func[button] != NULL && inputsys->Pressed((ButtonType)button)){

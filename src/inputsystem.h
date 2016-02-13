@@ -3,7 +3,8 @@
 
 #include <vector>
 #include "joystick.h"
-#include "keyboardjoystick.h"
+#include "keyboard.h"
+#include "controller.h"
 #include "game.h"
 #include "player.h"
 using namespace std;

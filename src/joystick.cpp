@@ -1,166 +1,22 @@
-#include <iostream>
 #include "joystick.h"
-using namespace std;
 
 Joystick::Joystick(){
-  device = NULL;
-}
-
-Joystick::Joystick(unsigned sdl_joy_number){
-  device = SDL_JoystickOpen(sdl_joy_number);
-  raw_buffer_length = SDL_JoystickNumButtons(device);
-  current_buffer = new Uint8[raw_buffer_length];
-  previous_buffer = new Uint8[raw_buffer_length];
-  pressed_buffer = new Uint8[bEND];
-  for(unsigned i=0; i<buffer_size; i++){
-    buffer.push_back(bNULL);
-  }
-  for(int i=0; i<raw_buffer_length; i++){
-    current_buffer[i] = 0;
-    previous_buffer[i] = 0;
-  }
-  for(unsigned i=0; i<bEND; i++){
-    pressed_buffer[i] = bNULL;
-  }
-  mapping = new ButtonType[raw_buffer_length];
-  for(int i=0; i<raw_buffer_length; i++){
-    mapping[i] = bNULL;
-  }
-  setDefaultButtonMappings();
-  icon = new Sprite("controller.png");
-  icon->align(Sprite::HCENTER);
-  icon->offset.y = 105+75*sdl_joy_number;
 }
 
 Joystick::~Joystick(){
-  delete icon;
-  delete[] mapping;
-  delete[] pressed_buffer;
-  delete[] previous_buffer;
-  delete[] current_buffer;
-  if (device != NULL){
-    SDL_JoystickClose(device);
-  }
-}
-
-ButtonType Joystick::sdlDirToButtonDir(Uint8 dir){//Replace this with a map
-  switch(dir){
-    case SDL_HAT_UP:
-      return bUP;
-    case SDL_HAT_DOWN:
-      return bDOWN;
-    case SDL_HAT_LEFT:
-      return bLEFT;
-    case SDL_HAT_RIGHT:
-      return bRIGHT;
-    case SDL_HAT_RIGHTUP:
-      return bUPRIGHT;
-    case SDL_HAT_RIGHTDOWN:
-      return bDOWNRIGHT;
-    case SDL_HAT_LEFTUP:
-      return bUPLEFT;
-    case SDL_HAT_LEFTDOWN:
-      return bDOWNLEFT;
-  }
-  return bNULL;
 }
 
 void Joystick::update(){
-  bool change = false;
-
-  // Handle directional buttons
-  previous_hat = current_hat;
-  current_hat = SDL_JoystickGetHat(device, 0);
-  direction = sdlDirToButtonDir(current_hat);
-  if (previous_hat != current_hat){
-    if (current_hat != SDL_HAT_CENTERED){
-      pressed_buffer[direction] = 1;
-      buffer.erase(buffer.begin());
-      buffer.push_back(direction);
-    }
-    change = true;
-  } else {
-    if (previous_hat != SDL_HAT_CENTERED){
-      pressed_buffer[sdlDirToButtonDir(previous_hat)] = 0;
-    }
-  }
-
-  // Handle nondirectional buttons
-  for(int i=0; i<raw_buffer_length; i++){
-    previous_buffer[i] = current_buffer[i];
-    current_buffer[i] = SDL_JoystickGetButton(device, i);
-    if (!previous_buffer[i] & current_buffer[i]){
-      pressed_buffer[mapping[i]] = 1;
-      buffer.erase(buffer.begin());
-      buffer.push_back(mapping[i]);
-      change = true;
-    } else {
-      pressed_buffer[mapping[i]] = 0;
-    }
-
-    if (previous_buffer[i] & !current_buffer[i]) {
-      change = true;
-    }
-  }
-  /*
-   * Check for combinations here and mark them manually
-   */
-  if (change){
-    //dumpBuffer();
-    dumpPressedBuffer();
-  }
+  cout << "Error: virtual Joystick::update function called" << endl;
 }
 
-Uint8 Joystick::Pressed(ButtonType button){
-  return pressed_buffer[button];
-}
-
-ButtonType Joystick::getDirection(){
-  return direction;
-}
-
-void Joystick::setDefaultButtonMappings(){
-  mapping[0] = bMP;
-  mapping[1] = bMK;
-  mapping[2] = bLK;
-  mapping[3] = bLP;
-  mapping[5] = bHK;
-  mapping[7] = bHP;
-  mapping[8] = bSELECT;
-  mapping[9] = bSTART;
-}
-
-void Joystick::dumpBuffer(){
-  cout << "[";
-  for(unsigned i=0; i<buffer.size(); i++){
-    cout << legible_buttons[buffer[i]];
-    if (i != buffer.size()-1){
-      cout << ' ';
-    }
-  }
-  cout << "]" << endl;
-}
-
-void Joystick::dumpPressedBuffer(){
-  cout << "[";
-  for(unsigned i=0; i<bEND; i++){
-    if (pressed_buffer[i]){
-      cout << legible_buttons[i];
-    } else {
-      cout << "  ";
-    }
-  }
-  cout << "]" << endl;
+bool Joystick::Pressed(ButtonType button){
 }
 
 Sprite* Joystick::getIcon(){
   return icon;
 }
 
-ButtonType Joystick::lastButton(){
-  return buffer.back();
-}
-
-vector<ButtonType>* Joystick::getBufferAddress(){
-  return &buffer;
+ButtonType Joystick::getDirection(){
+  return bNULL;
 }

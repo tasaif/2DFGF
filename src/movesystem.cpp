@@ -7,7 +7,6 @@ void MoveSystem::init(Fight* _f){
   f = _f;
   p = f->getP();
   c = p->getCharacter();
-  buffer = p->joystick->getBufferAddress();
 }
 
 MoveSystem::~MoveSystem(){

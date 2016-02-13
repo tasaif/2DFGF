@@ -15,7 +15,6 @@ class MoveSystem {
     Character* c = NULL;
     Player* p = NULL;
     Fight* f = NULL;
-    vector<ButtonType>* buffer = NULL;
     vector<Move> moves;
     Move mkMove(string, Animation*, unsigned, PlayerState);
 

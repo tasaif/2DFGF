@@ -19,7 +19,8 @@ add_executable(fighter
   src/game.cpp
   src/inputsystem.cpp
   src/joystick.cpp
-  src/keyboardjoystick.cpp
+  src/controller.cpp
+  src/keyboard.cpp
   src/ltimer.cpp
   src/main.cpp
   src/menu.cpp
@@ -45,6 +46,7 @@ add_executable(fighter
   src/sparksystem.cpp
   src/helper.cpp
   src/move.cpp
+  src/moveinputstate.cpp
 )
 target_link_libraries(fighter
   SDL2

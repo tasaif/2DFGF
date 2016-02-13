@@ -4,6 +4,7 @@
 #include "player.h"
 #include "playerstates.h"
 #include "movesystem.h"
+#include "buttontype.h"
 
 class MoveSystem;
 class Player;

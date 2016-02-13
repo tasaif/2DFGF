@@ -13,11 +13,12 @@ InputSystem::InputSystem(){
   } else {
     cout << "Found " << number_of_joysticks << " Joysticks" << endl;
     for (unsigned i=0; i<number_of_joysticks; i++){
-      new_joystick = new Joystick(i);
+      new_joystick = new Controller(i);
       joysticks.push_back(new_joystick);
     }
   }
-  new_joystick = new KeyboardJoystick(number_of_joysticks);
+  //number of joysticks used to calculate height of keyboard icon
+  new_joystick = new Keyboard(number_of_joysticks);
   joysticks.push_back(new_joystick);
   //This will grab the inputs regardless if the window has focus
   //SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
