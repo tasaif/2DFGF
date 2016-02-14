@@ -27,5 +27,10 @@ Sprite* Joystick::getIcon(){
 }
 
 ButtonType Joystick::getDirection(){
+  for(unsigned i=bUP; i<=bDOWNRIGHT; i++){
+    if (current_buffer[i]){
+      return (ButtonType)i;
+    }
+  }
   return bNULL;
 }

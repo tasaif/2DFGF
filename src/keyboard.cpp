@@ -27,6 +27,7 @@ void Keyboard::update(){
         current_buffer[i] = keyboardstate[mapping[i]];
       }
     }
+    fixDirections();
   } else {
     cout << "Error: keyboardstate is NULL" << endl;
   }
@@ -45,4 +46,36 @@ void Keyboard::setDefaultButtonMappings(){
   mapping[bLK] = SDL_SCANCODE_Z;
   mapping[bMK] = SDL_SCANCODE_X;
   mapping[bHK] = SDL_SCANCODE_C;
+}
+
+void Keyboard::fixDirections(){
+  current_buffer[bUPLEFT] = 0;
+  current_buffer[bUPRIGHT] = 0;
+  current_buffer[bDOWNLEFT] = 0;
+  current_buffer[bDOWNRIGHT] = 0;
+
+  if (current_buffer[bUP]){
+    if (current_buffer[bLEFT]){
+      current_buffer[bUP] = 0;
+      current_buffer[bLEFT] = 0;
+      current_buffer[bUPLEFT] = 1;
+    }
+    if (current_buffer[bRIGHT]){
+      current_buffer[bUP] = 0;
+      current_buffer[bRIGHT] = 0;
+      current_buffer[bUPRIGHT] = 1;
+    }
+  }
+  if (current_buffer[bDOWN]){
+    if (current_buffer[bLEFT]){
+      current_buffer[bDOWN] = 0;
+      current_buffer[bLEFT] = 0;
+      current_buffer[bDOWNLEFT] = 1;
+    }
+    if (current_buffer[bRIGHT]){
+      current_buffer[bDOWN] = 0;
+      current_buffer[bRIGHT] = 0;
+      current_buffer[bDOWNRIGHT] = 1;
+    }
+  }
 }

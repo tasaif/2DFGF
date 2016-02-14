@@ -8,6 +8,7 @@ class Keyboard : public Joystick {
     const Uint8* keyboardstate = NULL;
     SDL_Scancode* mapping = NULL;
     void setDefaultButtonMappings();
+    void fixDirections();
 
   public:
     Keyboard(int);
