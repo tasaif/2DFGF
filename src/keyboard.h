@@ -5,6 +5,10 @@
 
 class Keyboard : public Joystick {
   private:
+    const Uint8* keyboardstate = NULL;
+    SDL_Scancode* mapping = NULL;
+    void setDefaultButtonMappings();
+
   public:
     Keyboard(int);
     ~Keyboard();

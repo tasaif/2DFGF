@@ -8,6 +8,8 @@ class Joystick {
   protected:
     Joystick();
     Sprite* icon;
+    Uint8* previous_buffer;
+    Uint8* current_buffer;
 
   public:
     virtual ~Joystick();
