@@ -12,10 +12,15 @@ class MoveState {
     int charge;
 
   public:
-    const static int TTL = 20;
-    MoveState();
+    const static int TTL = 30;
+    const static int MAXCHARGE = 100;
+    MoveState(ButtonType, ButtonState);
     ~MoveState();
     ButtonType button;
+    ButtonState state;
+    int Ttl(int);
+    int Charge(int);
+    bool operator==(ButtonType);
 };
 
 #endif

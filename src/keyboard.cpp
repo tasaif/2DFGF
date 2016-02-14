@@ -31,6 +31,7 @@ void Keyboard::update(){
   } else {
     cout << "Error: keyboardstate is NULL" << endl;
   }
+  Joystick::update();
 }
 
 void Keyboard::setDefaultButtonMappings(){

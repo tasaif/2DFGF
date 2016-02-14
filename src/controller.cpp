@@ -38,6 +38,7 @@ void Controller::update(){
       current_buffer[i] = SDL_JoystickGetButton(device, sdl_button_number);
     }
   }
+  Joystick::update();
 }
 
 void Controller::setDefaultMapping(){

@@ -3,6 +3,7 @@
 
 #include "buttontype.h"
 #include "sprite.h"
+#include "movestate.h"
 
 class Joystick {
   protected:
@@ -10,6 +11,7 @@ class Joystick {
     Sprite* icon;
     Uint8* previous_buffer;
     Uint8* current_buffer;
+    vector<MoveState> movebuffer;
 
   public:
     virtual ~Joystick();
@@ -18,6 +20,7 @@ class Joystick {
     bool Pressed(ButtonType);
     Sprite* getIcon();
     ButtonType getDirection();
+    void dump();
 };
 
 #endif

@@ -4,7 +4,7 @@
 enum ButtonState {
   bsNULL,
   bsPRESSED,
-  bsHELD,
+//  bsHELD, No need for this so far
   bsRELEASED,
   bsEND
 };

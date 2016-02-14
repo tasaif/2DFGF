@@ -46,7 +46,7 @@ add_executable(fighter
   src/sparksystem.cpp
   src/helper.cpp
   src/move.cpp
-  src/moveinputstate.cpp
+  src/movestate.cpp
 )
 target_link_libraries(fighter
   SDL2

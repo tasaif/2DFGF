@@ -254,6 +254,9 @@ void Fight::run(){
 
   prevSprite = currentSprite;
   previous_state = state;
+  if (p->getPnum() == 1){
+    p->joystick->dump();
+  }
 }
 
 Sprite* Fight::getSprite(){
