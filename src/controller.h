@@ -5,6 +5,11 @@
 
 class Controller : public Joystick {
   private:
+    SDL_Joystick* device = NULL;
+    void setDefaultMapping();
+    ButtonType getCurrentDirection();
+    int* mapping;
+
   public:
     Controller(unsigned);
     ~Controller();
