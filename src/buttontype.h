@@ -40,14 +40,9 @@ const string legible_buttons[] = {
   "□ ",
   "△ ",
   "R1",
-  "L1",
   "X ",
   "O ",
   "R2",
-  "L2",
-  "OV",
-  "TA",
-  "HR",
   "EN"
 };
 

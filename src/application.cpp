@@ -63,7 +63,7 @@ bool Application::run(){
   bool run_again = game->run() and !quit;
   SDL_UpdateWindowSurface( gWindow );
   frameLimiter();
-  system("sleep .5");
+  system("sleep .3");
   return run_again;
 }
 
