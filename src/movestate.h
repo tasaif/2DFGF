@@ -10,6 +10,7 @@ class MoveState {
   private:
     int ttl;
     int charge;
+    bool confirmed;
 
   public:
     const static int TTL = 20;
@@ -20,6 +21,8 @@ class MoveState {
     ButtonState state;
     int Ttl(int);
     int Charge(int);
+    void Confirm();
+    bool Confirmed();
     bool operator==(ButtonType);
     bool operator==(MoveState);
 };

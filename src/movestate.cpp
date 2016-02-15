@@ -3,6 +3,7 @@
 MoveState::MoveState(ButtonType _button, ButtonState _state):button(_button), state(_state){
   ttl = TTL;
   charge = 0;
+  confirmed = false;
 }
 
 MoveState::~MoveState(){
@@ -37,4 +38,12 @@ bool MoveState::operator==(MoveState rhs){
     return true;
   }
   return false;
+}
+
+void MoveState::Confirm(){
+  confirmed = true;
+}
+
+bool MoveState::Confirmed(){
+  return confirmed;
 }

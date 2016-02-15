@@ -34,33 +34,29 @@ bool MoveSystem::checkForMove(){
 
   // Lucy, you have some splainin to do
   if (p->getPnum() == 1){
-    p->joystick->dumpStates();
-    p->joystick->dumpMoveBuffer();
     for(i=0; i<moves.size(); i++){
-      cout << "Checking for " << moves[i].getName() << ": ";
-      moves[i].dump(false);
       cmd_buffer = moves[i].getCmd();
       j = cmd_buffer->size() - 1;
       k = move_buffer->size() - 1;
-      while (j >= 0){
-        while (k >= 0){
-          if ((*move_buffer)[k] == (*cmd_buffer)[j]){
+      if (k >= 0 && (!(*move_buffer)[k].Confirmed()) && ((*move_buffer)[k] == (*cmd_buffer)[j])){
+        while (j >= 0){
+          while (k >= 0){
+            if ((*move_buffer)[k] == (*cmd_buffer)[j]){
+              break;
+            }
+            k--;
+          }
+          if (k < 0){
             break;
           }
-          k--;
+          j--;
         }
-        if (k < 0){
-          break;
+        if (j < 0){
+          move_buffer->back().Confirm();
+          cout << "TRUE" << endl;
         }
-        j--;
-      }
-      if (j < 0){
-        cout << "TRUE" << endl;
-      } else {
-        cout << "FALSE" << endl;
       }
     }
-    cout << endl;
   }
   return false;
 }
