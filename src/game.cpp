@@ -30,12 +30,16 @@ bool Game::init(){
   select_menu->init("selectmenu.png");
   character_menu->init("charactermenu.png");
   vs_scene->init();
-
+  fps_display = new TextSprite();
+  fps_display->setColor({255, 255, 255});
+  fps_display->offset.y = Application::SCREEN_HEIGHT - 15;
+  fps_display->init("0");
   was_initialized = true;
 }
 
 Game::~Game(){
   if (!was_initialized) return;
+  delete fps_display;
   delete vs_scene;
   delete logo1;
   delete logo2;
@@ -148,6 +152,8 @@ bool Game::run(){
     case gsQUIT:
       return false;
   };
+  fps_display->init(to_string(app->avgFPS));
+  app->drawsys->draw(fps_display);
   return true;
 }
 

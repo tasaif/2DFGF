@@ -29,6 +29,7 @@ class Game {
     VSScene* vs_scene;
     GameState gamestate = gsNULL;
     Player** p = NULL;
+    TextSprite* fps_display;
     bool was_initialized = false;
 
   public:
