@@ -25,6 +25,8 @@ void Keyboard::update(){
       if (current_scancode != SDL_SCANCODE_UNKNOWN){
         previous_buffer[i] = current_buffer[i];
         current_buffer[i] = keyboardstate[mapping[i]];
+      } else if(isDirectional((ButtonType)i)){
+        previous_buffer[i] = current_buffer[i];
       }
     }
     fixDirections();
@@ -47,6 +49,10 @@ void Keyboard::setDefaultButtonMappings(){
   mapping[bLK] = SDL_SCANCODE_Z;
   mapping[bMK] = SDL_SCANCODE_X;
   mapping[bHK] = SDL_SCANCODE_C;
+}
+
+bool Keyboard::isDirectional(ButtonType b){
+  return b >= bUP && b <= bDOWNRIGHT;
 }
 
 void Keyboard::fixDirections(){

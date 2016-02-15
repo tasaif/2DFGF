@@ -69,10 +69,16 @@ void Move::init(string _command, Animation* _anim, unsigned _move_number, Player
 }
 
 void Move::dump(){
+  dump(true);
+}
+
+void Move::dump(bool newline){
   for(unsigned i=0; i<command.size(); i++){
     cout << legible_buttons[command[i].button] << " ";
   }
-  cout << endl;
+  if (newline){
+    cout << endl;
+  }
 }
 
 vector<MoveState>* Move::getCmd(){

@@ -21,7 +21,8 @@ class Joystick {
     Sprite* getIcon();
     ButtonType getDirection();
     vector<MoveState>* getMoveBuffer();
-    void dump();
+    void dumpStates();
+    void dumpMoveBuffer();
 };
 
 #endif

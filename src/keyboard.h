@@ -9,6 +9,7 @@ class Keyboard : public Joystick {
     SDL_Scancode* mapping = NULL;
     void setDefaultButtonMappings();
     void fixDirections();
+    bool isDirectional(ButtonType);
 
   public:
     Keyboard(int);

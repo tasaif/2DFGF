@@ -47,7 +47,24 @@ void Joystick::update(){
   }
 }
 
-void Joystick::dump(){
+void Joystick::dumpStates(){
+  cout << "Joystick previous_buffer: ";
+  for(unsigned i=0; i<bEND; i++){
+    if (previous_buffer[i]){
+      cout << legible_buttons[i] << ' ';
+    }
+  }
+  cout << endl;
+  cout << "Joystick current_buffer:  ";
+  for(unsigned i=0; i<bEND; i++){
+    if (current_buffer[i]){
+      cout << legible_buttons[i] << ' ';
+    }
+  }
+  cout << endl;
+}
+
+void Joystick::dumpMoveBuffer(){
   MoveState* ms;
   cout << "Joystick Dump: ";
   for(unsigned i=0; i<movebuffer.size(); i++){

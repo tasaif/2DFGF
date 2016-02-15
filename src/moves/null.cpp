@@ -23,10 +23,14 @@ bool NullMoveSystem::checkForMove(){
   int j;
   int k;
   bool found_ms;
+
+  // Lucy, you have some splainin to do
   if (p->getPnum() == 1){
+    p->joystick->dumpStates();
+    p->joystick->dumpMoveBuffer();
     for(i=0; i<moves.size(); i++){
-      cout << "Checking for " << moves[i].getName() << " ";
-      moves[i].dump();
+      cout << "Checking for " << moves[i].getName() << ": ";
+      moves[i].dump(false);
       cmd_buffer = moves[i].getCmd();
       j = cmd_buffer->size() - 1;
       k = move_buffer->size() - 1;

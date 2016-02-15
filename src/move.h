@@ -24,6 +24,7 @@ class Move {
 
     void init(string, Animation*, unsigned, PlayerState, string);
     void dump();
+    void dump(bool);
     vector<MoveState>* getCmd();
     string getName();
 };
