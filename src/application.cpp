@@ -49,6 +49,7 @@ bool Application::init(int argc, char* argv[]){
 }
 
 bool Application::run(){
+  system("clear");
   bool quit = false;
   capTimer.start();
   while (SDL_PollEvent(event)){
@@ -62,6 +63,7 @@ bool Application::run(){
   bool run_again = game->run() and !quit;
   SDL_UpdateWindowSurface( gWindow );
   frameLimiter();
+  system("sleep .5");
   return run_again;
 }
 

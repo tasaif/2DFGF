@@ -24,3 +24,17 @@ int MoveState::Charge(int increment){
 bool MoveState::operator==(ButtonType _button){
   return button == _button;
 }
+
+/*
+ * Later, this will include:
+ *  comparing charge times (sonic boom)
+ *  comparing press vs release (double jump and dash)
+ *
+ * Right now, this is enough for a fireball cmp
+ */
+bool MoveState::operator==(MoveState rhs){
+  if(button == rhs.button){
+    return true;
+  }
+  return false;
+}

@@ -12,10 +12,10 @@ void MoveSystem::init(Fight* _f){
 MoveSystem::~MoveSystem(){
 }
 
-Move MoveSystem::mkMove(string _command, Animation* _anim, unsigned _move_number, PlayerState _type){
-  Move retval;
-  retval.init(_command, _anim, _move_number, _type);
-  return retval;
+void MoveSystem::mkMove(string _command, Animation* _anim, unsigned _move_number, PlayerState _type, string _name){
+  Move newmove;
+  newmove.init(_command, _anim, _move_number, _type, _name);
+  moves.push_back(newmove);
 }
 
 void MoveSystem::initCharacterMoves(){

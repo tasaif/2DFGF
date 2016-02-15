@@ -27,7 +27,7 @@ void Joystick::update(){
     held = previous_buffer[i] && current_buffer[i];
     released = previous_buffer[i] && !current_buffer[i];
     if (pressed || released){
-      movebuffer.push_back(MoveState(button));
+      movebuffer.push_back(MoveState(button, pressed?bsPRESSED:bsRELEASED));
     } else if(held) {
       for(unsigned i=movebuffer.size()-1; i>=0; i--){
         if (movebuffer[i] == button){
@@ -49,14 +49,12 @@ void Joystick::update(){
 
 void Joystick::dump(){
   MoveState* ms;
-  system("clear");
-  cout << "Joystick Dump" << endl;
+  cout << "Joystick Dump: ";
   for(unsigned i=0; i<movebuffer.size(); i++){
     ms = &movebuffer[i];
     cout << legible_buttons[ms->button] << ' ';
   }
-  system("sleep .1");
-  system("clear");
+  cout << endl;
 }
 
 bool Joystick::Pressed(ButtonType button){
@@ -74,4 +72,8 @@ ButtonType Joystick::getDirection(){
     }
   }
   return bNULL;
+}
+
+vector<MoveState>* Joystick::getMoveBuffer(){
+  return &movebuffer;
 }

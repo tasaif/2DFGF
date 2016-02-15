@@ -5,23 +5,27 @@
 #include "buttontype.h"
 #include "playerstates.h"
 #include "animationsystem.h"
+#include "movestate.h"
 using namespace std;
 
 class Move {
   private:
-    vector<ButtonType> command;
+    string name;
+    vector<MoveState> command;
     Animation* anim;
     PlayerState type;
     unsigned move_number;
     static ButtonType keyToButtonType(string);
-    static vector<ButtonType> parseCmd(string);
+    static vector<MoveState> parseCmd(string);
 
   public:
     Move();
     ~Move();
 
-    void init(string, Animation*, unsigned, PlayerState);
+    void init(string, Animation*, unsigned, PlayerState, string);
     void dump();
+    vector<MoveState>* getCmd();
+    string getName();
 };
 
 #endif

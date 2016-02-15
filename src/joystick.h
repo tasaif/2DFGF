@@ -20,6 +20,7 @@ class Joystick {
     bool Pressed(ButtonType);
     Sprite* getIcon();
     ButtonType getDirection();
+    vector<MoveState>* getMoveBuffer();
     void dump();
 };
 

@@ -16,7 +16,7 @@ class MoveSystem {
     Player* p = NULL;
     Fight* f = NULL;
     vector<Move> moves;
-    Move mkMove(string, Animation*, unsigned, PlayerState);
+    void mkMove(string, Animation*, unsigned, PlayerState, string);
 
   public:
     MoveSystem();
