@@ -23,6 +23,7 @@ class Character {
     path load_path;
     //sound bgm
     //stage stage
+    void setRotationPoint(Sprite*);
 
   protected:
     bool init(string, string);

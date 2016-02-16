@@ -25,7 +25,7 @@ void DrawSystem::draw(Sprite* sprite, SDL_Rect offset){
   } else if (sprite->texture == NULL){
     cout << "Error: Tried to draw NULL sprite->texture" << endl;
   } else {
-    SDL_RenderCopyEx(renderer, sprite->texture, NULL, &offset, sprite->getAngle(), NULL, sprite->getFlipState());
+    SDL_RenderCopyEx(renderer, sprite->texture, NULL, &offset, sprite->getAngle(), sprite->getRotationPoint(), sprite->getFlipState());
   }
 }
 

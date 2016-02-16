@@ -14,6 +14,7 @@ class Sprite {
     string fname;
     void init(path, string);
     double angle = 0.0;
+    SDL_Point* rotation_point = NULL;
     SDL_RendererFlip flip_state = SDL_FLIP_NONE;
 
   public:
@@ -40,6 +41,8 @@ class Sprite {
     void dump();
     int getW();
     int getH();
+    void setRotationPoint(SDL_Point*);
+    SDL_Point* getRotationPoint();
     double getAngle();
     SDL_RendererFlip getFlipState();
 

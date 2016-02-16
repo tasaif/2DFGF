@@ -1,4 +1,5 @@
 #include "character.h"
+#include "helper.h"
 
 extern path character_path;
 
@@ -40,12 +41,17 @@ bool Character::init(string _name, string _placard_font){
   placard_name[0] = new TextSprite();
   placard_name[0]->setFont(placard_font, placard_font_size);
   placard_name[0]->init(name);
-  placard_name[0]->rotate(90);
   placard_name[1] = placard_name[0]->duplicate();
+
+  placard_name[0]->rotate(90);
   placard_name[1]->rotate(270);
+  setRotationPoint(placard_name[0]);
+  setRotationPoint(placard_name[1]);
   placard_name[0]->align(Sprite::VCENTER);
   placard_name[1]->align(Sprite::VCENTER);
-  placard_name[1]->alignFromRight(25);
+  placard_name[0]->offset.x = 0;
+  placard_name[1]->alignFromRight(0);
+
   for(unsigned i=0; i<2; i++){
     vsname[i] = new TextSprite();
     vsname[i]->setFont("somethingstrange.ttf");
@@ -95,4 +101,8 @@ Animation* Character::getSpecAnim(unsigned number){
 
 MoveSystem* Character::getMoveSys(){
   return movesys;
+}
+
+void Character::setRotationPoint(Sprite* pname){
+  pname->setRotationPoint(new Point(pname->offset.w/2, 0));
 }

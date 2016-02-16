@@ -18,7 +18,6 @@ TextSprite* CharacterMenu::createIcon(unsigned player){
 CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
   cout << "initializing charactermenu" << endl;
   charsys = _charsys;
-  optionsys = app->optionsys;
   selection_backing = new Sprite();
   selection_backing->mkRect(332, 140, 0xCC);
   selection_backing->offset.y = 320;
@@ -54,8 +53,6 @@ bool CharacterMenu::first(){
 }
 
 bool CharacterMenu::run(){
-  bool option_interacted = false;
-  Option* curop;
   Character* curchar;
   Sprite* icon;
   SDL_Rect offset;
@@ -75,16 +72,12 @@ bool CharacterMenu::run(){
     }
     drawsys->draw(icon);
   }
-  /*drawsys->draw(selection_box);
-  for(unsigned i=0; i<options.size(); i++){
-    curop = options[i];
-    drawsys->draw(curop);
-  }
+  drawsys->draw(selection_box);
   for(unsigned i=0; i<2; i++){
     if (state[i] == cmsCHOOSING){
       drawsys->draw(icons[i]);
     }
-  }*/
+  }
   for(unsigned player=0; player<2; player++){
     Player* p = getP(player);
     switch(state[player]){

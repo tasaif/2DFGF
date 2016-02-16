@@ -85,6 +85,10 @@ void Sprite::load(string _fname){
 }
 
 void Sprite::unload(){
+  if (rotation_point){
+    delete rotation_point;
+    rotation_point = NULL;
+  }
   if (texture != NULL){
     SDL_DestroyTexture(texture);
     texture = NULL;
@@ -168,4 +172,15 @@ SDL_RendererFlip Sprite::getFlipState(){
 
 void Sprite::setFlipState(SDL_RendererFlip _flip_state){
   flip_state = _flip_state;
+}
+
+void Sprite::setRotationPoint(SDL_Point* _point){
+  if (rotation_point){
+    delete rotation_point;
+  }
+  rotation_point = _point;
+}
+
+SDL_Point* Sprite::getRotationPoint(){
+  return rotation_point;
 }

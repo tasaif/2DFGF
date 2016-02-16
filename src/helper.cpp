@@ -13,3 +13,10 @@ bool inBetween(int left, int middle, int right){
   return middle >= left && middle <= right;
 }
 
+Point::Point(int _x, int _y){
+  x = _x;
+  y = _y;
+}
+
+Point::~Point(){
+}
