@@ -41,6 +41,7 @@ class Sprite {
     int getW();
     int getH();
     double getAngle();
+    SDL_RendererFlip getFlipState();
 
     static const unsigned HCENTER = 1;
     static const unsigned VBOTTOM = 2;

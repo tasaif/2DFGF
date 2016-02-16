@@ -123,19 +123,13 @@ void Sprite::rotate(double _angle){
   angle = _angle;
 }
 
+//Careful with this it shares a texture
 Sprite* Sprite::duplicate(){
-  SDL_Renderer* renderer = app->renderer;
-  SDL_Texture* before = SDL_GetRenderTarget(renderer);
   Sprite* retval = new Sprite();
-  retval->texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, getW(), getH());
+  retval->texture = texture;
   retval->rotate(angle);
   retval->setFlipState(flip_state);
   retval->offset = offset;
-  /*
-  SDL_SetRenderTarget(renderer, texture);
-  SDL_RenderCopy(renderer, texture, NULL, NULL);
-  SDL_SetRenderTarget(renderer, before);
-  */
   return retval;
 }
 
@@ -159,6 +153,10 @@ int Sprite::getH(){
 
 double Sprite::getAngle(){
   return angle;
+}
+
+SDL_RendererFlip Sprite::getFlipState(){
+  return flip_state;
 }
 
 void Sprite::setFlipState(SDL_RendererFlip _flip_state){

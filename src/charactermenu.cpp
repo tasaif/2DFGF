@@ -1,24 +1,6 @@
 #include "charactermenu.h"
 #include "application.h"
 
-void CharacterMenu::setup_options(){
-  /*bgm_option = createOption(omsBGMVOLUME);
-  bgm_option->init("BGM Volume", 20, 125, 150);
-  bgm_option->press_func[bUP] = [&](){state = omsQUIT;};
-  bgm_option->press_func[bDOWN] = [&](){state = omsSFXVOLUME;};
-  bgm_option->press_func[bLEFT] = [&](){
-    optionsys->incBGMVolume(-10);
-    bgm_level->init(to_string(optionsys->getBGMVolume()));
-  };
-  bgm_option->press_func[bRIGHT] = [&](){
-    optionsys->incBGMVolume(10);
-    bgm_level->init(to_string(optionsys->getBGMVolume()));
-  };
-
-  duration_level->init(to_string(optionsys->getMatchDuration()), 20, 400, 0);
-  duration_level->alignTo(duration_option, Sprite::VCENTER);*/
-}
-
 void CharacterMenu::updateIconOffset(unsigned player){
   TextSprite* icon = icons[player];
   Player* p = getP(player);
@@ -34,6 +16,7 @@ TextSprite* CharacterMenu::createIcon(unsigned player){
 }
 
 CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
+  cout << "initializing charactermenu" << endl;
   charsys = _charsys;
   optionsys = app->optionsys;
   selection_backing = new Sprite();
@@ -48,7 +31,7 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
     icons[i] = createIcon(i);
     updateIconOffset(i);
   }
-  setup_options();
+  cout << "done" << endl;
 }
 
 CharacterMenu::~CharacterMenu(){
@@ -57,7 +40,6 @@ CharacterMenu::~CharacterMenu(){
   }
   delete selection_box;
   delete selection_backing;
-  //delete duration_level;
 }
 
 bool CharacterMenu::first(){
@@ -80,9 +62,10 @@ bool CharacterMenu::run(){
   drawsys->draw(background);
   drawsys->draw(getPlacard(0));
   drawsys->draw(getPlacard(1));
-  drawsys->draw(getNamePlacard(0));
-  drawsys->draw(getNamePlacard(1));
-  drawsys->draw(selection_backing);
+  //drawsys->draw(getNamePlacard(0));
+  //drawsys->draw(getNamePlacard(1));
+  //drawsys->draw(selection_backing);
+  /*
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);
     icon = curchar != NULL ? curchar->getIcon() : charsys->getMissingCharacterIcon();
@@ -100,6 +83,7 @@ bool CharacterMenu::run(){
       drawsys->draw(icons[i]);
     }
   }
+  */
   for(unsigned player=0; player<2; player++){
     Player* p = getP(player);
     switch(state[player]){

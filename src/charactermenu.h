@@ -23,7 +23,6 @@ class CharacterMenu : public Scene {
     //Option* bgm_option = NULL;
     //sound option_changed;
     //sound option_selected;
-    void setup_options();
     TextSprite* createIcon(unsigned);
     void updateIconOffset(unsigned player);
 

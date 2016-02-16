@@ -20,7 +20,6 @@ Sprite* Player::getNamePlacard(unsigned player){
 }
 
 Character* Player::getCharacter(){
-  //return app->game->charsys->getCharacter(charselect);
   return character;
 }
 
