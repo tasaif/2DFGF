@@ -28,8 +28,10 @@ bool Camera::draw(Spark* spark){
   Sprite* sprite = spark->getSprite();
   if (sprite == NULL) return false;
   SDL_Rect repos = spark->offset;
-  repos.x = repos.x - offset.x - sprite->getW()/2;
-  repos.y = repos.y - sprite->getH()/2;
+  repos.x = repos.x - offset.x - sprite->offset.w/2;
+  repos.y = repos.y - sprite->offset.h/2;
+  repos.w = sprite->offset.w;
+  repos.h = sprite->offset.h;
   drawsys->draw(sprite, repos);
   return true;
 }
@@ -38,6 +40,8 @@ void Camera::draw(Sprite* sprite, SDL_Rect _offset){
   SDL_Rect repos;
   repos.x = _offset.x + Application::SCREEN_WIDTH/2 - sprite->getW()/2 - offset.x;
   repos.y = (int)Application::SCREEN_HEIGHT - (int)Stage::FLOOR_HEIGHT - sprite->getH() - _offset.y;
+  repos.w = sprite->offset.w;
+  repos.h = sprite->offset.h;
   drawsys->draw(sprite, repos);
 }
 
@@ -46,7 +50,7 @@ void Camera::drawBG(){
   Sprite* bg;
   unsigned max = stage->backgrounds.size();
   int xoffset;
-  drawsys->fill(0x0);
+  drawsys->fill(0xff);
   for(unsigned i=0; i<max; i++){
     bg = stage->backgrounds[i];
     if (i == max - 1){
@@ -56,6 +60,8 @@ void Camera::drawBG(){
     }
     repos.x = bg->offset.x - xoffset;
     repos.y = bg->offset.y;
+    repos.w = bg->offset.w;
+    repos.h = bg->offset.h;
     drawsys->draw(stage->backgrounds[i], repos);
   }
 }

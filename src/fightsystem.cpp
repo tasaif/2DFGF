@@ -89,7 +89,7 @@ void FightSystem::drawWith(Camera* camera){
     } else {
       curSprite->setFlipState(SDL_FLIP_HORIZONTAL);
     }
-    camera->draw(f[i]->getSprite(), player->position);
+    camera->draw(curSprite, player->position);
   }
   sparksys->drawWith(camera);
   if (debugstate == 1){

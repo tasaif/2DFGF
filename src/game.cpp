@@ -35,8 +35,6 @@ bool Game::init(){
   fps_display->offset.y = Application::SCREEN_HEIGHT - 15;
   fps_display->init("0");
   was_initialized = true;
-
-  gamestate = gsSELECT;
 }
 
 Game::~Game(){
