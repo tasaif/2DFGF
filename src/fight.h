@@ -21,11 +21,11 @@ class Fight {
     PlayerState previous_state = psNULL;
     PlayerState state = psMATCHSTARTING;
     MoveSystem* movesys;
-    unsigned dy_reset = 38; //qualitative
-    unsigned dy;
-    unsigned dx;
-    unsigned distance;
-    unsigned next_step;
+    int dy_reset = 21; //qualitative
+    int dy;
+    int dx;
+    int distance;
+    int next_step;
     int block_stun = 0;
     bool crouching = false;
     bool grounded = true;

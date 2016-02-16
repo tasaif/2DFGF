@@ -38,11 +38,11 @@ class Character {
     Character();
     virtual ~Character();
 
-    unsigned jump_acc = -4;
-    unsigned walkf_speed = 4;
-    unsigned walkb_speed = 4;
-    unsigned jumpf_speed = 5;
-    unsigned jumpb_speed = 5;
+    int jump_acc = -1;
+    int walkf_speed = 4;
+    int walkb_speed = 4;
+    int jumpf_speed = 8;
+    int jumpb_speed = 5;
 
     string getName();
     Sprite* getPlacard(unsigned);

@@ -74,7 +74,7 @@ void FightSystem::drawWith(Camera* camera){
   center.y = (p[0]->position.y + p[1]->position.y) / 2;
   camera->setFocus(center);
   for(unsigned i=0; i<2; i++){
-    shadow->offset = p[i]->position;
+    shadow->offset.x = p[i]->position.x;
     shadow->offset.y = -10;
     camera->draw(shadow);
   }

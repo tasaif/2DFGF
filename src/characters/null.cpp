@@ -22,26 +22,26 @@ NullChar::NullChar(){
     spec_anim[i] = NULL;
   }
   // Animation loading
-  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 5);
-  base_anim[psWALKB] = animsys->makeAnimation(character_path / "null/animations/walkb", 4);
-  base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 4);
-  base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 1);
-  base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 5);
-  base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 1);
-  base_anim[psHURTCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouchhurt", 3);
-  base_anim[psHURTLIGHT] = animsys->makeAnimation(character_path / "null/animations/hurtlight", 3);
-  base_anim[psHURTHEAVY] = animsys->makeAnimation(character_path / "null/animations/hurtheavy", 3);
-  base_anim[psBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 1);
+  base_anim[psNEUTRAL] = animsys->makeAnimation(character_path / "null/animations/neutral", 10);
+  base_anim[psWALKB] = animsys->makeAnimation(character_path / "null/animations/walkb", 8);
+  base_anim[psWALKF] = animsys->makeAnimation(character_path / "null/animations/walkf", 8);
+  base_anim[psPRECROUCH] = animsys->makeAnimation(character_path / "null/animations/precrouch", 2);
+  base_anim[psCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouch", 10);
+  base_anim[psPOSTCROUCH] = animsys->makeAnimation(character_path / "null/animations/postcrouch", 2);
+  base_anim[psHURTCROUCH] = animsys->makeAnimation(character_path / "null/animations/crouchhurt", 6);
+  base_anim[psHURTLIGHT] = animsys->makeAnimation(character_path / "null/animations/hurtlight", 6);
+  base_anim[psHURTHEAVY] = animsys->makeAnimation(character_path / "null/animations/hurtheavy", 6);
+  base_anim[psBLOCK] = animsys->makeAnimation(character_path / "null/animations/block", 2);
   base_anim[psBLOCK]->setDontLoop(true);
-  base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/crouchblock", 1);
+  base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/crouchblock", 2);
   base_anim[psCROUCHBLOCK]->setDontLoop(true);
 
   //Normal Animations
-  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 2);
-  norm_anim[nunHP] = animsys->makeAnimation(character_path / "null/animations/standinghp", 2);
+  norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 4);
+  norm_anim[nunHP] = animsys->makeAnimation(character_path / "null/animations/standinghp", 4);
 
   //Special Animations
-  spec_anim[nusFIREBALL] = animsys->makeAnimation(character_path / "null/animations/moves/fireball", 4);
+  spec_anim[nusFIREBALL] = animsys->makeAnimation(character_path / "null/animations/moves/fireball", 8);
 
   //Defense boxes
   base_anim[psNEUTRAL]->mkDefBox(0, 6, animsys->mkBox(62, 6, 26, 43));
@@ -59,11 +59,11 @@ NullChar::NullChar(){
   /*
    * The following values were found qualitatively
    */
-  jump_acc = -4;
-  walkf_speed = 6;
-  walkb_speed = 3;
-  jumpf_speed = 10;
-  jumpb_speed = 8;
+  jump_acc = -1;
+  walkf_speed = 3;
+  walkb_speed = 2;
+  jumpf_speed = 8;
+  jumpb_speed = 7;
 }
 
 NullChar::~NullChar(){

@@ -49,6 +49,29 @@ void Fight::run(){
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
+  if(p->joystick->Pressed(bLP)){
+    dy_reset += 1;
+    cout << dy_reset << endl;
+  } else if(p->joystick->Pressed(bLK)){
+    dy_reset -= 1;
+    cout << dy_reset << endl;
+  }
+
+  if(p->joystick->Pressed(bMP)){
+    c->jump_acc++;
+    cout << c->jump_acc << endl;
+  } else if(p->joystick->Pressed(bMK)){
+    c->jump_acc--;
+    cout << c->jump_acc << endl;
+  }
+
+  if(p->joystick->Pressed(bHP)){
+    c->jumpf_speed++;
+    cout << c->jumpf_speed << endl;
+  } else if(p->joystick->Pressed(bHK)){
+    c->jumpf_speed--;
+    cout << c->jumpf_speed << endl;
+  }
 
   if (movesys->checkForMove()){
     state = movesys->type;
