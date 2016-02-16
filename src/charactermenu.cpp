@@ -22,8 +22,8 @@ void CharacterMenu::setup_options(){
 void CharacterMenu::updateIconOffset(unsigned player){
   TextSprite* icon = icons[player];
   Player* p = getP(player);
-  icon->offset.x = 154 + ((p->charselect%4)*83) + ((83-icon->surface->w*player)*player);
-  icon->offset.y = 390 - icon->surface->h + 70*(p->charselect > 3 ? 1 : 0);
+  icon->offset.x = 154 + ((p->charselect%4)*83) + ((83-icon->getW()*player)*player);
+  icon->offset.y = 390 - icon->getH() + 70*(p->charselect > 3 ? 1 : 0);
 }
 
 TextSprite* CharacterMenu::createIcon(unsigned player){

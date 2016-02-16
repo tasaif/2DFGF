@@ -34,7 +34,7 @@ bool Character::init(string _name, string _placard_font){
   placard[0] = new Sprite(load_path, "placard.png");
   placard[0]->offset.x = 25;
   placard[1] = placard[0]->duplicate();
-  placard[1]->flipHorizontal();
+  placard[1]->setFlipState(SDL_FLIP_HORIZONTAL);
   placard[1]->alignFromRight(25);
 
   placard_name[0] = new TextSprite();

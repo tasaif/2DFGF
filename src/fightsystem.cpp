@@ -67,6 +67,7 @@ void FightSystem::drawWith(Camera* camera){
   Player* player;
   Player* opponent;
   SDL_Rect tmpbox;
+  Sprite* curSprite;
   vector<HitBox> def_boxes;
   vector<HitBox> atk_boxes;
   center.x = (p[0]->position.x + p[1]->position.x) / 2;
@@ -82,7 +83,13 @@ void FightSystem::drawWith(Camera* camera){
     opponent = p[1-i];
     def_boxes = player->getDefBoxes();
     atk_boxes = *player->getAtkBoxes();
-    camera->draw(player->position.x < opponent->position.x ? f[i]->getSprite() : f[i]->getSprite()->getFlipped(), player->position);
+    curSprite = f[i]->getSprite();
+    if (player->position.x < opponent->position.x){
+      curSprite->setFlipState(SDL_FLIP_NONE);
+    } else {
+      curSprite->setFlipState(SDL_FLIP_HORIZONTAL);
+    }
+    camera->draw(f[i]->getSprite(), player->position);
   }
   sparksys->drawWith(camera);
   if (debugstate == 1){

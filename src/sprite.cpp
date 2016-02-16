@@ -32,23 +32,30 @@ Sprite::~Sprite(){
 
 void Sprite::align(Sprite* _sprite, SDL_Rect& _offset, unsigned bitmask){
   if (bitmask & Sprite::HCENTER){
-    _offset.x = Application::SCREEN_WIDTH / 2 - _sprite->surface->w/2;
+    _offset.x = Application::SCREEN_WIDTH / 2 - _sprite->getW()/2;
   }
   if (bitmask & Sprite::VBOTTOM){
-    _offset.y = Application::SCREEN_HEIGHT - _sprite->surface->h;
+    _offset.y = Application::SCREEN_HEIGHT - _sprite->getH();
   }
   if (bitmask & Sprite::VCENTER){
-    _offset.y = Application::SCREEN_HEIGHT/2 - _sprite->surface->h/2;
+    _offset.y = Application::SCREEN_HEIGHT/2 - _sprite->getH()/2;
   }
 }
 
 void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
   unload();
-  surface = SDL_CreateRGBSurface(0, w, h, 32, app->rmask, app->gmask, app->bmask, app->amask);
-  SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff));
+  SDL_Renderer* renderer = app->drawsys->getRenderer();
+  SDL_Texture* before = SDL_GetRenderTarget(renderer);
+  SDL_SetRenderDrawColor(renderer, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff);
+  texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, w, h);
+  SDL_SetRenderTarget(renderer, texture);
+  SDL_RenderClear(renderer);
+  SDL_SetRenderTarget(renderer, before);
 }
 
 void Sprite::load(string _fname){
+  SDL_Surface* surface;
+  SDL_Renderer* renderer = app->drawsys->getRenderer();
   if (custom_path.string() == ""){
     _fname = (image_path / _fname).string();
   } else {
@@ -61,22 +68,23 @@ void Sprite::load(string _fname){
     cout << "Failed to load: " << _fname << endl;
     return;
   }
+  texture = SDL_CreateTextureFromSurface(renderer, surface);
+  if (texture == NULL){
+    cout << "Error: Unable to create texture from \"" << _fname << "\": " << SDL_GetError() << endl;
+  }
+  SDL_FreeSurface(surface);
 }
 
 void Sprite::unload(){
-  if (flipped != NULL){
-    delete flipped;
-    flipped = NULL;
-  }
-  if (surface != NULL){
-    SDL_FreeSurface(surface);
-    surface = NULL;
+  if (texture != NULL){
+    SDL_DestroyTexture(texture);
+    texture = NULL;
     fname = "";
   }
 }
 
 bool Sprite::valid(){
-  if (surface != NULL) return true;
+  if (texture != NULL) return true;
   return false;
 }
 
@@ -91,48 +99,39 @@ void Sprite::align(unsigned bitmask){
 
 void Sprite::alignTo(Sprite* sprite, unsigned bitmask){
   if (bitmask & HCENTER){
-    offset.x = Application::SCREEN_WIDTH / 2 - surface->w/2;
+    offset.x = Application::SCREEN_WIDTH / 2 - getW()/2;
   }
   if (bitmask & VBOTTOM){
-    offset.y = Application::SCREEN_HEIGHT - surface->h;
+    offset.y = Application::SCREEN_HEIGHT - getH();
   }
   if (bitmask & VCENTER){
-    offset.y = sprite->offset.y + sprite->surface->h/2 - surface->h/2;
+    offset.y = sprite->offset.y + sprite->getH()/2 - getH()/2;
   }
 }
 
 void Sprite::alignFromRight(int margin){
-  offset.x = Application::SCREEN_WIDTH - surface->w - margin;
+  offset.x = Application::SCREEN_WIDTH - getW() - margin;
 }
 
-void Sprite::rotate(unsigned angle){
-  if (surface == NULL){
-    cout << "Warning: Tried to rotate a null surface" << endl;
+void Sprite::rotate(double _angle){
+  if (texture == NULL){
+    cout << "Warning: Tried to rotate a null texture" << endl;
     return;
   }
-  SDL_Surface* rotated_surface = rotozoomSurface(surface, angle, 1, SMOOTHING_OFF);
-  unload();
-  surface = rotated_surface;
-}
-
-void Sprite::flipHorizontal(){
-  if (surface == NULL){
-    cout << "Warning: Tried to rotate a null surface" << endl;
-    return;
-  }
-  /*
-   * The following broke with no warning when the file was a png with "Indexed" colors
-   * Had to switch the mode of the image to RGB in GIMP
-   */
-  SDL_Surface* flipped_surface = rotozoomSurfaceXY(surface, 0, -1, 1, SMOOTHING_OFF);
-  unload();
-  surface = flipped_surface;
+  angle = _angle;
 }
 
 Sprite* Sprite::duplicate(){
+  SDL_Renderer* renderer = app->drawsys->getRenderer();
+  SDL_Texture* before = SDL_GetRenderTarget(renderer);
   Sprite* retval = new Sprite();
-  retval->surface = SDL_ConvertSurface(surface, surface->format, surface->flags);
+  retval->texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, getW(), getH());
+  retval->rotate(angle);
+  retval->setFlipState(flip_state);
   retval->offset = offset;
+  SDL_SetRenderTarget(renderer, texture);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_SetRenderTarget(renderer, before);
   return retval;
 }
 
@@ -140,18 +139,24 @@ void Sprite::dump(){
   cout << fname << ": " << offset.x << ", " << offset.y << endl;
 }
 
-void Sprite::mkFlipped(){
-  if (flipped != NULL){
-    delete flipped;
-    flipped = NULL;
-  }
-  flipped = duplicate();
-  flipped->flipHorizontal();
+int Sprite::getW(){
+  int w;
+  int h;
+  SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+  return w;
 }
 
-Sprite* Sprite::getFlipped(){
-  if (flipped == NULL){
-    mkFlipped();
-  }
-  return flipped;
+int Sprite::getH(){
+  int w;
+  int h;
+  SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+  return h;
+}
+
+double Sprite::getAngle(){
+  return angle;
+}
+
+void Sprite::setFlipState(SDL_RendererFlip _flip_state){
+  flip_state = _flip_state;
 }

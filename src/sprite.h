@@ -13,8 +13,8 @@ class Sprite {
   private:
     string fname;
     void init(path, string);
-    Sprite* flipped = NULL;
-    void mkFlipped();
+    double angle = 0.0;
+    SDL_RendererFlip flip_state = SDL_FLIP_NONE;
 
   public:
     Sprite();
@@ -22,12 +22,8 @@ class Sprite {
     Sprite(path, string);
     ~Sprite();
 
-    /* Note
-     * flipHorizontal will flip the surface member
-     * mkFlipped will populate the flipped member
-     */
     static void align(Sprite*, SDL_Rect&, unsigned);
-    SDL_Surface* surface = NULL;
+    SDL_Texture* texture = NULL;
     SDL_Rect offset;
     void mkRect(unsigned, unsigned, Uint32);
     void load(string);
@@ -37,12 +33,14 @@ class Sprite {
     void align(unsigned);
     void alignTo(Sprite*, unsigned);
     void alignFromRight(int);
-    void rotate(unsigned);
-    void flipHorizontal();
+    void rotate(double);
+    void setFlipState(SDL_RendererFlip);
     virtual Sprite* duplicate();
     path custom_path = "";
     void dump();
-    Sprite* getFlipped();
+    int getW();
+    int getH();
+    double getAngle();
 
     static const unsigned HCENTER = 1;
     static const unsigned VBOTTOM = 2;

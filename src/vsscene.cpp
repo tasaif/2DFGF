@@ -52,7 +52,7 @@ void VSScene::incHealth(unsigned player, unsigned val){
   Player* p = getPlayer(player);
   p->incHealth(val);
   if (player == 0){
-    p->healthBar->offset.x = 44 + (Player::HPWIDTH - p->healthBar->surface->w);
+    p->healthBar->offset.x = 44 + (Player::HPWIDTH - p->healthBar->getW());
   }
 }
 

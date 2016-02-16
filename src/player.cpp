@@ -63,11 +63,11 @@ HitBox Player::normalize_box(HitBox hitbox){
   Sprite* sprite = anim->currentSprite();
   bool right_side = opponent->position.x < position.x;
   if (right_side){
-    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x + sprite->surface->w/2 - hitbox.x - hitbox.w;
+    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x + sprite->getW()/2 - hitbox.x - hitbox.w;
   } else {
-    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x - sprite->surface->w/2 + hitbox.x;
+    hitbox.x = Application::SCREEN_WIDTH / 2 + position.x - sprite->getW()/2 + hitbox.x;
   }
-  hitbox.y = Application::SCREEN_HEIGHT - Stage::FLOOR_HEIGHT - position.y + hitbox.y - sprite->surface->h;
+  hitbox.y = Application::SCREEN_HEIGHT - Stage::FLOOR_HEIGHT - position.y + hitbox.y - sprite->getH();
   return hitbox;
 }
 

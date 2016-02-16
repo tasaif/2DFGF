@@ -27,6 +27,7 @@ void TextSprite::init(string _text, unsigned _font_size){
 }
 
 void TextSprite::init(string _text, unsigned _font_size, int x, int y){
+  SDL_Surface* surface;
   if (font == NULL){
     font = app->fontsys->getFont("opensans.ttf", _font_size);
   } else {
@@ -39,6 +40,8 @@ void TextSprite::init(string _text, unsigned _font_size, int x, int y){
   if (surface == NULL){
     cout << "Failed to create ttf surface" << endl;
   }
+  texture = SDL_CreateTextureFromSurface(app->drawsys->getRenderer(), surface);
+  SDL_FreeSurface(surface);
 }
 
 void TextSprite::setDefaultFont(){

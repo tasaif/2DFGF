@@ -22,8 +22,8 @@ bool Scene::setBackground(string fname){
 }
 
 void Scene::setIndicatorPos(Option* option){
-  indicator->offset.x = option->offset.x - indicator->surface->w - 2;
-  indicator->offset.y = option->offset.y + option->surface->h/2 - indicator->surface->h/2;
+  indicator->offset.x = option->offset.x - indicator->getW() - 2;
+  indicator->offset.y = option->offset.y + option->getH()/2 - indicator->getH()/2;
 }
 
 bool Scene::init(){
