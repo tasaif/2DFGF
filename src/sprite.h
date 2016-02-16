@@ -21,7 +21,7 @@ class Sprite {
     Sprite();
     Sprite(string);
     Sprite(path, string);
-    ~Sprite();
+    virtual ~Sprite();
 
     static void align(Sprite*, SDL_Rect&, unsigned);
     SDL_Texture* texture = NULL;

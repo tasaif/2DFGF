@@ -21,7 +21,7 @@ Character::~Character(){
   }
 }
 
-bool Character::init(string _name, string _placard_font){
+void Character::init(string _name, string _placard_font){
   name = _name;
   placard_font = _placard_font;
   std::transform(_name.begin(), _name.end(), _name.begin(), ::tolower);

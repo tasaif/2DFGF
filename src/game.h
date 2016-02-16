@@ -35,7 +35,7 @@ class Game {
   public:
     Game();
     ~Game();
-    bool init();
+    void init();
 
     CharacterSystem* charsys;
     bool run();

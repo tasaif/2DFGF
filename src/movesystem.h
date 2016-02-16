@@ -20,7 +20,7 @@ class MoveSystem {
 
   public:
     MoveSystem();
-    ~MoveSystem();
+    virtual ~MoveSystem();
     void init(Fight*);
     virtual void initCharacterMoves();
     virtual bool checkForMove();

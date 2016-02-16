@@ -5,7 +5,6 @@ extern path font_path;
 
 Font::Font(string fname, unsigned _ptsize):ptsize(_ptsize){
   sdl_font = TTF_OpenFont((font_path / fname).string().c_str(), ptsize);
-  TTF_SetFontStyle(sdl_font, TTF_STYLE_BOLD);
   font_name = fname;
   if(!sdl_font) {
     cout << "TTF_OpenFont: " << TTF_GetError() << endl;

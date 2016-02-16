@@ -26,7 +26,7 @@ class Character {
     void setRotationPoint(Sprite*);
 
   protected:
-    bool init(string, string);
+    void init(string, string);
     int hp = 100;
     MoveSystem* movesys = NULL;
     string name;

@@ -8,7 +8,7 @@ Game::Game(){
                  object and Scene objects
                  */
 
-bool Game::init(){
+void Game::init(){
   p = new Player*[2];
   p[0] = new Player();
   p[1] = new Player();

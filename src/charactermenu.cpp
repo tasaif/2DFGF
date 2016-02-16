@@ -16,7 +16,6 @@ TextSprite* CharacterMenu::createIcon(unsigned player){
 }
 
 CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
-  cout << "initializing charactermenu" << endl;
   charsys = _charsys;
   selection_backing = new Sprite();
   selection_backing->mkRect(332, 140, 0xCC);
@@ -30,7 +29,6 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
     icons[i] = createIcon(i);
     updateIconOffset(i);
   }
-  cout << "done" << endl;
 }
 
 CharacterMenu::~CharacterMenu(){
@@ -55,7 +53,6 @@ bool CharacterMenu::first(){
 bool CharacterMenu::run(){
   Character* curchar;
   Sprite* icon;
-  SDL_Rect offset;
   drawsys->draw(background);
   drawsys->draw(getPlacard(0));
   drawsys->draw(getPlacard(1));

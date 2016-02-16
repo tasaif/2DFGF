@@ -66,7 +66,6 @@ void FightSystem::drawWith(Camera* camera){
   SDL_Rect center;
   Player* player;
   Player* opponent;
-  SDL_Rect tmpbox;
   Sprite* curSprite;
   vector<HitBox> def_boxes;
   vector<HitBox> atk_boxes;

@@ -25,16 +25,13 @@ void MoveSystem::initCharacterMoves(){
 bool MoveSystem::checkForMove(){
   vector<MoveState>* cmd_buffer;
   vector<MoveState>* move_buffer = p->joystick->getMoveBuffer();
-  MoveState* cmd_ms;
-  MoveState* input_ms;
   int i;
   int j;
   int k;
-  bool found_ms;
 
   // Lucy, you have some splainin to do
   if (p->getPnum() == 1){
-    for(i=0; i<moves.size(); i++){
+    for(i=0; i<(int)moves.size(); i++){
       cmd_buffer = moves[i].getCmd();
       j = cmd_buffer->size() - 1;
       k = move_buffer->size() - 1;

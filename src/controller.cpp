@@ -21,7 +21,7 @@ Controller::~Controller(){
 }
 
 void Controller::update(){
-  unsigned sdl_button_number;
+  int sdl_button_number;
   ButtonType current_direction = getCurrentDirection();
   for(unsigned i=bUP; i<=bDOWNRIGHT; i++){
     previous_buffer[i] = current_buffer[i];
@@ -32,7 +32,7 @@ void Controller::update(){
   }
 
   for(unsigned i=0; i<bEND; i++){
-    int sdl_button_number = mapping[i];
+    sdl_button_number = mapping[i];
     if (sdl_button_number != -1){
       previous_buffer[i] = current_buffer[i];
       current_buffer[i] = SDL_JoystickGetButton(device, sdl_button_number);
