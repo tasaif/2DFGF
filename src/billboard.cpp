@@ -20,7 +20,6 @@ bool Billboard::first(){
 }
 
 bool Billboard::run(){
-  SDL_RenderClear(app->renderer);
   drawsys->draw(background);
   if (timer.getTicks() > duration) return false;
   return true;

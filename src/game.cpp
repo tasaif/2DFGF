@@ -67,25 +67,21 @@ bool Game::run(){
       }
       break;
     case gsLOGO1:
-      cout << "logo1" << endl;
       if (!logo1->run()){
         gamestate = logo1->end();
         logo2->first();
       }
       break;
     case gsLOGO2:
-      cout << "logo2" << endl;
       if (!logo2->run()){
         gamestate = logo2->end();
       }
       break;
     case gsINTRO:
-      cout << "intro" << endl;
       gamestate = gsTITLE;
       title_menu->first();
       break;
     case gsTITLE:
-      cout << "title" << endl;
       if(!title_menu->run()){
         gamestate = title_menu->end();
         switch(gamestate){

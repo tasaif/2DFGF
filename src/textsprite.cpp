@@ -41,6 +41,8 @@ void TextSprite::init(string _text, unsigned _font_size, int x, int y){
     cout << "Failed to create ttf surface" << endl;
   }
   texture = SDL_CreateTextureFromSurface(app->drawsys->getRenderer(), surface);
+  offset.w = surface->w;
+  offset.h = surface->h;
   SDL_FreeSurface(surface);
 }
 
