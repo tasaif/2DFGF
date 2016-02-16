@@ -68,9 +68,12 @@ bool CharacterMenu::run(){
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);
     icon = curchar != NULL ? curchar->getIcon() : charsys->getMissingCharacterIcon();
-    offset.x = 154 + 83 * (i % 4);
-    offset.y = (i < 4) ? 320 : 390;
-    drawsys->draw(icon, offset);
+    icon->offset.x = 154 + 83 * (i % 4);
+    icon->offset.y = (i < 4) ? 320 : 390;
+    if (i%4 > 1){
+      icon->setFlipState(SDL_FLIP_HORIZONTAL);
+    }
+    drawsys->draw(icon);
   }
   /*drawsys->draw(selection_box);
   for(unsigned i=0; i<options.size(); i++){
