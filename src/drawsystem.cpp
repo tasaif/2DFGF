@@ -1,11 +1,11 @@
 #include "drawsystem.h"
 
 DrawSystem::DrawSystem(){
-  //renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_ACCELERATED);
-  renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_SOFTWARE);
+  renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_TARGETTEXTURE);
   if (renderer == NULL){
     cout << "Error: renderer could not be created \"" << SDL_GetError() << "\"" << endl;
   }
+  SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
   app->renderer = renderer;
   cross = new Sprite("cross.png");
 }

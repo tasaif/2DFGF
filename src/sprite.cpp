@@ -48,9 +48,15 @@ void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
   SDL_Texture* before = SDL_GetRenderTarget(renderer);
   SDL_SetRenderDrawColor(renderer, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff);
   texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, w, h);
+  offset.w = w;
+  offset.h = h;
+  if (texture == NULL){
+    cout << "Error: Unable to create texture rectangle" << SDL_GetError() << endl;
+  }
   SDL_SetRenderTarget(renderer, texture);
   SDL_RenderClear(renderer);
   SDL_SetRenderTarget(renderer, before);
+  SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 }
 
 void Sprite::load(string _fname){
@@ -69,6 +75,7 @@ void Sprite::load(string _fname){
     return;
   }
   texture = SDL_CreateTextureFromSurface(renderer, surface);
+  SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
   if (texture == NULL){
     cout << "Error: Unable to create texture from \"" << _fname << "\": " << SDL_GetError() << endl;
   }

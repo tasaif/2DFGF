@@ -29,7 +29,7 @@ bool Application::init(int argc, char* argv[]){
     cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
     return false;
   }
-  window = SDL_CreateWindow( TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+  window = SDL_CreateWindow( TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
   if(window == NULL){
     cout << "Window could not be created! SDL_Error: " << SDL_GetError() << endl;
     return false;

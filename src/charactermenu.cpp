@@ -62,10 +62,9 @@ bool CharacterMenu::run(){
   drawsys->draw(background);
   drawsys->draw(getPlacard(0));
   drawsys->draw(getPlacard(1));
-  //drawsys->draw(getNamePlacard(0));
-  //drawsys->draw(getNamePlacard(1));
-  //drawsys->draw(selection_backing);
-  /*
+  drawsys->draw(getNamePlacard(0));
+  drawsys->draw(getNamePlacard(1));
+  drawsys->draw(selection_backing);
   for(unsigned i=0; i<NUMBEROFCHARACTERS; i++){
     curchar = charsys->getCharacter((CharacterIndex)i);
     icon = curchar != NULL ? curchar->getIcon() : charsys->getMissingCharacterIcon();
@@ -73,7 +72,7 @@ bool CharacterMenu::run(){
     offset.y = (i < 4) ? 320 : 390;
     drawsys->draw(icon, offset);
   }
-  drawsys->draw(selection_box);
+  /*drawsys->draw(selection_box);
   for(unsigned i=0; i<options.size(); i++){
     curop = options[i];
     drawsys->draw(curop);
@@ -82,8 +81,7 @@ bool CharacterMenu::run(){
     if (state[i] == cmsCHOOSING){
       drawsys->draw(icons[i]);
     }
-  }
-  */
+  }*/
   for(unsigned player=0; player<2; player++){
     Player* p = getP(player);
     switch(state[player]){
