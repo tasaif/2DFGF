@@ -9,7 +9,7 @@ extern Application* app;
 
 class DrawSystem {
   private:
-    SDL_RendererInfo info;
+    //SDL_RendererInfo* info;
     SDL_Renderer* renderer;
     Sprite* cross;
 
@@ -20,11 +20,11 @@ class DrawSystem {
     ~DrawSystem();
     void draw(Sprite*);
     void draw(Sprite*, SDL_Rect);
-    //SDL_PixelFormat* format();
     void tick(SDL_Rect);
     void fill(unsigned);
     void fill(SDL_Rect, Uint32);
     SDL_Renderer* getRenderer();
+    void update();
 };
 
 #endif

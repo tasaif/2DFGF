@@ -27,7 +27,8 @@ class Application {
     Uint32 gmask;
     Uint32 bmask;
     Uint32 amask;
-    SDL_Window* gWindow = NULL;
+    SDL_Window* window = NULL;
+    SDL_Renderer* renderer = NULL;
     DrawSystem* drawsys;
     InputSystem* inputsys;
     FontSystem* fontsys;

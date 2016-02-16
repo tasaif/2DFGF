@@ -43,8 +43,8 @@ void Sprite::align(Sprite* _sprite, SDL_Rect& _offset, unsigned bitmask){
 }
 
 void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
+  SDL_Renderer* renderer = app->renderer;
   unload();
-  SDL_Renderer* renderer = app->drawsys->getRenderer();
   SDL_Texture* before = SDL_GetRenderTarget(renderer);
   SDL_SetRenderDrawColor(renderer, (color & 0xff000000) >> 24, (color & 0xff0000) >> 16, (color & 0xff00) >> 8, color & 0xff);
   texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, w, h);
@@ -54,8 +54,8 @@ void Sprite::mkRect(unsigned w, unsigned h, Uint32 color){
 }
 
 void Sprite::load(string _fname){
+  SDL_Renderer* renderer = app->renderer;
   SDL_Surface* surface;
-  SDL_Renderer* renderer = app->drawsys->getRenderer();
   if (custom_path.string() == ""){
     _fname = (image_path / _fname).string();
   } else {
@@ -72,6 +72,8 @@ void Sprite::load(string _fname){
   if (texture == NULL){
     cout << "Error: Unable to create texture from \"" << _fname << "\": " << SDL_GetError() << endl;
   }
+  offset.w = getW();
+  offset.h = getH();
   SDL_FreeSurface(surface);
 }
 
@@ -122,16 +124,18 @@ void Sprite::rotate(double _angle){
 }
 
 Sprite* Sprite::duplicate(){
-  SDL_Renderer* renderer = app->drawsys->getRenderer();
+  SDL_Renderer* renderer = app->renderer;
   SDL_Texture* before = SDL_GetRenderTarget(renderer);
   Sprite* retval = new Sprite();
   retval->texture = SDL_CreateTexture(renderer, DrawSystem::FORMAT, SDL_TEXTUREACCESS_TARGET, getW(), getH());
   retval->rotate(angle);
   retval->setFlipState(flip_state);
   retval->offset = offset;
+  /*
   SDL_SetRenderTarget(renderer, texture);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_SetRenderTarget(renderer, before);
+  */
   return retval;
 }
 

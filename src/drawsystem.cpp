@@ -1,10 +1,12 @@
 #include "drawsystem.h"
 
 DrawSystem::DrawSystem(){
-  renderer = SDL_CreateRenderer(app->gWindow, -1, SDL_RENDERER_ACCELERATED);
-  if (SDL_GetRendererInfo(renderer, &info)){
-    cout << "Failed to SDL_GetRendererInfo: " << SDL_GetError() << endl;
+  //renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_ACCELERATED);
+  renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_SOFTWARE);
+  if (renderer == NULL){
+    cout << "Error: renderer could not be created \"" << SDL_GetError() << "\"" << endl;
   }
+  app->renderer = renderer;
   cross = new Sprite("cross.png");
 }
 
@@ -26,10 +28,6 @@ void DrawSystem::draw(Sprite* sprite, SDL_Rect offset){
     SDL_RenderCopyEx(renderer, sprite->texture, NULL, &offset, sprite->getAngle(), NULL, SDL_FLIP_NONE);
   }
 }
-
-/*SDL_PixelFormat* DrawSystem::format(){
-  return screen->format;
-}*/
 
 void DrawSystem::tick(SDL_Rect offset){
   offset.x -= cross->getW()/2;
@@ -53,4 +51,9 @@ void DrawSystem::fill(SDL_Rect rect, Uint32 color){
 
 SDL_Renderer* DrawSystem::getRenderer(){
   return renderer;
+}
+
+void DrawSystem::update(){
+  SDL_RenderPresent(renderer);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 }

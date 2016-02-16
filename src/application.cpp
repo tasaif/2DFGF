@@ -29,8 +29,8 @@ bool Application::init(int argc, char* argv[]){
     cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
     return false;
   }
-  gWindow = SDL_CreateWindow( TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-  if( gWindow == NULL ){
+  window = SDL_CreateWindow( TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+  if(window == NULL){
     cout << "Window could not be created! SDL_Error: " << SDL_GetError() << endl;
     return false;
   }
@@ -60,7 +60,7 @@ bool Application::run(){
   }
   inputsys->update();
   bool run_again = game->run() and !quit;
-  SDL_UpdateWindowSurface( gWindow );
+  drawsys->update();
   frameLimiter();
   return run_again;
 }
@@ -74,8 +74,8 @@ void Application::quit(){
   delete game;
   delete inputsys;
   delete drawsys;
-	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
+	SDL_DestroyWindow(window);
+	window = NULL;
   IMG_Quit();
   TTF_Quit();
 	SDL_Quit();
