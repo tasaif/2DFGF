@@ -16,6 +16,7 @@ class MoveState {
     const static int TTL = 20;
     const static int MAXCHARGE = 100;
     MoveState(ButtonType, ButtonState);
+    MoveState(ButtonType, ButtonState, int);
     ~MoveState();
     ButtonType button;
     ButtonState state;
@@ -23,8 +24,8 @@ class MoveState {
     int Charge(int);
     void Confirm();
     bool Confirmed();
-    bool operator==(ButtonType);
     bool operator==(MoveState);
+    MoveState duplicate();
 };
 
 #endif

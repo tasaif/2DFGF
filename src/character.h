@@ -43,6 +43,8 @@ class Character {
     int walkb_speed = 4;
     int jumpf_speed = 8;
     int jumpb_speed = 5;
+    int dashb_speed = 4;
+    int dashf_speed = 8;
 
     string getName();
     Sprite* getPlacard(unsigned);

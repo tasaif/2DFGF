@@ -57,7 +57,7 @@ Sprite* Animation::currentSprite(){
 }
 
 bool Animation::loopComplete(){
-  return (bool)loop_count;
+  return (bool)loop_count || (current_frame == frames.size() - 1);
 }
 
 void Animation::reset(){

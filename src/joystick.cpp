@@ -30,7 +30,7 @@ void Joystick::update(){
       movebuffer.push_back(MoveState(button, pressed?bsPRESSED:bsRELEASED));
     } else if(held) {
       for(unsigned i=movebuffer.size()-1; i>=0; i--){
-        if (movebuffer[i] == button){
+        if (movebuffer[i].button == button){
           movebuffer[i].Charge(1);
           break;
         }
@@ -69,7 +69,7 @@ void Joystick::dumpMoveBuffer(){
   cout << "Joystick Dump: ";
   for(unsigned i=0; i<movebuffer.size(); i++){
     ms = &movebuffer[i];
-    cout << legible_buttons[ms->button] << ' ';
+    cout << legible_button_states[ms->state] << legible_buttons[ms->button] << ' ';
   }
   cout << endl;
 }

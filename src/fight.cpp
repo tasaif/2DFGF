@@ -49,35 +49,25 @@ void Fight::run(){
   towards = away == bLEFT ? bRIGHT : bLEFT;
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
-  if(p->joystick->Pressed(bLP)){
-    dy_reset += 1;
-    cout << dy_reset << endl;
-  } else if(p->joystick->Pressed(bLK)){
-    dy_reset -= 1;
-    cout << dy_reset << endl;
-  }
 
-  if(p->joystick->Pressed(bMP)){
-    c->jump_acc++;
-    cout << c->jump_acc << endl;
-  } else if(p->joystick->Pressed(bMK)){
-    c->jump_acc--;
-    cout << c->jump_acc << endl;
-  }
 
-  if(p->joystick->Pressed(bHP)){
-    c->jumpf_speed++;
-    cout << c->jumpf_speed << endl;
-  } else if(p->joystick->Pressed(bHK)){
-    c->jumpf_speed--;
-    cout << c->jumpf_speed << endl;
-  }
-
-  if (movesys->checkForMove()){
-    state = movesys->type;
-  }
 
   switch(state){
+    case psDASHB:
+    case psDASHF:
+      if (currentAnim->loopComplete()){
+        state = psNEUTRAL;
+        currentAnim = c->getBaseAnim(state);
+        currentSprite = c->getBaseAnim(state)->primeSprite();
+      } else {
+        currentSprite = currentAnim->getSprite();
+        if (state == psDASHF){
+          moveHorizontally(c->dashf_speed * (away == bRIGHT ? -1 : 1));
+        } else {
+          moveHorizontally(c->dashb_speed * (away == bRIGHT ? 1 : -1));
+        }
+      }
+      break;
     case psHURTCROUCH:
     case psHURTHEAVY:
     case psHURTLIGHT:
@@ -135,42 +125,48 @@ void Fight::run(){
       grounded = true;
       currentAnim = c->getBaseAnim(psNEUTRAL);
       currentSprite = currentAnim->getSprite();
-      switch(dir){
-        case bUP:
-          dy = dy_reset;
-          state = psJUMPU;
-          break;
-        case bLEFT:
-          dx = -1 * (away == bLEFT ? c->walkb_speed : c->walkf_speed);
-          state = away == bLEFT ? psWALKB : psWALKF;
-          currentAnim = c->getBaseAnim(state);
-          currentSprite = currentAnim->primeSprite();
-          break;
-        case bRIGHT:
-          dx = (away == bRIGHT ? c->walkb_speed : c->walkf_speed);
-          state = away == bRIGHT ? psWALKB : psWALKF;
-          currentAnim = c->getBaseAnim(state);
-          currentSprite = currentAnim->primeSprite();
-          break;
-        case bUPRIGHT:
-          dy = dy_reset;
-          dx = (away == bRIGHT ? c->jumpb_speed : c->jumpf_speed);
-          state = away == bRIGHT ? psJUMPB : psJUMPF;
-          break;
-        case bUPLEFT:
-          dy = dy_reset;
-          dx = -1 * (away == bLEFT ? c->jumpb_speed : c->jumpf_speed);
-          state = away == bLEFT ? psJUMPB : psJUMPF;
-          break;
-        case bDOWNLEFT:
-        case bDOWNRIGHT:
-        case bDOWN:
-          state = psPRECROUCH;
-          c->getBaseAnim(psPRECROUCH)->reset();
-          break;
-        default:
-          break;
-      };
+      if (movesys->checkForMove()){
+        state = movesys->type;
+        currentAnim = c->getBaseAnim(state);
+        currentSprite = c->getBaseAnim(state)->primeSprite();
+      } else {
+        switch(dir){
+          case bUP:
+            dy = dy_reset;
+            state = psJUMPU;
+            break;
+          case bLEFT:
+            dx = -1 * (away == bLEFT ? c->walkb_speed : c->walkf_speed);
+            state = away == bLEFT ? psWALKB : psWALKF;
+            currentAnim = c->getBaseAnim(state);
+            currentSprite = currentAnim->primeSprite();
+            break;
+          case bRIGHT:
+            dx = (away == bRIGHT ? c->walkb_speed : c->walkf_speed);
+            state = away == bRIGHT ? psWALKB : psWALKF;
+            currentAnim = c->getBaseAnim(state);
+            currentSprite = currentAnim->primeSprite();
+            break;
+          case bUPRIGHT:
+            dy = dy_reset;
+            dx = (away == bRIGHT ? c->jumpb_speed : c->jumpf_speed);
+            state = away == bRIGHT ? psJUMPB : psJUMPF;
+            break;
+          case bUPLEFT:
+            dy = dy_reset;
+            dx = -1 * (away == bLEFT ? c->jumpb_speed : c->jumpf_speed);
+            state = away == bLEFT ? psJUMPB : psJUMPF;
+            break;
+          case bDOWNLEFT:
+          case bDOWNRIGHT:
+          case bDOWN:
+            state = psPRECROUCH;
+            c->getBaseAnim(psPRECROUCH)->reset();
+            break;
+          default:
+            break;
+        };
+      }
       break;
     case psWALKB:
       currentAnim = c->getBaseAnim(psWALKB);
@@ -355,3 +351,6 @@ int Fight::moveHorizontally(int _dx){
   return next_step;
 }
 
+bool Fight::isRightSide(){
+  return p->position.x > opponent->position.x;
+}

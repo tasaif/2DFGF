@@ -51,6 +51,10 @@ bool Application::init(int argc, char* argv[]){
 bool Application::run(){
   bool quit = false;
   capTimer.start();
+  if (debugstate == 1){
+    //system("sleep .4");
+    //system("clear");
+  }
   while (SDL_PollEvent(event)){
     switch(event->type){
       case SDL_QUIT:

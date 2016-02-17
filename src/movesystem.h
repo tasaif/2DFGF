@@ -17,6 +17,7 @@ class MoveSystem {
     Fight* f = NULL;
     vector<Move> moves;
     void mkMove(string, Animation*, unsigned, PlayerState, string);
+    vector<MoveState> normalize_cmd_buffer(vector<MoveState>*);
 
   public:
     MoveSystem();

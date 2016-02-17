@@ -4,9 +4,15 @@
 enum ButtonState {
   bsNULL,
   bsPRESSED,
-//  bsHELD, No need for this so far
   bsRELEASED,
   bsEND
+};
+
+const string legible_button_states[] = {
+  "",
+  "D",
+  "U",
+  "?"
 };
 
 #endif

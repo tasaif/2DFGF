@@ -51,6 +51,7 @@ class Fight {
     void enGarde(HitBox*);
     bool getPushed(int);
     int moveHorizontally(int);
+    bool isRightSide();
 };
 
 #endif

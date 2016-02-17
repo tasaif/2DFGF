@@ -27,6 +27,7 @@ class Move {
     void dump(bool);
     vector<MoveState>* getCmd();
     string getName();
+    PlayerState getType();
 };
 
 #endif

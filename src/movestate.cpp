@@ -1,9 +1,22 @@
 #include "movestate.h"
 
-MoveState::MoveState(ButtonType _button, ButtonState _state):button(_button), state(_state){
+#include <iostream>
+using namespace std;
+
+MoveState::MoveState(ButtonType _button, ButtonState _state){
+  button = _button;
+  state = _state;
   ttl = TTL;
-  charge = 0;
   confirmed = false;
+  charge = 0;
+}
+
+MoveState::MoveState(ButtonType _button, ButtonState _state, int _charge){
+  button = _button;
+  state = _state;
+  ttl = TTL;
+  confirmed = false;
+  charge = _charge;
 }
 
 MoveState::~MoveState(){
@@ -22,10 +35,6 @@ int MoveState::Charge(int increment){
   return charge;
 }
 
-bool MoveState::operator==(ButtonType _button){
-  return button == _button;
-}
-
 /*
  * Later, this will include:
  *  comparing charge times (sonic boom)
@@ -35,7 +44,13 @@ bool MoveState::operator==(ButtonType _button){
  */
 bool MoveState::operator==(MoveState rhs){
   if(button == rhs.button){
-    return true;
+    if (state == bsNULL || rhs.state == bsNULL){
+      return true;
+    } else {
+      if (state == rhs.state){
+        return true;
+      }
+    }
   }
   return false;
 }
@@ -46,4 +61,11 @@ void MoveState::Confirm(){
 
 bool MoveState::Confirmed(){
   return confirmed;
+}
+
+MoveState MoveState::duplicate(){
+  MoveState retval = MoveState(button, state, charge);
+  retval.Ttl(ttl);
+  if (confirmed) retval.Confirm();
+  return retval;
 }
