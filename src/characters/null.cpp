@@ -36,7 +36,7 @@ NullChar::NullChar(){
   base_anim[psCROUCHBLOCK] = animsys->makeAnimation(character_path / "null/animations/crouchblock", 2);
   base_anim[psCROUCHBLOCK]->setDontLoop(true);
   base_anim[psDASHF] = animsys->makeAnimation(character_path / "null/animations/dashf", 4);
-  base_anim[psDASHB] = animsys->makeAnimation(character_path / "null/animations/dashf", 4);
+  base_anim[psDASHB] = animsys->makeAnimation(character_path / "null/animations/dashb", 4);
 
   //Normal Animations
   norm_anim[nunLP] = animsys->makeAnimation(character_path / "null/animations/standinglp", 4);
@@ -66,7 +66,7 @@ NullChar::NullChar(){
   walkb_speed = 2;
   jumpf_speed = 8;
   jumpb_speed = 7;
-  dashb_speed = 4;
+  dashb_speed = 8;
   dashf_speed = 8;
 }
 
