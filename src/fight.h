@@ -49,7 +49,7 @@ class Fight {
     PlayerState getState();
     void setSprite(Sprite*);
     void setStunTimer(PlayerState, int);
-    void hitBy(PlayerState);
+    void hitBy(HitBox*);
     bool blocking();
     void enGarde(HitBox*);
     bool getPushed(int);

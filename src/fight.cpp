@@ -330,12 +330,14 @@ void Fight::setStunTimer(PlayerState _type, int _stun_timer){
   c->getBaseAnim(_type)->setAnimationSpeed(_stun_timer);
 }
 
-void Fight::hitBy(PlayerState _state){
+void Fight::hitBy(HitBox* box){
   if (crouching){
     state = psHURTCROUCH;
   } else {
-    state = _state;
+    state = box->type;
   }
+  p->incHealth(-1 * box->damage);
+  setStunTimer(box->type, box->hit_stun);
 }
 
 bool Fight::blocking(){

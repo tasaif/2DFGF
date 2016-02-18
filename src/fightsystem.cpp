@@ -50,8 +50,7 @@ void FightSystem::resolveHitBoxes(){
               opponent->fight->enGarde(box);
             } else {
               sparksys->mkHitSpark(box, leftSide);
-              opponent->fight->hitBy(box->type);
-              opponent->fight->setStunTimer(box->type, box->hit_stun);
+              opponent->fight->hitBy(box);
               atk_boxes->erase(atk_boxes->begin() + i);
             }
             break;
