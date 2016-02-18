@@ -29,11 +29,14 @@ class Fight {
     int block_stun = 0;
     bool crouching = false;
     bool grounded = true;
+    int knockback = 0;
 
     ButtonType away = bNULL;
     ButtonType towards = bNULL;
     ButtonType dir = bNULL;
     int limitCheck(int);
+    void hurtHandler();
+    void blockHandler();
 
   public:
     Fight(Player*, Player*);
@@ -52,6 +55,7 @@ class Fight {
     bool getPushed(int);
     int moveHorizontally(int);
     bool isRightSide();
+    int awayMultiplier();
 };
 
 #endif

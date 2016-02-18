@@ -44,6 +44,38 @@ int Fight::limitCheck(int dx){
   return dx;
 }
 
+void Fight::hurtHandler(){
+  currentAnim = c->getBaseAnim(state);
+  if (previous_state != state){
+    currentAnim->reset();
+    currentSprite = currentAnim->primeSprite();
+  } else if (currentAnim->loopComplete()){
+    knockback = 0;
+    if (crouching){
+      state = psCROUCH;
+      currentAnim = c->getBaseAnim(state);
+      currentSprite = c->getBaseAnim(state)->primeSprite();
+    } else {
+      state = psNEUTRAL;
+      currentAnim = c->getBaseAnim(state);
+      currentSprite = c->getBaseAnim(state)->primeSprite();
+    }
+  } else {
+    currentSprite = currentAnim->getSprite();
+  }
+}
+
+void Fight::blockHandler(){
+  if (block_stun < 0){
+    state = state == psBLOCK ? psNEUTRAL : psCROUCH;
+    currentAnim = c->getBaseAnim(state);
+    currentSprite = currentAnim->primeSprite();
+  } else {
+    currentSprite = currentAnim->getSprite();
+    block_stun--;
+  }
+}
+
 void Fight::run(){
   away = p->position.x < opponent->position.x ? bLEFT : bRIGHT;
   towards = away == bLEFT ? bRIGHT : bLEFT;
@@ -67,36 +99,21 @@ void Fight::run(){
       }
       break;
     case psHURTCROUCH:
+      knockback = 1;
+      hurtHandler();
+      break;
     case psHURTHEAVY:
+      knockback = 2;
+      hurtHandler();
+      break;
     case psHURTLIGHT:
-      currentAnim = c->getBaseAnim(state);
-      if (previous_state != state){
-        currentAnim->reset();
-        currentSprite = currentAnim->primeSprite();
-      } else if (currentAnim->loopComplete()){
-        if (crouching){
-          state = psCROUCH;
-          currentAnim = c->getBaseAnim(state);
-          currentSprite = c->getBaseAnim(state)->primeSprite();
-        } else {
-          state = psNEUTRAL;
-          currentAnim = c->getBaseAnim(state);
-          currentSprite = c->getBaseAnim(state)->primeSprite();
-        }
-      } else {
-        currentSprite = currentAnim->getSprite();
-      }
+      knockback = 1;
+      hurtHandler();
       break;
     case psCROUCHBLOCK:
     case psBLOCK:
-      if (block_stun < 0){
-        state = state == psBLOCK ? psNEUTRAL : psCROUCH;
-        currentAnim = c->getBaseAnim(state);
-        currentSprite = currentAnim->primeSprite();
-      } else {
-        currentSprite = currentAnim->getSprite();
-        block_stun--;
-      }
+      knockback = 1;
+      blockHandler();
       break;
     case psSPECIAL:
       currentAnim = c->getSpecAnim(movesys->index);
@@ -271,6 +288,8 @@ void Fight::run(){
       break;
   };
 
+  moveHorizontally(knockback * awayMultiplier());
+
   //Spawn hitboxes if necessary
   vector<HitBox>* new_atk_boxes;
   if (prevSprite != currentSprite && currentAnim != NULL){
@@ -364,4 +383,8 @@ int Fight::moveHorizontally(int _dx){
 
 bool Fight::isRightSide(){
   return p->position.x > opponent->position.x;
+}
+
+int Fight::awayMultiplier(){
+  return isRightSide() ? 1 : -1;
 }
