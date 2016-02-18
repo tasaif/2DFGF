@@ -26,6 +26,7 @@ class MoveState {
     bool Confirmed();
     bool operator==(MoveState);
     MoveState duplicate();
+    void dump();
 };
 
 #endif

@@ -140,3 +140,7 @@ string Move::getName(){
 PlayerState Move::getType(){
   return type;
 }
+
+int Move::getIndex(){
+  return move_number;
+}

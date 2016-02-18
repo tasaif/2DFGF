@@ -27,7 +27,7 @@ class MoveSystem {
     virtual bool checkForMove();
 
     PlayerState type = psNULL;
-    unsigned number = 0;
+    unsigned index = 0;
 };
 
 #endif

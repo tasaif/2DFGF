@@ -28,6 +28,7 @@ class Move {
     vector<MoveState>* getCmd();
     string getName();
     PlayerState getType();
+    int getIndex();
 };
 
 #endif

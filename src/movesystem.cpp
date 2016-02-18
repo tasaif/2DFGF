@@ -68,20 +68,25 @@ bool MoveSystem::checkForMove(){
   //if (p->getPnum() == 1){
     //p->joystick->dumpMoveBuffer();
     for(i=0; i<(int)moves.size(); i++){
-      //moves[i].dump();
       cmd_buffer = normalize_cmd_buffer(moves[i].getCmd());
       j = cmd_buffer.size() - 1;
       k = move_buffer->size() - 1;
-      while(k >= 0 && j >= 0 && !move_buffer->back().Confirmed()){
-        if (cmd_buffer[j] == (*move_buffer)[k]){
-          j--;
-        }
-        k--;
+      if (j < 0 || k < 0){
+        continue;
       }
-      if (j < 0){
-        move_buffer->back().Confirm();
-        type = moves[i].getType();
-        return true;
+      if (cmd_buffer[j] == (*move_buffer)[k]){
+        while(k >= 0 && j >= 0 && !move_buffer->back().Confirmed()){
+          if (cmd_buffer[j] == (*move_buffer)[k]){
+            j--;
+          }
+          k--;
+        }
+        if (j < 0){
+          move_buffer->back().Confirm();
+          type = moves[i].getType();
+          index = moves[i].getIndex();
+          return true;
+        }
       }
     }
   //}

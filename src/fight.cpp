@@ -50,8 +50,6 @@ void Fight::run(){
   dir = p->joystick->getDirection();
   distance = abs_unsigned(opponent->position.x - p->position.x);
 
-
-
   switch(state){
     case psDASHB:
     case psDASHF:
@@ -101,21 +99,21 @@ void Fight::run(){
       }
       break;
     case psSPECIAL:
-      currentAnim = c->getSpecAnim(movesys->number);
+      currentAnim = c->getSpecAnim(movesys->index);
       if (currentAnim->loopComplete()){
         currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
         state = psNEUTRAL;
       } else {
-        currentSprite = c->getSpecAnim(movesys->number)->getSprite();
+        currentSprite = c->getSpecAnim(movesys->index)->getSprite();
       }
       break;
     case psNORMAL:
-      currentAnim = c->getNormAnim(movesys->number);
+      currentAnim = c->getNormAnim(movesys->index);
       if (currentAnim->loopComplete()){
         currentSprite = c->getBaseAnim(psNEUTRAL)->primeSprite();
         state = psNEUTRAL;
       } else {
-        currentSprite = c->getNormAnim(movesys->number)->getSprite();
+        currentSprite = c->getNormAnim(movesys->index)->getSprite();
       }
       break;
     case psMATCHSTARTING:
@@ -127,8 +125,21 @@ void Fight::run(){
       currentSprite = currentAnim->getSprite();
       if (movesys->checkForMove()){
         state = movesys->type;
-        currentAnim = c->getBaseAnim(state);
-        currentSprite = c->getBaseAnim(state)->primeSprite();
+        int index = movesys->index;
+        switch(state){
+          case psSPECIAL:
+            currentAnim = c->getSpecAnim(index);
+            currentSprite = c->getSpecAnim(index)->primeSprite();
+            break;
+          case psNORMAL:
+            currentAnim = c->getNormAnim(index);
+            currentSprite = c->getNormAnim(index)->primeSprite();
+            break;
+          default:
+            currentAnim = c->getBaseAnim(state);
+            currentSprite = c->getBaseAnim(state)->primeSprite();
+            break;
+        }
       } else {
         switch(dir){
           case bUP:

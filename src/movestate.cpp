@@ -38,14 +38,12 @@ int MoveState::Charge(int increment){
 /*
  * Later, this will include:
  *  comparing charge times (sonic boom)
- *  comparing press vs release (double jump and dash)
  *
- * Right now, this is enough for a fireball cmp
  */
 bool MoveState::operator==(MoveState rhs){
   if(button == rhs.button){
     if (state == bsNULL || rhs.state == bsNULL){
-      return true;
+      return false;
     } else {
       if (state == rhs.state){
         return true;
@@ -68,4 +66,8 @@ MoveState MoveState::duplicate(){
   retval.Ttl(ttl);
   if (confirmed) retval.Confirm();
   return retval;
+}
+
+void MoveState::dump(){
+  cout << "(" << legible_buttons[button] << "," << legible_button_states[state] << ") ";
 }
