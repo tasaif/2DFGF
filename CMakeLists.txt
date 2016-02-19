@@ -21,7 +21,7 @@ add_executable(fighter
   src/joystick.cpp
   src/controller.cpp
   src/keyboard.cpp
-  src/ltimer.cpp
+  vendor/lazyfoo/ltimer.cpp
   src/main.cpp
   src/menu.cpp
   src/option.cpp

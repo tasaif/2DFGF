@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "scene.h"
-#include "ltimer.h"
+#include "../vendor/lazyfoo/ltimer.h"
 #include "option.h"
 #include "charactermenustate.h"
 #include "buttontype.h"

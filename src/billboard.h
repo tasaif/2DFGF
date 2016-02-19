@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include "scene.h"
-#include "ltimer.h"
+#include "../vendor/lazyfoo/ltimer.h"
 #include "gamestate.h"
 using namespace std;
 

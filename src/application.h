@@ -9,7 +9,7 @@
 #include "animationsystem.h"
 #include "sparksystem.h"
 #include "game.h"
-#include "ltimer.h"
+#include "../vendor/lazyfoo/ltimer.h"
 using namespace std;
 
 class InputSystem;
