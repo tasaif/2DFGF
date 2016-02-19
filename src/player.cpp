@@ -4,12 +4,9 @@
 extern Application* app;
 
 Player::Player(){
-  healthBar = new Sprite();
-  dead = false;
 }
 
 Player::~Player(){
-  delete healthBar;
 }
 
 Sprite* Player::getPlacard(unsigned player){
@@ -28,36 +25,11 @@ Stage* Player::getStage(){
   return app->game->charsys->getStage(charselect);
 }
 
-void Player::update_health_bar(){
-  if (hp <= 0){
-    dead = true;
-  } else {
-    healthBar->mkRect(hpwidth(), HPHEIGHT, HPCOLOR);
-  }
-  if (getPnum() == 0){
-    healthBar->setPos(44 + (HPWIDTH - hpwidth()), 30);
-  } else {
-    healthBar->setPos(0, 30);
-    healthBar->alignFromRight(44 + (HPWIDTH - hpwidth()));
-  }
-}
-
 void Player::prep(){
   if (character == NULL){
     character = app->game->charsys->mkCharacter(charselect);
   }
-  maxhp = getCharacter()->getHP();
-  hp = maxhp;
-  update_health_bar();
-}
-
-unsigned Player::hpwidth(){
-  return (unsigned)(((float)hp / (float)maxhp) * (float)HPWIDTH);
-}
-
-void Player::incHealth(int val){
-  hp += val;
-  update_health_bar();
+  health.init(getPnum(), getCharacter()->getHP());
 }
 
 int Player::getPnum(){

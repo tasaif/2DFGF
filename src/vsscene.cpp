@@ -45,9 +45,9 @@ bool VSScene::first(){
 
 void VSScene::incHealth(unsigned player, unsigned val){
   Player* p = getPlayer(player);
-  p->incHealth(val);
+  p->health.incHealth(val);
   if (player == 0){
-    p->healthBar->offset.x = 44 + (Player::HPWIDTH - p->healthBar->getW());
+    p->health.sprite->offset.x = 44 + (HealthBar::HPWIDTH - p->health.sprite->getW());
   }
 }
 
@@ -80,8 +80,8 @@ bool VSScene::run(){
   drawsys->draw(overlay);
   drawsys->draw(time);
   for(unsigned i=0; i<2; i++){
-    if (!getP(i)->dead){
-      drawsys->draw(getP(i)->healthBar);
+    if (!getP(i)->health.dead){
+      drawsys->draw(getP(i)->health.sprite);
     }
     drawsys->draw(getCharacter(i)->getVSName(i));
   }

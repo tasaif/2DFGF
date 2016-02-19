@@ -47,6 +47,7 @@ add_executable(fighter
   src/helper.cpp
   src/move.cpp
   src/movestate.cpp
+  src/healthbar.cpp
 )
 target_link_libraries(fighter
   SDL2

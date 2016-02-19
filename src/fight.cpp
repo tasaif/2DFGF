@@ -336,7 +336,7 @@ void Fight::hitBy(HitBox* box){
   } else {
     state = box->type;
   }
-  p->incHealth(-1 * box->damage);
+  p->health.incHealth(-1 * box->damage);
   setStunTimer(box->type, box->hit_stun);
 }
 
