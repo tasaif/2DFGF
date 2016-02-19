@@ -79,11 +79,16 @@ bool VSScene::run(){
   camera->drawBG();
   drawsys->draw(overlay);
   drawsys->draw(time);
+  HealthBar* hb;
   for(unsigned i=0; i<2; i++){
-    if (!getP(i)->health.dead){
-      drawsys->draw(getP(i)->health.sprite);
+    hb = &getP(i)->health;
+    hb->update();
+    if (hb->redhp > 0){
+      drawsys->draw(hb->bg);
     }
-    drawsys->draw(getCharacter(i)->getVSName(i));
+    if (!hb->dead){
+      drawsys->draw(hb->sprite);
+    }
   }
   fightsys->drawWith(camera);
   if (inputsys->Pressed(bSELECT)){
