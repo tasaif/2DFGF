@@ -81,9 +81,10 @@ void Animation::mkDefBox(unsigned start, unsigned end, HitBox box){
   }
 }
 
-void Animation::mkAtkBox(unsigned frame_number, unsigned life_span, HitBox box, PlayerState type){
+void Animation::mkAtkBox(unsigned frame_number, unsigned life_span, HitBox box, PlayerState type, int damage){
   box.life_span = life_span;
   box.type = type;
+  box.damage = damage;
   getFrame(frame_number)->atk_boxes.push_back(box);
 }
 

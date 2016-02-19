@@ -37,11 +37,6 @@ bool VSScene::first(){
   }
   getPlayer(0)->prep();
   getPlayer(1)->prep();
-  getPlayer(0)->healthBar->setPos(44, 30);
-  getPlayer(1)->healthBar->setPos(0, 30);
-  getPlayer(1)->healthBar->alignFromRight(44);
-  incHealth(0, -100);
-  incHealth(1, -10);
   fightsys = new FightSystem(app->sparksys);
   fightsys->init(getPlayer(0), getPlayer(1));
   exit_code = gsNULL;
@@ -85,7 +80,9 @@ bool VSScene::run(){
   drawsys->draw(overlay);
   drawsys->draw(time);
   for(unsigned i=0; i<2; i++){
-    drawsys->draw(getP(i)->healthBar);
+    if (!getP(i)->dead){
+      drawsys->draw(getP(i)->healthBar);
+    }
     drawsys->draw(getCharacter(i)->getVSName(i));
   }
   fightsys->drawWith(camera);

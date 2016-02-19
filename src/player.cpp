@@ -5,6 +5,7 @@ extern Application* app;
 
 Player::Player(){
   healthBar = new Sprite();
+  dead = false;
 }
 
 Player::~Player(){
@@ -28,7 +29,17 @@ Stage* Player::getStage(){
 }
 
 void Player::update_health_bar(){
-  healthBar->mkRect(hpwidth(), HPHEIGHT, HPCOLOR);
+  if (hp <= 0){
+    dead = true;
+  } else {
+    healthBar->mkRect(hpwidth(), HPHEIGHT, HPCOLOR);
+  }
+  if (getPnum() == 0){
+    healthBar->setPos(44 + (HPWIDTH - hpwidth()), 30);
+  } else {
+    healthBar->setPos(0, 30);
+    healthBar->alignFromRight(44 + (HPWIDTH - hpwidth()));
+  }
 }
 
 void Player::prep(){

@@ -55,8 +55,8 @@ NullChar::NullChar(){
 
   //Attack boxes
   //base_anim[psNEUTRAL]->mkAtkBox(0, 6, animsys->mkBox(85, 170, 45, 20));
-  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(171, 32, 65, 24), psHURTLIGHT);
-  norm_anim[nunHP]->mkAtkBox(4, 3, animsys->mkBox(186, 27, 17, 19), psHURTHEAVY);
+  norm_anim[nunLP]->mkAtkBox(1, 2, animsys->mkBox(171, 32, 65, 24), psHURTLIGHT, 10);
+  norm_anim[nunHP]->mkAtkBox(4, 3, animsys->mkBox(186, 27, 17, 19), psHURTHEAVY, 20);
 
   /*
    * The following values were found qualitatively

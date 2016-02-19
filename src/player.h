@@ -44,6 +44,7 @@ class Player {
     Player* opponent = NULL;
     int hp;
     int maxhp;
+    bool dead;
     int getPnum();
 
     Player();
