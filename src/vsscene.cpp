@@ -9,7 +9,7 @@ VSScene::VSScene(CharacterSystem* _charsys){
   overlay = new Sprite("overlay.png");
   time = new TextSprite();
   camera = new Camera(app->drawsys);
-  time->setFont("nk57.ttf");
+  time->setFont("andrew-bulhak_modeseven/MODES___.TTF");
   time->setColor({0xff, 0xff, 0xff});
   time->init("99", 45, 0, 12);
   time->align(Sprite::HCENTER);

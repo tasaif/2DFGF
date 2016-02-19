@@ -28,7 +28,7 @@ TTF_Font* Font::getSDLFont(){
 }
 
 FontSystem::FontSystem(){
-  string font_name = "opensans.ttf";
+  string font_name = "linux_libertine/LinLibertine_R.ttf";
   default_font = new Font(font_name, DEFAULTFONTSIZE);
   fonts.push_back(default_font);
 }

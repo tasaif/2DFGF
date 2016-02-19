@@ -8,7 +8,7 @@ extern Application* app;
 NullChar::NullChar(){
   animsys = app->animsys;
   movesys = new NullMoveSystem();
-  init("NULL", "mode7.ttf");
+  init("NULL", "andrew-bulhak_modeseven/MODES___.TTF");
   hp = 200;
   norm_anim = new Animation*[nunEND];
   spec_anim = new Animation*[nusEND];

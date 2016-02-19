@@ -54,7 +54,7 @@ void Character::init(string _name, string _placard_font){
 
   for(unsigned i=0; i<2; i++){
     vsname[i] = new TextSprite();
-    vsname[i]->setFont("squares.otf");
+    vsname[i]->setFont("squares2/Squares Bold Free.otf");
     vsname[i]->setColor({0xff, 0xff, 0xff});
     vsname[i]->init(name, VSNAMEHEIGHT);
   }

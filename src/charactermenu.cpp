@@ -10,7 +10,7 @@ void CharacterMenu::updateIconOffset(unsigned player){
 
 TextSprite* CharacterMenu::createIcon(unsigned player){
   TextSprite* retval = new TextSprite();
-  retval->setFont("mode7.ttf");
+  retval->setFont("andrew-bulhak_modeseven/MODES___.TTF");
   retval->init("P" + std::to_string(player+1), 15);
   return retval;
 }

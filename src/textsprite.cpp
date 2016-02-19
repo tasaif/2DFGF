@@ -29,7 +29,7 @@ void TextSprite::init(string _text, unsigned _font_size){
 void TextSprite::init(string _text, unsigned _font_size, int x, int y){
   SDL_Surface* surface;
   if (font == NULL){
-    font = app->fontsys->getFont("opensans.ttf", _font_size);
+    font = app->fontsys->getFont("linux_libertine/LinLibertine_R.ttf", _font_size);
   } else {
     setFont(font->getFontName(), _font_size);
   }
@@ -48,7 +48,7 @@ void TextSprite::init(string _text, unsigned _font_size, int x, int y){
 }
 
 void TextSprite::setDefaultFont(){
-  font = app->fontsys->getFont("opensans.ttf", DEFAULTFONTSIZE);
+  font = app->fontsys->getFont("linux_libertine/LinLibertine_R.ttf", DEFAULTFONTSIZE);
 }
 
 void TextSprite::setFont(string font_name){
