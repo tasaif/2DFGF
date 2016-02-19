@@ -89,6 +89,7 @@ bool VSScene::run(){
     if (!hb->dead){
       drawsys->draw(hb->sprite);
     }
+    drawsys->draw(getCharacter(i)->getVSName(i));
   }
   fightsys->drawWith(camera);
   if (inputsys->Pressed(bSELECT)){
