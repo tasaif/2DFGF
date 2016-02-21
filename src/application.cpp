@@ -40,6 +40,7 @@ bool Application::init(int argc, char* argv[]){
   fontsys = new FontSystem();
   optionsys = new OptionSystem();
   animsys = new AnimationSystem();
+  soundsys = new SoundSystem();
   sparksys = new SparkSystem(animsys);
   game = new Game();
   game->init();
@@ -71,6 +72,7 @@ bool Application::run(){
 
 void Application::quit(){
   delete sparksys;
+  delete soundsys;
   delete fontsys;
   delete optionsys;
   delete animsys;

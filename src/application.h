@@ -1,12 +1,12 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 #include <SDL.h>
-#include <SDL_mixer.h>
 #include "drawsystem.h"
 #include "inputsystem.h"
 #include "fontsystem.h"
 #include "optionsystem.h"
 #include "animationsystem.h"
+#include "soundsystem.h"
 #include "sparksystem.h"
 #include "game.h"
 #include "../vendor/lazyfoo/ltimer.h"
@@ -34,6 +34,7 @@ class Application {
     FontSystem* fontsys;
     OptionSystem* optionsys;
     AnimationSystem* animsys;
+    SoundSystem* soundsys;
     SparkSystem* sparksys;
     SDL_Event* event;
     Game* game;
