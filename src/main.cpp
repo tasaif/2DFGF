@@ -5,6 +5,7 @@ path asset_path;
 path character_path;
 path image_path;
 path font_path;
+path music_path;
 Application* app;
 unsigned debugstate = 0; /*
                             This is for starting the application at
@@ -31,6 +32,7 @@ int main(int argc, char* argv[]){
   character_path = asset_path / "character";
   image_path = asset_path / "image";
   font_path = asset_path / "font";
+  music_path = asset_path / "audio/music";
   app = new Application();
   if (app->init(argc, argv)){
     while(app->run());

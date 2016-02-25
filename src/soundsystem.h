@@ -10,13 +10,15 @@ using namespace std;
 class Music {
   private:
     string name;
-    Mix_Music mix_music;
+    Mix_Music* mix_music;
 
   public:
     Music();
     ~Music();
     void load(string);
     void unload();
+    void play();
+    void stop();
     bool operator ==(const string);
 };
 
@@ -27,6 +29,8 @@ class SoundSystem {
   public:
     SoundSystem();
     ~SoundSystem();
+    static void setBGMVolume(int);
+    static void stopMusic();
     void load(string);
     bool isLoaded(string);
 };

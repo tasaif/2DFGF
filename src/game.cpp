@@ -124,6 +124,7 @@ bool Game::run(){
       break;
     case gsCHARACTERS:
       if (!character_menu->run()){
+        SoundSystem::stopMusic();
         gamestate = character_menu->end();
         switch(gamestate){
           case gsVS:
@@ -139,6 +140,7 @@ bool Game::run(){
       break;
     case gsVS:
       if (!vs_scene->run()){
+        SoundSystem::stopMusic();
         gamestate = vs_scene->end();
         switch(gamestate){
           case gsCHARACTERS:

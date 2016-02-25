@@ -48,12 +48,14 @@ add_executable(fighter
   src/move.cpp
   src/movestate.cpp
   src/healthbar.cpp
+  src/soundsystem.cpp
 )
 target_link_libraries(fighter
   SDL2
   SDL2_image
   SDL2_ttf
   SDL2_gfx
+  SDL2_mixer
   boost_system
   boost_filesystem
 )

@@ -6,9 +6,11 @@ extern Application* app;
 Scene::Scene(){
   indicator = new TextSprite();
   game = app->game;
+  bgm = new Music();
 }
 
 Scene::~Scene(){
+  delete bgm;
   delete indicator;
   delete background;
   for(unsigned i=0; i<options.size(); i++){

@@ -13,6 +13,7 @@ VSScene::VSScene(CharacterSystem* _charsys){
   time->setColor({0xff, 0xff, 0xff});
   time->init("99", 45, 0, 12);
   time->align(Sprite::HCENTER);
+  bgm->load("null1024_-_impossible.wav");
 }
 
 VSScene::~VSScene(){
@@ -40,6 +41,7 @@ bool VSScene::first(){
   fightsys = new FightSystem(app->sparksys);
   fightsys->init(getPlayer(0), getPlayer(1));
   exit_code = gsNULL;
+  bgm->play();
   return true;
 }
 

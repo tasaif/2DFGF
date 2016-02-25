@@ -9,6 +9,7 @@
 #include "optionsystem.h"
 #include "charactersystem.h"
 #include "player.h"
+#include "soundsystem.h"
 using namespace std;
 
 class InputSystem;
@@ -26,7 +27,7 @@ class Scene {
     TextSprite* indicator = NULL;
     vector<Option*> options;
     bool initialized = false;
-    //Sound bgm;
+    Music* bgm;
     Option* createOption(unsigned);
     Game* game = NULL;
 

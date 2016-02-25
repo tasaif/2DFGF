@@ -15,7 +15,7 @@ TextSprite* CharacterMenu::createIcon(unsigned player){
   return retval;
 }
 
-CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
+CharacterMenu::CharacterMenu(CharacterSystem* _charsys):Scene(){
   charsys = _charsys;
   selection_backing = new Sprite();
   selection_backing->mkRect(332, 140, 0xCC);
@@ -29,6 +29,7 @@ CharacterMenu::CharacterMenu(CharacterSystem* _charsys){
     icons[i] = createIcon(i);
     updateIconOffset(i);
   }
+  bgm->load("player_select.wav");
 }
 
 CharacterMenu::~CharacterMenu(){
@@ -47,6 +48,7 @@ bool CharacterMenu::first(){
   exit_code = gsNULL;
   state[0] = cmsCHOOSING;
   state[1] = cmsCHOOSING;
+  bgm->play();
   return true;
 }
 
