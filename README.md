@@ -13,6 +13,19 @@
     libsdl-mixer-dev        2.0.0+dfsg1-5
     libsdl2-gfx-dev         1.0.1+dfsg-1
 
-  Build instructions:
-    cmake CMakeListFile.txt
-    make
+#El Capitan
+  First install Homebrew from http://brew.sh/
+  (Note: You will have to install xcode)
+  
+  Using brew, install the following
+  Packages
+    sdl2 sdl2_mixer sdl2_image sdl2_gfx sdl2_ttf boost
+
+#Windows
+  
+
+#Build instructions:
+  Regardless of the platform, care has been taken to make compiling and building across Windows, OSX, and Linux as close to the same as possible. You will need the cmake and make packages installed through your package manager.
+  
+  cmake CMakeListFile.txt
+  make
