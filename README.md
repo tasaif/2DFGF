@@ -19,7 +19,7 @@
   
   Using brew, install the following
   Packages
-    sdl2 sdl2_mixer sdl2_image sdl2_gfx sdl2_ttf boost
+    sdl2 sdl2_mixer sdl2_image sdl2_gfx sdl2_ttf boost cmake
 
 #Windows
   
